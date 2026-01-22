@@ -1,4 +1,4 @@
-package fr.eni.encheres.bo;
+package fr.eni.encheres.entity;
 
 import java.time.LocalDate;
 
