@@ -29,7 +29,7 @@ public class UserRepositorySQL implements UserRepository{
         map.addValue("password", user.getPassword());
         map.addValue("firstname", user.getFirstName());
         map.addValue("lastname", user.getLastName());
-        map.addValue("address", user.getAdress());
+        map.addValue("address", user.getAddress());
         map.addValue("zipcode",user.getZipCode());
         map.addValue("city", user.getCity());
         map.addValue("phone", user.getPhone());
@@ -41,7 +41,7 @@ public class UserRepositorySQL implements UserRepository{
 
     @Override
     public List<User> readAll(){
-        String sql = "SELECT user.id as id_user, ";
+        String sql = "SELECT user.id as id_user, user.pseudo as  pseudo_user, user.email as email_user, user.password as password_user, user.firstname as firstname_user, user.lastname as lastname_user, user.address as address_user, user.zipcode as zipcode_user, user.city as city_user,  ";
     }
 
     @Override
@@ -49,5 +49,10 @@ public class UserRepositorySQL implements UserRepository{
         String sql = "UPDATE USER SET pseudo=:pseudo, email=:email, password=:password, firstname=:firstname, lastname=:lastname, address=:address, zipcode=:zipcode, city=:city, phone=:phone, walletPoint=:walletPoint, walletPending=:walletPending";
         BeanPropertySqlParameterSource map = new BeanPropertySqlParameterSource(user);
         namedParameterJdbcTemplate.update(sql, map);
+    }
+
+    @Override
+    public void deleteUser(long id){
+
     }
 }
