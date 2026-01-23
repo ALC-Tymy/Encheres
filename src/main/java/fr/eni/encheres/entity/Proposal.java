@@ -7,26 +7,65 @@ public class Proposal {
     private long idProposal;
     private int pointProposal;
     private LocalDate dateProposal;
-    private boolean isNumberOne;
+    private int ranking;
     private User user;
     private Article article;
 
     public Proposal() {
     }
 
-    public Proposal(long idProposal, int pointProposal, LocalDate dateProposal, boolean isNumberOne, User user, Article article) {
+    /**
+     * @param idProposal
+     * @param pointProposal
+     * @param dateProposal
+     * @param ranking
+     */
+    public Proposal(long idProposal, int pointProposal, LocalDate dateProposal, int ranking) {
         this.idProposal = idProposal;
         this.pointProposal = pointProposal;
         this.dateProposal = dateProposal;
-        this.isNumberOne = isNumberOne;
+        this.ranking = ranking;
+    }
+
+    /**
+     * @param pointProposal
+     * @param dateProposal
+     * @param ranking
+     */
+    public Proposal(int pointProposal, LocalDate dateProposal, int ranking) {
+        this.pointProposal = pointProposal;
+        this.dateProposal = dateProposal;
+        this.ranking = ranking;
+    }
+
+    /**
+     * @param idProposal
+     * @param pointProposal
+     * @param dateProposal
+     * @param ranking
+     * @param user
+     * @param article
+     */
+    public Proposal(long idProposal, int pointProposal, LocalDate dateProposal, int ranking, User user, Article article) {
+        this.idProposal = idProposal;
+        this.pointProposal = pointProposal;
+        this.dateProposal = dateProposal;
+        this.ranking = ranking;
         this.user = user;
         this.article = article;
     }
 
-    public Proposal(int pointProposal, LocalDate dateProposal, boolean isNumberOne, User user, Article article) {
+    /**
+     * @param pointProposal
+     * @param dateProposal
+     * @param ranking
+     * @param user
+     * @param article
+     */
+    public Proposal(int pointProposal, LocalDate dateProposal, int ranking, User user, Article article) {
         this.pointProposal = pointProposal;
         this.dateProposal = dateProposal;
-        this.isNumberOne = isNumberOne;
+        this.ranking = ranking;
         this.user = user;
         this.article = article;
     }
@@ -55,12 +94,12 @@ public class Proposal {
         this.dateProposal = dateProposal;
     }
 
-    public boolean isNumberOne() {
-        return isNumberOne;
+    public int getRanking() {
+        return ranking;
     }
 
-    public void setNumberOne(boolean numberOne) {
-        isNumberOne = numberOne;
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
     }
 
     public User getUser() {
@@ -85,7 +124,7 @@ public class Proposal {
         sb.append("idProposal=").append(idProposal);
         sb.append(", pointProposal=").append(pointProposal);
         sb.append(", dateProposal=").append(dateProposal);
-        sb.append(", isNumberOne=").append(isNumberOne);
+        sb.append(", ranking=").append(ranking);
         sb.append(", user=").append(user);
         sb.append(", article=").append(article);
         sb.append('}');
@@ -97,7 +136,7 @@ public class Proposal {
         if (o == null || getClass() != o.getClass()) return false;
 
         Proposal proposal = (Proposal) o;
-        return idProposal == proposal.idProposal && pointProposal == proposal.pointProposal && isNumberOne == proposal.isNumberOne && dateProposal.equals(proposal.dateProposal) && user.equals(proposal.user) && article.equals(proposal.article);
+        return idProposal == proposal.idProposal && pointProposal == proposal.pointProposal && ranking == proposal.ranking && dateProposal.equals(proposal.dateProposal) && user.equals(proposal.user) && article.equals(proposal.article);
     }
 
     @Override
@@ -105,7 +144,7 @@ public class Proposal {
         int result = Long.hashCode(idProposal);
         result = 31 * result + pointProposal;
         result = 31 * result + dateProposal.hashCode();
-        result = 31 * result + Boolean.hashCode(isNumberOne);
+        result = 31 * result + ranking;
         result = 31 * result + user.hashCode();
         result = 31 * result + article.hashCode();
         return result;
