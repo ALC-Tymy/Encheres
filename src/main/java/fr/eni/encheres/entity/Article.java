@@ -1,6 +1,8 @@
 package fr.eni.encheres.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Article {
 
@@ -13,29 +15,72 @@ public class Article {
     private LocalDate endingDate;
     private String status;
     private Category category;
-    private DeliveryAdress deliveryAddress;
+    private DeliveryAddress deliveryAddress;
     private User buyer;
     private User seller;
+    private List<Proposal> proposalArticleList = new ArrayList<>();
 
     public Article() {
     }
 
-    public Article(long idArticle, String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, String status, LocalDate endingDate, Category category, DeliveryAdress deliveryAdress, User buyer, User seller) {
+    /**
+     * @param idArticle
+     * @param name
+     * @param description
+     * @param originalPoint
+     * @param finalPoint
+     * @param beginningDate
+     * @param endingDate
+     * @param status
+     */
+    public Article(long idArticle, String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status) {
         this.idArticle = idArticle;
         this.name = name;
         this.description = description;
         this.originalPoint = originalPoint;
         this.finalPoint = finalPoint;
         this.beginningDate = beginningDate;
-        this.status = status;
         this.endingDate = endingDate;
-        this.category = category;
-        this.deliveryAddress = deliveryAdress;
-        this.buyer = buyer;
-        this.seller = seller;
+        this.status = status;
     }
 
-    public Article(String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category, DeliveryAdress deliveryAdress, User buyer, User seller) {
+    /**
+     * @param name
+     * @param description
+     * @param originalPoint
+     * @param finalPoint
+     * @param beginningDate
+     * @param endingDate
+     * @param status
+     */
+    public Article(String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status) {
+        this.name = name;
+        this.description = description;
+        this.originalPoint = originalPoint;
+        this.finalPoint = finalPoint;
+        this.beginningDate = beginningDate;
+        this.endingDate = endingDate;
+        this.status = status;
+    }
+
+    /**
+     * @param idArticle
+     * @param name
+     * @param description
+     * @param originalPoint
+     * @param finalPoint
+     * @param beginningDate
+     * @param endingDate
+     * @param status
+     * @param category
+     * @param deliveryAddress
+     * @param buyer
+     * @param seller
+     * @param proposalArticleList
+     */
+    public Article(long idArticle, String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category,
+                   DeliveryAddress deliveryAddress, User buyer, User seller, List<Proposal> proposalArticleList) {
+        this.idArticle = idArticle;
         this.name = name;
         this.description = description;
         this.originalPoint = originalPoint;
@@ -44,9 +89,40 @@ public class Article {
         this.endingDate = endingDate;
         this.status = status;
         this.category = category;
-        this.deliveryAddress = deliveryAdress;
+        this.deliveryAddress = deliveryAddress;
         this.buyer = buyer;
         this.seller = seller;
+        this.proposalArticleList = proposalArticleList;
+    }
+
+    /**
+     * @param name
+     * @param description
+     * @param originalPoint
+     * @param finalPoint
+     * @param beginningDate
+     * @param endingDate
+     * @param status
+     * @param category
+     * @param deliveryAddress
+     * @param buyer
+     * @param seller
+     * @param proposalArticleList
+     */
+    public Article(String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category,
+                   DeliveryAddress deliveryAddress, User buyer, User seller, List<Proposal> proposalArticleList) {
+        this.name = name;
+        this.description = description;
+        this.originalPoint = originalPoint;
+        this.finalPoint = finalPoint;
+        this.beginningDate = beginningDate;
+        this.endingDate = endingDate;
+        this.status = status;
+        this.category = category;
+        this.deliveryAddress = deliveryAddress;
+        this.buyer = buyer;
+        this.seller = seller;
+        this.proposalArticleList = proposalArticleList;
     }
 
     public long getIdArticle() {
@@ -121,12 +197,12 @@ public class Article {
         this.category = category;
     }
 
-    public DeliveryAdress getDeliveryAdress() {
+    public DeliveryAddress getDeliveryAddress() {
         return deliveryAddress;
     }
 
-    public void setDeliveryAdress(DeliveryAdress deliveryAdress) {
-        this.deliveryAddress = deliveryAdress;
+    public void setDeliveryAddress(DeliveryAddress deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
     }
 
     public User getBuyer() {
@@ -145,6 +221,14 @@ public class Article {
         this.seller = seller;
     }
 
+    public List<Proposal> getProposalArticleList() {
+        return proposalArticleList;
+    }
+
+    public void setProposalArticleList(List<Proposal> proposalArticleList) {
+        this.proposalArticleList = proposalArticleList;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Article{");
@@ -160,6 +244,7 @@ public class Article {
         sb.append(", deliveryAddress=").append(deliveryAddress);
         sb.append(", buyer=").append(buyer);
         sb.append(", seller=").append(seller);
+        sb.append(", proposalArticleList=").append(proposalArticleList);
         sb.append('}');
         return sb.toString();
     }
@@ -169,7 +254,7 @@ public class Article {
         if (o == null || getClass() != o.getClass()) return false;
 
         Article article = (Article) o;
-        return idArticle == article.idArticle && originalPoint == article.originalPoint && finalPoint == article.finalPoint && name.equals(article.name) && description.equals(article.description) && beginningDate.equals(article.beginningDate) && endingDate.equals(article.endingDate) && status.equals(article.status) && category.equals(article.category) && deliveryAddress.equals(article.deliveryAddress) && buyer.equals(article.buyer) && seller.equals(article.seller);
+        return idArticle == article.idArticle && originalPoint == article.originalPoint && finalPoint == article.finalPoint && name.equals(article.name) && description.equals(article.description) && beginningDate.equals(article.beginningDate) && endingDate.equals(article.endingDate) && status.equals(article.status) && category.equals(article.category) && deliveryAddress.equals(article.deliveryAddress) && buyer.equals(article.buyer) && seller.equals(article.seller) && proposalArticleList.equals(article.proposalArticleList);
     }
 
     @Override
@@ -186,6 +271,7 @@ public class Article {
         result = 31 * result + deliveryAddress.hashCode();
         result = 31 * result + buyer.hashCode();
         result = 31 * result + seller.hashCode();
+        result = 31 * result + proposalArticleList.hashCode();
         return result;
     }
 }
