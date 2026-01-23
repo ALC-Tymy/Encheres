@@ -13,7 +13,7 @@ public class Article {
     private LocalDate endingDate;
     private String status;
     private Category category;
-    private DeliveryAdress deliveryAdress;
+    private DeliveryAdress deliveryAddress;
     private User buyer;
     private User seller;
 
@@ -30,7 +30,7 @@ public class Article {
         this.status = status;
         this.endingDate = endingDate;
         this.category = category;
-        this.deliveryAdress = deliveryAdress;
+        this.deliveryAddress = deliveryAdress;
         this.buyer = buyer;
         this.seller = seller;
     }
@@ -44,7 +44,7 @@ public class Article {
         this.endingDate = endingDate;
         this.status = status;
         this.category = category;
-        this.deliveryAdress = deliveryAdress;
+        this.deliveryAddress = deliveryAdress;
         this.buyer = buyer;
         this.seller = seller;
     }
@@ -122,11 +122,11 @@ public class Article {
     }
 
     public DeliveryAdress getDeliveryAdress() {
-        return deliveryAdress;
+        return deliveryAddress;
     }
 
     public void setDeliveryAdress(DeliveryAdress deliveryAdress) {
-        this.deliveryAdress = deliveryAdress;
+        this.deliveryAddress = deliveryAdress;
     }
 
     public User getBuyer() {
@@ -157,7 +157,7 @@ public class Article {
         sb.append(", endingDate=").append(endingDate);
         sb.append(", status='").append(status).append('\'');
         sb.append(", category=").append(category);
-        sb.append(", deliveryAdress=").append(deliveryAdress);
+        sb.append(", deliveryAddress=").append(deliveryAddress);
         sb.append(", buyer=").append(buyer);
         sb.append(", seller=").append(seller);
         sb.append('}');
@@ -169,7 +169,7 @@ public class Article {
         if (o == null || getClass() != o.getClass()) return false;
 
         Article article = (Article) o;
-        return idArticle == article.idArticle && originalPoint == article.originalPoint && finalPoint == article.finalPoint && name.equals(article.name) && description.equals(article.description) && beginningDate.equals(article.beginningDate) && endingDate.equals(article.endingDate) && status.equals(article.status) && category.equals(article.category) && deliveryAdress.equals(article.deliveryAdress) && buyer.equals(article.buyer) && seller.equals(article.seller);
+        return idArticle == article.idArticle && originalPoint == article.originalPoint && finalPoint == article.finalPoint && name.equals(article.name) && description.equals(article.description) && beginningDate.equals(article.beginningDate) && endingDate.equals(article.endingDate) && status.equals(article.status) && category.equals(article.category) && deliveryAddress.equals(article.deliveryAddress) && buyer.equals(article.buyer) && seller.equals(article.seller);
     }
 
     @Override
@@ -183,7 +183,7 @@ public class Article {
         result = 31 * result + endingDate.hashCode();
         result = 31 * result + status.hashCode();
         result = 31 * result + category.hashCode();
-        result = 31 * result + deliveryAdress.hashCode();
+        result = 31 * result + deliveryAddress.hashCode();
         result = 31 * result + buyer.hashCode();
         result = 31 * result + seller.hashCode();
         return result;

@@ -2,8 +2,8 @@ package fr.eni.encheres.entity;
 
 public class DeliveryAdress {
 
-    private long idDeladress;
-    private String Adress;
+    private long idDeladdress;
+    private String Address;
     private String zipCode;
     private String city;
 
@@ -11,32 +11,32 @@ public class DeliveryAdress {
     }
 
     public DeliveryAdress(long idDeladress, String adress, String zipCode, String city) {
-        this.idDeladress = idDeladress;
-        Adress = adress;
+        this.idDeladdress = idDeladress;
+        Address = adress;
         this.zipCode = zipCode;
         this.city = city;
     }
 
     public DeliveryAdress(String adress, String zipCode, String city) {
-        Adress = adress;
+        Address = adress;
         this.zipCode = zipCode;
         this.city = city;
     }
 
     public long getIdDeladress() {
-        return idDeladress;
+        return idDeladdress;
     }
 
     public void setIdDeladress(long idDeladress) {
-        this.idDeladress = idDeladress;
+        this.idDeladdress = idDeladress;
     }
 
     public String getAdress() {
-        return Adress;
+        return Address;
     }
 
     public void setAdress(String adress) {
-        Adress = adress;
+        Address = adress;
     }
 
     public String getZipCode() {
@@ -58,8 +58,8 @@ public class DeliveryAdress {
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("DeliveryAdress{");
-        sb.append("idDeladress=").append(idDeladress);
-        sb.append(", Adress='").append(Adress).append('\'');
+        sb.append("idDeladdress=").append(idDeladdress);
+        sb.append(", Address='").append(Address).append('\'');
         sb.append(", zipCode='").append(zipCode).append('\'');
         sb.append(", city='").append(city).append('\'');
         sb.append('}');
@@ -71,13 +71,13 @@ public class DeliveryAdress {
         if (o == null || getClass() != o.getClass()) return false;
 
         DeliveryAdress that = (DeliveryAdress) o;
-        return idDeladress == that.idDeladress && Adress.equals(that.Adress) && zipCode.equals(that.zipCode) && city.equals(that.city);
+        return idDeladdress == that.idDeladdress && Address.equals(that.Address) && zipCode.equals(that.zipCode) && city.equals(that.city);
     }
 
     @Override
     public int hashCode() {
-        int result = Long.hashCode(idDeladress);
-        result = 31 * result + Adress.hashCode();
+        int result = Long.hashCode(idDeladdress);
+        result = 31 * result + Address.hashCode();
         result = 31 * result + zipCode.hashCode();
         result = 31 * result + city.hashCode();
         return result;

@@ -7,7 +7,7 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private String adress;
+    private String address;
     private String zipCode;
     private String phone;
     private String city;
@@ -24,7 +24,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.adress = adress;
+        this.address = adress;
         this.zipCode = zipCode;
         this.phone = phone;
         this.city = city;
@@ -38,7 +38,7 @@ public class User {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.adress = adress;
+        this.address = adress;
         this.zipCode = zipCode;
         this.phone = phone;
         this.city = city;
@@ -95,11 +95,11 @@ public class User {
     }
 
     public String getAdress() {
-        return adress;
+        return address;
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.address = adress;
     }
 
     public String getZipCode() {
@@ -147,7 +147,7 @@ public class User {
         if (o == null || getClass() != o.getClass()) return false;
 
         User user = (User) o;
-        return idUser == user.idUser && walletPoint == user.walletPoint && walletPending == user.walletPending && pseudo.equals(user.pseudo) && firstName.equals(user.firstName) && lastName.equals(user.lastName) && email.equals(user.email) && password.equals(user.password) && adress.equals(user.adress) && zipCode.equals(user.zipCode) && phone.equals(user.phone) && city.equals(user.city);
+        return idUser == user.idUser && walletPoint == user.walletPoint && walletPending == user.walletPending && pseudo.equals(user.pseudo) && firstName.equals(user.firstName) && lastName.equals(user.lastName) && email.equals(user.email) && password.equals(user.password) && address.equals(user.address) && zipCode.equals(user.zipCode) && phone.equals(user.phone) && city.equals(user.city);
     }
 
     @Override
@@ -158,7 +158,7 @@ public class User {
         result = 31 * result + lastName.hashCode();
         result = 31 * result + email.hashCode();
         result = 31 * result + password.hashCode();
-        result = 31 * result + adress.hashCode();
+        result = 31 * result + address.hashCode();
         result = 31 * result + zipCode.hashCode();
         result = 31 * result + phone.hashCode();
         result = 31 * result + city.hashCode();
