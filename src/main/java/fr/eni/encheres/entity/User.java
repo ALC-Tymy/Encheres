@@ -17,7 +17,7 @@ public class User {
     public User() {
     }
 
-    public User(long idUser, String pseudo, String firstName, String lastName, String email, String password, String adress, String zipCode, String phone, String city, int walletPoint, int walletPending) {
+    public User(long idUser, String pseudo, String firstName, String lastName, String email, String password, String address, String zipCode, String phone, String city, int walletPoint, int walletPending) {
         this.idUser = idUser;
         this.pseudo = pseudo;
         this.firstName = firstName;
