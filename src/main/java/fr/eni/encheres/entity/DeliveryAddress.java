@@ -2,85 +2,45 @@ package fr.eni.encheres.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DeliveryAddress {
 
-    private long idDeladress;
-    private String Adress;
+    private long idDeladdress;
+    private String address;
     private String zipCode;
     private String city;
-    private List<Article> articleAdressList = new ArrayList<>();
 
     public DeliveryAddress() {
     }
 
-    /**
-     *
-     * @param idDeladress
-     * @param adress
-     * @param zipCode
-     * @param city
-     */
-    public DeliveryAddress(long idDeladress, String adress, String zipCode, String city) {
-        this.idDeladress = idDeladress;
-        Adress = adress;
+    public DeliveryAddress(long idDeladdress, String address, String zipCode, String city) {
+        this.idDeladdress = idDeladdress;
+        this.address = address;
         this.zipCode = zipCode;
         this.city = city;
     }
 
-    /**
-     * @param adress
-     * @param zipCode
-     * @param city
-     */
-    public DeliveryAddress(String adress, String zipCode, String city) {
-        Adress = adress;
+    public DeliveryAddress(String address, String zipCode, String city) {
+        this.address = address;
         this.zipCode = zipCode;
         this.city = city;
     }
 
-    /**
-     * @param idDeladress
-     * @param adress
-     * @param zipCode
-     * @param city
-     * @param articleAdressList
-     */
-    public DeliveryAddress(long idDeladress, String adress, String zipCode, String city, List<Article> articleAdressList) {
-        this.idDeladress = idDeladress;
-        Adress = adress;
-        this.zipCode = zipCode;
-        this.city = city;
-        this.articleAdressList = articleAdressList;
+    public long getIdDeladdress() {
+        return idDeladdress;
     }
 
-    /**
-     * @param adress
-     * @param zipCode
-     * @param city
-     * @param articleAdressList
-     */
-    public DeliveryAddress(String adress, String zipCode, String city, List<Article> articleAdressList) {
-        Adress = adress;
-        this.zipCode = zipCode;
-        this.city = city;
-        this.articleAdressList = articleAdressList;
+    public void setIdDeladdress(long idDeladdress) {
+        this.idDeladdress = idDeladdress;
     }
 
-    public long getIdDeladress() {
-        return idDeladress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setIdDeladress(long idDeladress) {
-        this.idDeladress = idDeladress;
-    }
-
-    public String getAdress() {
-        return Adress;
-    }
-
-    public void setAdress(String adress) {
-        Adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getZipCode() {
@@ -99,41 +59,25 @@ public class DeliveryAddress {
         this.city = city;
     }
 
-    public List<Article> getArticleAdressList() {
-        return articleAdressList;
-    }
-
-    public void setArticleAdressList(List<Article> articleAdressList) {
-        this.articleAdressList = articleAdressList;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("DeliveryAddress{");
-        sb.append("idDeladress=").append(idDeladress);
-        sb.append(", Adress='").append(Adress).append('\'');
-        sb.append(", zipCode='").append(zipCode).append('\'');
-        sb.append(", city='").append(city).append('\'');
-        sb.append(", articleAdressList=").append(articleAdressList);
-        sb.append('}');
-        return sb.toString();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-
         DeliveryAddress that = (DeliveryAddress) o;
-        return idDeladress == that.idDeladress && Adress.equals(that.Adress) && zipCode.equals(that.zipCode) && city.equals(that.city) && articleAdressList.equals(that.articleAdressList);
+        return idDeladdress == that.idDeladdress && Objects.equals(address, that.address) && Objects.equals(zipCode, that.zipCode) && Objects.equals(city, that.city);
     }
 
     @Override
     public int hashCode() {
-        int result = Long.hashCode(idDeladress);
-        result = 31 * result + Adress.hashCode();
-        result = 31 * result + zipCode.hashCode();
-        result = 31 * result + city.hashCode();
-        result = 31 * result + articleAdressList.hashCode();
-        return result;
+        return Objects.hash(idDeladdress, address, zipCode, city);
+    }
+
+    @Override
+    public String toString() {
+        return "DeliveryAddress{" +
+                "idDeladdress=" + idDeladdress +
+                ", address='" + address + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", city='" + city + '\'' +
+                '}';
     }
 }

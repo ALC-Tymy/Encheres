@@ -1,6 +1,7 @@
 package fr.eni.encheres.entity;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Proposal {
 
@@ -8,65 +9,26 @@ public class Proposal {
     private int pointProposal;
     private LocalDate dateProposal;
     private int ranking;
-    private User user;
+    private User buyer;
     private Article article;
 
     public Proposal() {
     }
 
-    /**
-     * @param idProposal
-     * @param pointProposal
-     * @param dateProposal
-     * @param ranking
-     */
-    public Proposal(long idProposal, int pointProposal, LocalDate dateProposal, int ranking) {
+    public Proposal(long idProposal, int pointProposal, LocalDate dateProposal, int ranking, User buyer, Article article) {
         this.idProposal = idProposal;
         this.pointProposal = pointProposal;
         this.dateProposal = dateProposal;
         this.ranking = ranking;
-    }
-
-    /**
-     * @param pointProposal
-     * @param dateProposal
-     * @param ranking
-     */
-    public Proposal(int pointProposal, LocalDate dateProposal, int ranking) {
-        this.pointProposal = pointProposal;
-        this.dateProposal = dateProposal;
-        this.ranking = ranking;
-    }
-
-    /**
-     * @param idProposal
-     * @param pointProposal
-     * @param dateProposal
-     * @param ranking
-     * @param user
-     * @param article
-     */
-    public Proposal(long idProposal, int pointProposal, LocalDate dateProposal, int ranking, User user, Article article) {
-        this.idProposal = idProposal;
-        this.pointProposal = pointProposal;
-        this.dateProposal = dateProposal;
-        this.ranking = ranking;
-        this.user = user;
+        this.buyer = buyer;
         this.article = article;
     }
 
-    /**
-     * @param pointProposal
-     * @param dateProposal
-     * @param ranking
-     * @param user
-     * @param article
-     */
-    public Proposal(int pointProposal, LocalDate dateProposal, int ranking, User user, Article article) {
+    public Proposal(int pointProposal, LocalDate dateProposal, int ranking, User buyer, Article article) {
         this.pointProposal = pointProposal;
         this.dateProposal = dateProposal;
         this.ranking = ranking;
-        this.user = user;
+        this.buyer = buyer;
         this.article = article;
     }
 
@@ -102,12 +64,12 @@ public class Proposal {
         this.ranking = ranking;
     }
 
-    public User getUser() {
-        return user;
+    public User getBuyer() {
+        return buyer;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
     }
 
     public Article getArticle() {
@@ -119,34 +81,26 @@ public class Proposal {
     }
 
     @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("Proposal{");
-        sb.append("idProposal=").append(idProposal);
-        sb.append(", pointProposal=").append(pointProposal);
-        sb.append(", dateProposal=").append(dateProposal);
-        sb.append(", ranking=").append(ranking);
-        sb.append(", user=").append(user);
-        sb.append(", article=").append(article);
-        sb.append('}');
-        return sb.toString();
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-
         Proposal proposal = (Proposal) o;
-        return idProposal == proposal.idProposal && pointProposal == proposal.pointProposal && ranking == proposal.ranking && dateProposal.equals(proposal.dateProposal) && user.equals(proposal.user) && article.equals(proposal.article);
+        return idProposal == proposal.idProposal && pointProposal == proposal.pointProposal && ranking == proposal.ranking && Objects.equals(dateProposal, proposal.dateProposal) && Objects.equals(buyer, proposal.buyer) && Objects.equals(article, proposal.article);
     }
 
     @Override
     public int hashCode() {
-        int result = Long.hashCode(idProposal);
-        result = 31 * result + pointProposal;
-        result = 31 * result + dateProposal.hashCode();
-        result = 31 * result + ranking;
-        result = 31 * result + user.hashCode();
-        result = 31 * result + article.hashCode();
-        return result;
+        return Objects.hash(idProposal, pointProposal, dateProposal, ranking, buyer, article);
+    }
+
+    @Override
+    public String toString() {
+        return "Proposal{" +
+                "idProposal=" + idProposal +
+                ", pointProposal=" + pointProposal +
+                ", dateProposal=" + dateProposal +
+                ", ranking=" + ranking +
+                ", buyer=" + buyer +
+                ", article=" + article +
+                '}';
     }
 }

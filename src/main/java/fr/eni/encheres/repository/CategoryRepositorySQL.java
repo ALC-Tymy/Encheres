@@ -29,6 +29,7 @@ public class CategoryRepositorySQL implements CategoryRepository {
         namedParameterJdbcTemplate.update(sql, map, keyHolder);
         long id = keyHolder.getKey().longValue();
         category.getIdCategory(id);
+        // C'est pas ".setIdCategory" plutôt ? -M
     }
 
     @Override

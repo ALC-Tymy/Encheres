@@ -3,6 +3,7 @@ package fr.eni.encheres.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Article {
 
@@ -18,68 +19,11 @@ public class Article {
     private DeliveryAddress deliveryAddress;
     private User buyer;
     private User seller;
-    private List<Proposal> proposalArticleList = new ArrayList<>();
 
     public Article() {
     }
 
-    /**
-     * @param idArticle
-     * @param name
-     * @param description
-     * @param originalPoint
-     * @param finalPoint
-     * @param beginningDate
-     * @param endingDate
-     * @param status
-     */
-    public Article(long idArticle, String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status) {
-        this.idArticle = idArticle;
-        this.name = name;
-        this.description = description;
-        this.originalPoint = originalPoint;
-        this.finalPoint = finalPoint;
-        this.beginningDate = beginningDate;
-        this.endingDate = endingDate;
-        this.status = status;
-    }
-
-    /**
-     * @param name
-     * @param description
-     * @param originalPoint
-     * @param finalPoint
-     * @param beginningDate
-     * @param endingDate
-     * @param status
-     */
-    public Article(String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status) {
-        this.name = name;
-        this.description = description;
-        this.originalPoint = originalPoint;
-        this.finalPoint = finalPoint;
-        this.beginningDate = beginningDate;
-        this.endingDate = endingDate;
-        this.status = status;
-    }
-
-    /**
-     * @param idArticle
-     * @param name
-     * @param description
-     * @param originalPoint
-     * @param finalPoint
-     * @param beginningDate
-     * @param endingDate
-     * @param status
-     * @param category
-     * @param deliveryAddress
-     * @param buyer
-     * @param seller
-     * @param proposalArticleList
-     */
-    public Article(long idArticle, String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category,
-                   DeliveryAddress deliveryAddress, User buyer, User seller, List<Proposal> proposalArticleList) {
+    public Article(long idArticle, String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
         this.idArticle = idArticle;
         this.name = name;
         this.description = description;
@@ -92,25 +36,9 @@ public class Article {
         this.deliveryAddress = deliveryAddress;
         this.buyer = buyer;
         this.seller = seller;
-        this.proposalArticleList = proposalArticleList;
     }
 
-    /**
-     * @param name
-     * @param description
-     * @param originalPoint
-     * @param finalPoint
-     * @param beginningDate
-     * @param endingDate
-     * @param status
-     * @param category
-     * @param deliveryAddress
-     * @param buyer
-     * @param seller
-     * @param proposalArticleList
-     */
-    public Article(String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category,
-                   DeliveryAddress deliveryAddress, User buyer, User seller, List<Proposal> proposalArticleList) {
+    public Article(String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
         this.name = name;
         this.description = description;
         this.originalPoint = originalPoint;
@@ -122,7 +50,6 @@ public class Article {
         this.deliveryAddress = deliveryAddress;
         this.buyer = buyer;
         this.seller = seller;
-        this.proposalArticleList = proposalArticleList;
     }
 
     public long getIdArticle() {
@@ -221,57 +148,33 @@ public class Article {
         this.seller = seller;
     }
 
-    public List<Proposal> getProposalArticleList() {
-        return proposalArticleList;
-    }
-
-    public void setProposalArticleList(List<Proposal> proposalArticleList) {
-        this.proposalArticleList = proposalArticleList;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuffer sb = new StringBuffer("Article{");
-        sb.append("idArticle=").append(idArticle);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", description='").append(description).append('\'');
-        sb.append(", originalPoint=").append(originalPoint);
-        sb.append(", finalPoint=").append(finalPoint);
-        sb.append(", beginningDate=").append(beginningDate);
-        sb.append(", endingDate=").append(endingDate);
-        sb.append(", status='").append(status).append('\'');
-        sb.append(", category=").append(category);
-        sb.append(", deliveryAddress=").append(deliveryAddress);
-        sb.append(", buyer=").append(buyer);
-        sb.append(", seller=").append(seller);
-        sb.append(", proposalArticleList=").append(proposalArticleList);
-        sb.append('}');
-        return sb.toString();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-
         Article article = (Article) o;
-        return idArticle == article.idArticle && originalPoint == article.originalPoint && finalPoint == article.finalPoint && name.equals(article.name) && description.equals(article.description) && beginningDate.equals(article.beginningDate) && endingDate.equals(article.endingDate) && status.equals(article.status) && category.equals(article.category) && deliveryAddress.equals(article.deliveryAddress) && buyer.equals(article.buyer) && seller.equals(article.seller) && proposalArticleList.equals(article.proposalArticleList);
+        return idArticle == article.idArticle && originalPoint == article.originalPoint && finalPoint == article.finalPoint && Objects.equals(name, article.name) && Objects.equals(description, article.description) && Objects.equals(beginningDate, article.beginningDate) && Objects.equals(endingDate, article.endingDate) && Objects.equals(status, article.status) && Objects.equals(category, article.category) && Objects.equals(deliveryAddress, article.deliveryAddress) && Objects.equals(buyer, article.buyer) && Objects.equals(seller, article.seller);
     }
 
     @Override
     public int hashCode() {
-        int result = Long.hashCode(idArticle);
-        result = 31 * result + name.hashCode();
-        result = 31 * result + description.hashCode();
-        result = 31 * result + originalPoint;
-        result = 31 * result + finalPoint;
-        result = 31 * result + beginningDate.hashCode();
-        result = 31 * result + endingDate.hashCode();
-        result = 31 * result + status.hashCode();
-        result = 31 * result + category.hashCode();
-        result = 31 * result + deliveryAddress.hashCode();
-        result = 31 * result + buyer.hashCode();
-        result = 31 * result + seller.hashCode();
-        result = 31 * result + proposalArticleList.hashCode();
-        return result;
+        return Objects.hash(idArticle, name, description, originalPoint, finalPoint, beginningDate, endingDate, status, category, deliveryAddress, buyer, seller);
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "idArticle=" + idArticle +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", originalPoint=" + originalPoint +
+                ", finalPoint=" + finalPoint +
+                ", beginningDate=" + beginningDate +
+                ", endingDate=" + endingDate +
+                ", status='" + status + '\'' +
+                ", category=" + category +
+                ", deliveryAddress=" + deliveryAddress +
+                ", buyer=" + buyer +
+                ", seller=" + seller +
+                '}';
     }
 }
