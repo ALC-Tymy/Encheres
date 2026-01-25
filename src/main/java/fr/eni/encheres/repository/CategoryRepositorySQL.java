@@ -28,21 +28,20 @@ public class CategoryRepositorySQL implements CategoryRepository {
         map.addValue("", category.getName());
         namedParameterJdbcTemplate.update(sql, map, keyHolder);
         long id = keyHolder.getKey().longValue();
-        category.getIdCategory(id);
-        // C'est pas ".setIdCategory" plutôt ? -M
+        category.setIdCategory(id);
     }
 
     @Override
     public Category getById(long id) {
-        String sql = "";
+        String sql = "SELECT * FROM CATEGORY WHERE id_category = :idCategory;";
         MapSqlParameterSource map = new MapSqlParameterSource();
-        map.addValue("", id);
+        map.addValue("idCategory", id);
         return namedParameterJdbcTemplate.queryForObject(sql, map, new BeanPropertyRowMapper<>(Category.class));
     }
 
     @Override
     public List<Category> getAll() {
-        String sql = "";
+        String sql = "SELECT * FROM CATEGORY;";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Category.class));
     }
 
@@ -56,10 +55,10 @@ public class CategoryRepositorySQL implements CategoryRepository {
 
     @Override
     public void updateCategory(Category category) {
-        String sql = "";
+        String sql = "UPDATE CATEGORY SET name=:name WHERE id_category=:idCategory;";
         MapSqlParameterSource map = new MapSqlParameterSource();
-        map.addValue("", category.getIdCategory());
-        map.addValue("", category.getName());
+        map.addValue("idCategory", category.getIdCategory());
+        map.addValue("name", category.getName());
         namedParameterJdbcTemplate.update(sql, map);
     }
 }
