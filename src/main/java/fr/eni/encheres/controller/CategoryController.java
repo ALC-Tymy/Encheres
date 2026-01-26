@@ -10,16 +10,16 @@ import org.springframework.web.bind.annotation.RequestAttribute;
 @Controller
 public class CategoryController {
 
-    @GetMapping("/addCategory")
-    public String addCategory(Model model) {
-        model.addAttribute("name", this.categoryRepositorySQL.getAll());
-        return "addCategory";
-    }
-
-    @PostMapping("/addCategory")
-    public String addCategory(@RequestAttribute Category category, Model model) {
-        this.categoryRepositorySQL.createCategory(category);
-        return "redirect:/addCategory";
-
-    }
+//    @GetMapping("/addCategory")
+//    public String addCategory(Model model) {
+//        model.addAttribute("name", this.categoryRepositorySQL.getAll());
+//        return "addCategory";
+//    }
+//
+//    @PostMapping("/addCategory")
+//    public String addCategory(@RequestAttribute Category category, Model model) {
+//        this.categoryRepositorySQL.createCategory(category);
+//        return "redirect:/addCategory";
+//
+//    }
 }

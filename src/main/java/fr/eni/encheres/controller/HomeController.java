@@ -11,8 +11,40 @@ public class HomeController {
 
     @GetMapping("/")
     public String displayIndex() {
-        return "index.html";
+        return "index";
     }
+
+    @GetMapping("/vendre")
+    public String displayVendre() {
+        return "vendre";
+    }
+
+    @GetMapping("/mes-ventes")
+    public String displayMesVentes() {
+        return "mes-ventes";
+    }
+
+    @GetMapping("/mes-encheres")
+    public String displayMesEncheres() {
+        return "mes-encheres";
+    }
+
+    @GetMapping("/mon-compte")
+    public String displayMonCompte() {
+        return "mon-compte";
+    }
+
+    @GetMapping("/connexion")
+    public String displayConnexion() {
+        return "connexion";
+    }
+
+    @GetMapping("/inscription")
+    public String displayInscription() {
+        return "inscription";
+    }
+
+
 
 
 }
