@@ -13,4 +13,6 @@ public class ProposalRepositorySQL implements ProposalRepository{
         this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
+
+
 }
