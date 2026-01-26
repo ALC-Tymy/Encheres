@@ -10,6 +10,8 @@ public interface UserRepository {
 
     List<User> readAll();
 
+    User readById(long id);
+
     void updateUser(User user);
 
     void deleteUser(long id);

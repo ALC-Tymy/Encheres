@@ -48,6 +48,16 @@ public class UserRepositorySQL implements UserRepository{
     }
 
     @Override
+    public User readById(long id){
+        String sql = "SELECT * FROM USER WHERE id=:id";
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id", id);
+
+        User user = namedParameterJdbcTemplate.queryForObject(sql, map, new BeanPropertyRowMapper<>(User.class));
+        return user;
+    }
+
+    @Override
     public void updateUser(User user){
         String sql = "UPDATE USER SET pseudo=:pseudo, email=:email, password=:password, firstname=:firstname, lastname=:lastname, address=:address, zipcode=:zipcode, city=:city, phone=:phone, walletPoint=:walletPoint, walletPending=:walletPending";
         BeanPropertySqlParameterSource map = new BeanPropertySqlParameterSource(user);

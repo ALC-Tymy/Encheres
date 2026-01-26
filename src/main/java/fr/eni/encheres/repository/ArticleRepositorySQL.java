@@ -44,6 +44,15 @@ public class ArticleRepositorySQL implements ArticleRepository{
     }
 
     @Override
+    public Article readById(long id){
+        String sql = "SELECT * FROM ARTICLE WHERE id=:id";
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id", id);
+        Article article = namedParameterJdbcTemplate.queryForObject(sql, map, new BeanPropertyRowMapper<>(Article.class));
+        return article;
+    }
+
+    @Override
     public void updateArticle(Article article){
         String sql = "UPDATE ARTICLE SET name=:name, description=:description, original_point=:original_point, final_point=:final_point, beginning_date=:beginning_date, ending_date=:ending_date, status=:status";
         BeanPropertySqlParameterSource map = new BeanPropertySqlParameterSource(Article.class);
