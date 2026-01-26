@@ -11,7 +11,8 @@ public interface ProposalRepository {
 
     Proposal readById(long id);
 
-    void updateProposal();
+
+    void updateProposal(Proposal proposal);
 
     void deleteProposal(long id);
 }
