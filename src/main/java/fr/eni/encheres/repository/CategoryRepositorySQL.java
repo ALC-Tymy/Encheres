@@ -23,9 +23,9 @@ public class CategoryRepositorySQL implements CategoryRepository {
     @Override
     public void createCategory(Category category) {
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
-        String sql = "";
+        String sql = "INSERT INTO CATEGORY(name) VALUES (:name)";
         MapSqlParameterSource map = new MapSqlParameterSource();
-        map.addValue("", category.getName());
+        map.addValue("name", category.getName());
         namedParameterJdbcTemplate.update(sql, map, keyHolder);
         long id = keyHolder.getKey().longValue();
         category.setIdCategory(id);
@@ -47,9 +47,9 @@ public class CategoryRepositorySQL implements CategoryRepository {
 
     @Override
     public void deleteCategory(long id) {
-        String sql = "";
+        String sql = "DELETE FROM CATEGORY WHERE id_category=:idCategory;";
         MapSqlParameterSource map = new MapSqlParameterSource();
-        map.addValue("", id);
+        map.addValue("idCategory", id);
         namedParameterJdbcTemplate.update(sql, map);
     }
 
