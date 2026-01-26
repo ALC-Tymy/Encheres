@@ -1,25 +1,23 @@
 package fr.eni.encheres.controller;
 
-import fr.eni.encheres.entity.Category;
+import fr.eni.encheres.repository.CategoryRepository;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
+
 
 @Controller
 public class CategoryController {
+    CategoryRepository categoryRepository;
 
-    @GetMapping("/addCategory")
-    public String addCategory(Model model) {
-        model.addAttribute("name", this.categoryRepositorySQL.getAll());
-        return "addCategory";
+    public CategoryController(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
     }
 
-    @PostMapping("/addCategory")
-    public String addCategory(@RequestAttribute Category category, Model model) {
-        this.categoryRepositorySQL.createCategory(category);
-        return "redirect:/addCategory";
-
+    @GetMapping("/addCategory")
+    public String displayCategory(Model model) {
+        model.addAttribute("categoryList", this.categoryRepository.getAll());
+        return "addCategory";
     }
 }

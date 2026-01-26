@@ -41,7 +41,7 @@ public class CategoryRepositorySQL implements CategoryRepository {
 
     @Override
     public List<Category> getAll() {
-        String sql = "SELECT * FROM CATEGORY;";
+        String sql = "SELECT * FROM CATEGORY";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Category.class));
     }
 
