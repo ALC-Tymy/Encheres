@@ -1,6 +1,7 @@
 package fr.eni.encheres.repository;
 
 import fr.eni.encheres.entity.User;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -41,7 +42,9 @@ public class UserRepositorySQL implements UserRepository{
 
     @Override
     public List<User> readAll(){
-        String sql = "SELECT user.id as id_user, user.pseudo as  pseudo_user, user.email as email_user, user.password as password_user, user.firstname as firstname_user, user.lastname as lastname_user, user.address as address_user, user.zipcode as zipcode_user, user.city as city_user,  ";
+        String sql = "SELECT * FROM USER";
+        List<User> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+        return list;
     }
 
     @Override
@@ -53,6 +56,9 @@ public class UserRepositorySQL implements UserRepository{
 
     @Override
     public void deleteUser(long id){
-
+        String sql = "DELETE FROM USER WHERE id=:id";
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id", id);
+        this.namedParameterJdbcTemplate.update(sql, map);
     }
 }
