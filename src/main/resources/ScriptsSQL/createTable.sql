@@ -42,8 +42,8 @@ CREATE TABLE ARTICLE
     beginning_date DATETIME2    NOT NULL,
     ending_date    DATETIME2    NOT NULL,
     status         CHAR(2)      NOT NULL CHECK ((status IN ('CR', 'EC', 'VD', 'LV'))),
-    id_category    BIGINT       NOT NULL,
-    id_del_address BIGINT       NOT NULL,
+    id_category    BIGINT,
+    id_del_address BIGINT,
     id_seller      BIGINT,
     id_buyer       BIGINT
 )
@@ -54,8 +54,8 @@ CREATE TABLE PROPOSAL
     point_proposal INTEGER   NOT NULL CHECK (point_proposal >= 0),
     date_proposal  DATETIME2 NOT NULL,
     ranking        INTEGER   NOT NULL,
-    id_buyer       BIGINT    NOT NULL,
-    id_article     BIGINT    NOT NULL
+    id_buyer       BIGINT,
+    id_article     BIGINT
 )
 
 CREATE TABLE CATEGORY
@@ -89,31 +89,30 @@ CREATE TABLE [ROLES]
 -- LIENS ENTRE LES TABLES
 ---------------------------------------------------------------------------
 
+ALTER TABLE ARTICLE
+    ADD CONSTRAINT fk_seller FOREIGN KEY (id_seller) REFERENCES [USER] (id_user)
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
 
 ALTER TABLE PROPOSAL
     ADD CONSTRAINT fk_buyer FOREIGN KEY (id_buyer) REFERENCES [USER] (id_user)
-        ON DELETE NO ACTION
-        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
 
 ALTER TABLE PROPOSAL
     ADD CONSTRAINT fk_article FOREIGN KEY (id_article) REFERENCES ARTICLE (id_article)
-        ON DELETE NO ACTION
-        ON UPDATE NO ACTION
-
-ALTER TABLE ARTICLE
-    ADD CONSTRAINT fk_seller FOREIGN KEY (id_seller) REFERENCES [USER] (id_user)
-        ON DELETE NO ACTION
+        ON DELETE SET NULL
         ON UPDATE NO ACTION
 
 ALTER TABLE ARTICLE
     ADD CONSTRAINT fk_category FOREIGN KEY (id_category) REFERENCES CATEGORY (id_category)
-        ON DELETE NO ACTION
-        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
 
 ALTER TABLE ARTICLE
     ADD CONSTRAINT fk_del_address FOREIGN KEY (id_del_address) REFERENCES DELIVERY_ADDRESS (id_delivery_address)
-        ON DELETE NO ACTION
-        ON UPDATE NO ACTION
+        ON DELETE SET NULL
+        ON UPDATE CASCADE
 
 ALTER TABLE ROLES
     ADD CONSTRAINT fk_roles FOREIGN KEY (pseudo) REFERENCES [USER](pseudo)
