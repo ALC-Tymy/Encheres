@@ -48,7 +48,7 @@ public class ProposalRepositorySQL implements ProposalRepository{
     }
 
     @Override
-    public void updateProposal(){
+    public void updateProposal(Proposal proposal){
         String sql = "UPDATE PROPOSAL SET pointProposal=:pointProposal, dateProposal=:dateProposal, ranking=:ranking";
         BeanPropertySqlParameterSource map = new BeanPropertySqlParameterSource(Proposal.class);
         namedParameterJdbcTemplate.update(sql, map);
