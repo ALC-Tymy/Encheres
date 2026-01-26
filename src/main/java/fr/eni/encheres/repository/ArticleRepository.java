@@ -10,6 +10,8 @@ public interface ArticleRepository {
 
     List<Article> readAll();
 
+    Article readById(long id);
+
     void updateArticle(Article article);
 
     void deleteArticle(long id);
