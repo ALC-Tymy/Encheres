@@ -1,23 +1,50 @@
 package fr.eni.encheres.entity;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
+import jakarta.validation.constraints.*;
 
 public class User {
     private long idUser;
+
+    @Size(min=3, max=30)
+    @Pattern(regexp = "^[a-zA-Z0-9]*$")
     private String pseudo;
+
+    @Size(min=2, max=30)
+
     private String firstName;
+
+    @Size(min=2, max=30)
     private String lastName;
+
+    @Email
     private String email;
+
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$")
     private String password;
+
+    @Size(min=3, max=30)
     private String address;
+
+    @Size(min=3, max=10)
     private String zipCode;
+
+    @Size(min=10, max=20)
     private String phone;
+
+    @Size(min=2, max=30)
     private String city;
-    private int walletPoint = 0;
+
+    @PositiveOrZero
+    private int walletPoint;
+    @PositiveOrZero
     private int walletPending;
+
     private boolean actif;
+
+
+    /****************************************/
+
 
     public User() {
     }
