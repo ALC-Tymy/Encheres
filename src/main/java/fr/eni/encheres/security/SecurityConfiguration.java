@@ -20,21 +20,22 @@ public class SecurityConfiguration {
         jdbc.setUsersByUsernameQuery("select pseudo, password, actif from utilisateur where pseudo = ?");
         jdbc.setAuthoritiesByUsernameQuery("select pseudo, role from roles where pseudo = ?");
         return jdbc;
-    }
+    };
 
-    ;
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers(HttpMethod.GET, "/mes-encheres").hasRole("USER")
-                    .requestMatchers(HttpMethod.GET, "/mes-ventes").hasRole("USER")
-                    .requestMatchers(HttpMethod.GET, "/mon-compte").hasRole("USER")
-                    .requestMatchers(HttpMethod.GET, "/vendre").hasRole("USER")
-                    .requestMatchers("/*").permitAll()
-                    .requestMatchers("/css/*").permitAll()
+//            auth.requestMatchers(HttpMethod.GET, "/mes-encheres").hasRole("USER")
+//                    .requestMatchers(HttpMethod.GET, "/mes-ventes").hasRole("USER")
+//                    .requestMatchers(HttpMethod.GET, "/mon-compte").hasRole("USER")
+//                    .requestMatchers(HttpMethod.GET, "/vendre").hasRole("USER")
+//                    .requestMatchers(HttpMethod.POST, "/inscription/new").permitAll()
+//                    .requestMatchers("/*").permitAll()
+//                    .requestMatchers("/css/*").permitAll()
 //                    .requestMatchers("/image/*").permitAll()
-                    .anyRequest().denyAll();
+//                    .anyRequest().denyAll();
+            auth.anyRequest().permitAll();
         });
 
 
@@ -53,8 +54,7 @@ public class SecurityConfiguration {
 
         return http.build();
 
-    }
+    };
 
-    ;
 
 }

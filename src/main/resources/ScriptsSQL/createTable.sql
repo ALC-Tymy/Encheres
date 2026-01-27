@@ -28,9 +28,9 @@ CREATE TABLE [USER]
     zipcode       VARCHAR(10)  NOT NULL,
     city          VARCHAR(30)  NOT NULL,
     phone         VARCHAR(20)  NOT NULL,
-    walletPoint   INTEGER      NOT NULL CHECK (walletPoint >= 0),
-    walletPending INTEGER      NOT NULL CHECK (walletPending >= 0),
-    actif         BIT          NOT NULL
+    walletPoint   INTEGER      NOT NULL CHECK (walletPoint >= 0) DEFAULT 0,
+    walletPending INTEGER      NOT NULL CHECK (walletPending >= 0) DEFAULT 0,
+    actif         BIT          NOT NULL DEFAULT 1
 )
 
 CREATE TABLE ARTICLE

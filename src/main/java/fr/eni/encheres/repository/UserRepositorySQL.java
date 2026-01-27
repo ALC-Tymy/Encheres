@@ -25,25 +25,31 @@ public class UserRepositorySQL implements UserRepository{
     public void createUser(User user){
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
-        String sql = "INSERT INTO [USER] (pseudo, email, password, firstname, lastname, address, zipcode,city, phone, walletPoint, walletPending) " +
-                " VALUES (:pseudo, :email, :password, :firstname, :lastname, :address, :zipcode, :city, :phone, :walletPoint, :walletPending)";
+        String sql = "INSERT INTO [USER] (pseudo, email, password, first_name, last_name, address, zipcode,city, phone) " +
+                " VALUES (:pseudo, :email, :password, :firstName, :lastName, :address, :zipCode, :city, :phone)";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("pseudo", user.getPseudo());
         map.addValue("email", user.getEmail());
         map.addValue("password", user.getPassword());
-        map.addValue("firstname", user.getFirstName());
-        map.addValue("lastname", user.getLastName());
+        map.addValue("firstName", user.getFirstName());
+        map.addValue("lastName", user.getLastName());
         map.addValue("address", user.getAddress());
-        map.addValue("zipcode",user.getZipCode());
+        map.addValue("zipCode",user.getZipCode());
         map.addValue("city", user.getCity());
         map.addValue("phone", user.getPhone());
-        map.addValue("walletPoint", user.getWalletPoint());
-        map.addValue("walletPending", user.getWalletPending());
 
         namedParameterJdbcTemplate.update(sql, map, keyHolder);
         long id = keyHolder.getKey().longValue();
         user.setIdUser(id);
+
+        // Ajout du rôle USER lors de la création d'un utilisateur
+        String sqlRole = "INSERT INTO ROLES (pseudo, role) VALUES (:pseudoRole, :role)";
+        MapSqlParameterSource mapRole = new MapSqlParameterSource();
+        mapRole.addValue("pseudoRole", user.getPseudo());
+        mapRole.addValue("role", "USER");
+        namedParameterJdbcTemplate.update(sqlRole, mapRole);
+
     }
 
     @Override

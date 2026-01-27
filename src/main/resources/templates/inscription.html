@@ -1,10 +1,77 @@
 <!DOCTYPE html>
 
-<div data-th-replace="~{fragments/layout :: layout(content= ~{::main}) }">
+<div th:replace="~{fragments/layout :: layout(content= ~{::main}) }">
 
     <main>
 
         <h2>Inscription</h2>
+
+        <form th:action="@{/inscription/new}"
+              method="post"
+              th:object="${newUser}">
+
+            <br><p>Entrez vos informations de connexion</p><br>
+
+            <div>
+                <label for="pseudo">Pseudo</label>
+                <input type="text" id="pseudo" name="pseudo" th:field="*{pseudo}">
+            </div>
+            <div>
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" th:field="*{email}">
+            </div>
+            <div>
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password" th:field="*{password}">
+            </div>
+            <!-- Ajouter confirmation du password -->
+
+            <br><p>Entrez vos informations de contact pour pouvoir vendre et acheter des objets</p><br>
+
+            <div>
+                <label for="lastName">Nom</label>
+                <input type="text" id="lastName" name="lastName" th:field="*{lastName}">
+            </div>
+            <div>
+                <label for="firstName">Prénom</label>
+                <input type="text" id="firstName" name="firstName" th:field="*{firstName}">
+            </div>
+            <div>
+                <label for="address">Adresse</label>
+                <input type="text" id="address" name="address" th:field="*{address}">
+            </div>
+            <div>
+                <label for="zipCode">Code Postal</label>
+                <input type="text" id="zipCode" name="zipCode" th:field="*{zipCode}">
+            </div>
+            <div>
+                <label for="city">Ville</label>
+                <input type="text" id="city" name="city" th:field="*{city}">
+            </div>
+            <div>
+                <label for="phone">Numéro de téléphone</label>
+                <input type="text" id="phone" name="phone" th:field="*{phone}">
+            </div>
+
+            <button type="submit">Créer mon compte</button>
+
+        </form>
+
+
+        <!-- POUR DEBUG - A SUPPR ULTERIEUREMENT -->
+        <br><br><br>
+        <table>
+            <thead>
+            <tr>
+                <th>Nom</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="el : ${listeUsers}">
+                <td th:text="${el.firstName}"></td>
+            </tr>
+            </tbody>
+        </table>
 
     </main>
 
