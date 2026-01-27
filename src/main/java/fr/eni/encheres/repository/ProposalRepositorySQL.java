@@ -25,12 +25,14 @@ public class ProposalRepositorySQL implements ProposalRepository{
     public void createProposal(Proposal proposal){
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
-        String sql = "INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking)" +
-                " VALUES (:point_proposal, :date_proposal, :ranking)";
+        String sql = "INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)" +
+                " VALUES (:point_proposal, :date_proposal, :ranking, :id_buyer, :id_article)";
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("pointProposal", proposal.getPointProposal());
         map.addValue("dateProposal", proposal.getDateProposal());
         map.addValue("ranking", proposal.getRanking());
+        map.addValue("idBuyer", proposal.getBuyer());
+        map.addValue("idArticle", proposal.getArticle());
 
         namedParameterJdbcTemplate.update(sql, map, keyHolder);
         long id = keyHolder.getKey().longValue();
@@ -55,7 +57,7 @@ public class ProposalRepositorySQL implements ProposalRepository{
 
     @Override
     public void updateProposal(Proposal proposal){
-        String sql = "UPDATE PROPOSAL SET pointProposal=:pointProposal, dateProposal=:dateProposal, ranking=:ranking";
+        String sql = "UPDATE PROPOSAL SET pointProposal=:pointProposal, dateProposal=:dateProposal, ranking=:ranking WHERE id_proposal=:idProposal";
         BeanPropertySqlParameterSource map = new BeanPropertySqlParameterSource(Proposal.class);
         namedParameterJdbcTemplate.update(sql, map);
     }
