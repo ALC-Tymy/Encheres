@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-
-<div data-th-replace="~{fragments/layout :: layout(content= ~{::main}) }">
-
+<div th:replace="~{fragments/layout :: layout(content= ~{::main}) }">
     <main>
-
         <h2>Connexion</h2>
-
+        <form method="post" th:action="@{/connexion}">
+            <div>
+                <label for="identifiantID">Identidiant : </label>
+                <input id="identifiantID" type="text">
+            </div>
+            <div>
+                <label for="passwordID">Mot de passe : </label>
+                <input id="passwordID" type="password">
+            </div>
+        </form>
     </main>
-
 </div>
+
+

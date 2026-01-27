@@ -20,7 +20,7 @@ CREATE TABLE [USER]
 (
     id_user       BIGINT       NOT NULL PRIMARY KEY IDENTITY (1,1),
     pseudo        VARCHAR(30)  NOT NULL UNIQUE,
-    email         VARCHAR(30)  NOT NULL,
+    email         VARCHAR(30)  NOT NULL UNIQUE,
     password      VARCHAR(255) NOT NULL,
     first_name    VARCHAR(30)  NOT NULL,
     last_name     VARCHAR(30)  NOT NULL,
