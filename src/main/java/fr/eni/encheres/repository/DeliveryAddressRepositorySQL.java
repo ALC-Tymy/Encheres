@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,6 +23,8 @@ public class DeliveryAddressRepositorySQL implements DeliveryAddressRepository{
 
     @Override
     public void createDeliveryAddress(DeliveryAddress deliveryAddress){
+        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+
         String sql = "INSERT INTO DELIVERY_ADDRESS (address, zipcode, city)" +
                 " VALUES (:address, :zipcode, :city)";
         MapSqlParameterSource map = new MapSqlParameterSource();
@@ -29,7 +32,9 @@ public class DeliveryAddressRepositorySQL implements DeliveryAddressRepository{
         map.addValue("zipcode", deliveryAddress.getZipCode());
         map.addValue("city", deliveryAddress.getCity());
 
-        namedParameterJdbcTemplate.update(sql, map);
+        namedParameterJdbcTemplate.update(sql, map, keyHolder);
+        long id = keyHolder.getKey().longValue();
+        deliveryAddress.setIdDeladdress(id);
     }
 
     @Override

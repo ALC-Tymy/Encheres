@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,13 +23,18 @@ public class ProposalRepositorySQL implements ProposalRepository{
 
     @Override
     public void createProposal(Proposal proposal){
+        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+
         String sql = "INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking)" +
                 " VALUES (:point_proposal, :date_proposal, :ranking)";
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("pointProposal", proposal.getPointProposal());
         map.addValue("dateProposal", proposal.getDateProposal());
         map.addValue("ranking", proposal.getRanking());
-        namedParameterJdbcTemplate.update(sql, map);
+
+        namedParameterJdbcTemplate.update(sql, map, keyHolder);
+        long id = keyHolder.getKey().longValue();
+        proposal.setIdProposal(id);
     }
 
     @Override

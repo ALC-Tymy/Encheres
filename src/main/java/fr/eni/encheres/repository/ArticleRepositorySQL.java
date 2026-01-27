@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,8 +23,11 @@ public class ArticleRepositorySQL implements ArticleRepository{
 
     @Override
     public void createArticle(Article article){
+        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+
         String sql = "INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status) " +
                 " + VALUES(:name, :description, :original_point, :final_point, :beginning_date, :ending_date, :status)";
+
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("name", article.getName());
         map.addValue("description", article.getDescription());
@@ -33,7 +37,9 @@ public class ArticleRepositorySQL implements ArticleRepository{
         map.addValue("ending_date", article.getEndingDate());
         map.addValue("status", article.getStatus());
 
-        namedParameterJdbcTemplate.update(sql, map);
+        namedParameterJdbcTemplate.update(sql, map, keyHolder);
+        long id = keyHolder.getKey().longValue();
+        article.setIdArticle(id);
     }
 
     @Override
