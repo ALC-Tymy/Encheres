@@ -7,32 +7,37 @@ public class User {
     private long idUser;
 
     @Size(min=3, max=30)
-    @Pattern(regexp = "^[a-zA-Z0-9]*$")
+    @Pattern(regexp = "^[a-zA-Z0-9]+$")
     private String pseudo;
 
     @Size(min=2, max=30)
-
+    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ -]+$")
     private String firstName;
 
     @Size(min=2, max=30)
+    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ -]+$")
     private String lastName;
 
-    @Email
+    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")
     private String email;
 
-    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{6,}$")
     private String password;
 
     @Size(min=3, max=30)
+    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ0-9 -]+$")
     private String address;
 
     @Size(min=3, max=10)
+    @Pattern(regexp = "^[A-Za-z0-9]+$")
     private String zipCode;
 
     @Size(min=10, max=20)
+    @Pattern(regexp = "^(\\+?[0-9]{1,3}[\\s.-]?)?([0-9][\\s.-]?){6,14}[0-9]$")
     private String phone;
 
     @Size(min=2, max=30)
+    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$")
     private String city;
 
     @PositiveOrZero
