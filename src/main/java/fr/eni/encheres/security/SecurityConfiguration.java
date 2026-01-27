@@ -20,7 +20,9 @@ public class SecurityConfiguration {
         jdbc.setUsersByUsernameQuery("select pseudo, password, actif from utilisateur where pseudo = ?");
         jdbc.setAuthoritiesByUsernameQuery("select pseudo, role from roles where pseudo = ?");
         return jdbc;
-    };
+    }
+
+    ;
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -36,19 +38,23 @@ public class SecurityConfiguration {
         });
 
 
-        http.formLogin( form -> {
+        http.formLogin(form -> {
                     form.loginPage("/connexion").permitAll();
+//                        .usernameParametre(identify);
+//                        .userNamePassward(password);
                     form.defaultSuccessUrl("/", true);
                 }
         );
 
-        http.logout( logout -> {
+        http.logout(logout -> {
             logout.logoutUrl("/logout")
                     .logoutSuccessUrl("/");
         });
 
         return http.build();
 
-    };
+    }
+
+    ;
 
 }
