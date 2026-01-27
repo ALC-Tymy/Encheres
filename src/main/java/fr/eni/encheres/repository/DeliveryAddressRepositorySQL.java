@@ -55,7 +55,7 @@ public class DeliveryAddressRepositorySQL implements DeliveryAddressRepository{
 
     @Override
     public void updateDeliveryAddress(DeliveryAddress deliveryAddress){
-        String sql = "UPDATE DELIVERY_ADDRESS SET address=:address, zipcode=:zipcode, city=:city";
+        String sql = "UPDATE DELIVERY_ADDRESS SET address=:address, zipcode=:zipcode, city=:city WHERE id_delivery_address=idDeliveryAddress;";
         BeanPropertySqlParameterSource map = new BeanPropertySqlParameterSource(DeliveryAddress.class);
         namedParameterJdbcTemplate.update(sql, map);
     }

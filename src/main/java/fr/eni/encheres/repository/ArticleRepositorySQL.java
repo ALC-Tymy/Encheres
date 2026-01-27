@@ -60,7 +60,7 @@ public class ArticleRepositorySQL implements ArticleRepository{
 
     @Override
     public void updateArticle(Article article){
-        String sql = "UPDATE ARTICLE SET name=:name, description=:description, original_point=:original_point, final_point=:final_point, beginning_date=:beginning_date, ending_date=:ending_date, status=:status";
+        String sql = "UPDATE ARTICLE SET name=:name, description=:description, original_point=:original_point, final_point=:final_point, beginning_date=:beginning_date, ending_date=:ending_date, status=:status WHERE id_article = :idArticle;";
         BeanPropertySqlParameterSource map = new BeanPropertySqlParameterSource(Article.class);
         namedParameterJdbcTemplate.update(sql, map);
     }

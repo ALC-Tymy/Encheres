@@ -6,6 +6,21 @@
 
         <h2>Bienvenue sur le site des enchères !</h2>
 
+        <textarea th:text="${listArticle}"></textarea>
+        <table>
+            <thead>
+                <th>Nom</th>
+                <th>Catégorie</th>
+                <th>Description</th>
+                <th>Fin de l'enchère</th>
+            </thead>
+            <thead>
+                <tr th:each="item : ${listArticle}">
+                    <td th:text="${item.name}"></td>
+                    <td th:text="${item.category}"></td>
+                </tr>
+            </thead>
+        </table>
     </main>
 
 </div>
