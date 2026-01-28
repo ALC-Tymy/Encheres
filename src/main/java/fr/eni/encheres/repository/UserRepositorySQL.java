@@ -61,21 +61,21 @@ public class UserRepositorySQL implements UserRepository {
     }
 
     @Override
-    public List<User> readByPseudo(String pseudo) {
+    public User readByPseudo(String pseudo) {
         String sql = "SELECT * FROM [USER] WHERE pseudo = :pseudo";
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("pseudo", pseudo);
         List<User> userlist = namedParameterJdbcTemplate.query(sql, map, new BeanPropertyRowMapper<>(User.class));
-        return userlist;
+        return userlist != null ? userlist.get(0) : null;
     }
 
     @Override
-    public List<User> readByEmail(String email) {
+    public User readByEmail(String email) {
         String sql = "SELECT * FROM [USER] WHERE email = :email";
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("email", email);
         List<User> userlist = namedParameterJdbcTemplate.query(sql, map, new BeanPropertyRowMapper<>(User.class));
-        return userlist;
+        return userlist != null ? userlist.get(0) : null;
     }
 
     @Override

@@ -11,9 +11,9 @@ public interface UserRepository {
 
     List<User> readAll();
 
-    List<User> readByPseudo(String pseudo);
+    User readByPseudo(String pseudo);
 
-    List<User> readByEmail(String email);
+    User readByEmail(String email);
 
     User readById(long id);
 

@@ -17,6 +17,8 @@ public interface UserService {
 
     void deleteUser(long id);
 
+    long getIdLoggedUser();
+
     /**
      * Recherche un utilisateur par email ou par pseudo.
      * <p>

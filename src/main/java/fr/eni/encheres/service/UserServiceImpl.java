@@ -3,12 +3,16 @@ package fr.eni.encheres.service;
 import fr.eni.encheres.entity.User;
 import fr.eni.encheres.repository.UserRepository;
 import fr.eni.encheres.service.exceptions.SignUpException;
+import org.jspecify.annotations.Nullable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -31,11 +35,11 @@ public class UserServiceImpl implements UserService {
         //**********************************************************************
 
 
-        if (!userRepository.readByPseudo(user.getPseudo()).isEmpty()){
+        if (userRepository.readByPseudo(user.getPseudo()) != null){
             throw new SignUpException("Ce pseudo est déjà pris");
         }
 
-        if (!userRepository.readByEmail(user.getEmail()).isEmpty()){
+        if (userRepository.readByEmail(user.getEmail()) != null){
             throw new SignUpException("Cet email est déjà enregistré");
         }
 
@@ -45,6 +49,14 @@ public class UserServiceImpl implements UserService {
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.createUser(newUser);
     }
+
+
+    @Override
+    public long getIdLoggedUser() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.readByPseudo(username).getIdUser();
+    }
+
 
     @Override
     public List<User> readAll() {
@@ -65,6 +77,7 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(long id) {
         this.userRepository.deleteUser(id);
     }
+
 
     /**
      * Recherche un utilisateur par email ou par pseudo.

@@ -1,10 +1,33 @@
 <!DOCTYPE html>
 
-<div data-th-replace="~{fragments/layout :: layout(content= ~{::main}) }">
+<div data-th-replace="~{fragments/layout :: layout(content= ~{::main}) }" xmlns:sec="http://www.w3.org/1999/xhtml">
 
     <main>
 
-        <h2>Gérer mon compte</h2>
+        <div th:object="${userConnected}">
+
+            <h2>Gérer mon compte</h2>
+
+            <h3>Mon portefeuille</h3>
+
+            <p>Portefeuille actuel : <span th:text="*{walletPoint}"></span></p>
+            <p>Portefeuille en attente : <span th:text="*{walletPending}"></span></p>
+
+            <h3>Mes informations</h3>
+
+            <p>Pseudo : <span th:text="*{pseudo}"></span></p>
+            <p>Email : <span th:text="*{email}"></span></p>
+
+            <p>Prénom : <span th:text="*{firstName}"></span></p>
+            <p>Nom : <span th:text="*{lastName}"></span></p>
+
+            <p>Adresse : <span th:text="*{address}"></span></p>
+            <p>Code Postal : <span th:text="*{zipCode}"></span></p>
+            <p>Ville : <span th:text="*{city}"></span></p>
+
+            <p>Téléphone : <span th:text="*{phone}"></span></p>
+
+        </div>
 
     </main>
 
