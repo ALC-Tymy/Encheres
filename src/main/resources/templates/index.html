@@ -1,25 +1,47 @@
 <!DOCTYPE html>
 
-<div th:replace="~{fragments/layout :: layout(content= ~{::main}) }">
+<div th:replace="~{fragments/layout :: layout(content= ~{::main}) }" xmlns:margin="http://www.w3.org/1999/xhtml">
     <main>
-        index
-        <table>
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Catégorie</th>
-                <th>Description</th>
-                <th>Date de fin d'enchère</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="item : ${listArticle}">
-                <td th:text="${item.name}"></td>
-                <td th:text="${item.category}"></td>
-                <td th:text="${item.description}"></td>
-                <td th:text="${item.endingDate}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <div style="display: flex; justify-content: center">
+            <h2>Acceuil</h2>
+        </div>
+
+        <div style="display: flex; flex-direction: row; justify-content: center; background-color: #dcdcdc; height: 10rem; margin: 20px;">
+
+
+            <div>
+<!--                <div>-->
+<!--                    <form>-->
+<!--                        <label for="name">Nom</label>-->
+<!--                        <input type="text" id="name" name="name" th:field="*{name}">-->
+<!--                    </form>-->
+<!--                </div>-->
+
+                <select id="category" name="category">
+                    <option value="Informatique">Informatique</option>
+                    <option value="Ameublement">Ameublement</option>
+                    <option value="Vetement">Vetement</option>
+                    <option value="Loisir">Loisir</option>
+                    <option value="Sport">Sport</option>
+                </select>
+
+            </div>
+            <button>Rechercher</button>
+        </div>
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; margin: 20px; background-color: white">
+            <div style="display: flex; flex-direction: column; justify-content: space-around;background-color: #dcdcdc; margin: 1rem; padding: 1rem; width: 15rem; height: 20rem"
+                 th:each="item : ${listArticle}">
+                <div style="display: flex; flex-direction: row; justify-content: center; width: 15rem; height: 15rem; background-color: white">
+                    Image
+                </div>
+                <div th:text="${item.name}">Nom :</div>
+                <div th:text="${item.category}">Catégorie :</div>
+                <div th:text="${item.finalPoint}">Enchère finale</div>
+                <div th:text="${item.endingDate}">Fin de l'enchère</div>
+                <button>Consulter</button>
+            </div>
+        </div>
+
+
     </main>
 </div>
