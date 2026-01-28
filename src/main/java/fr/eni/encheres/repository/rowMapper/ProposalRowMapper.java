@@ -28,6 +28,9 @@ public class ProposalRowMapper implements RowMapper<Proposal> {
             article.setName(rs.getString("name"));
             article.setDescription(rs.getString("description"));
             article.setOriginalPoint(rs.getInt("originalPoint"));
+
+
+
             article.setFinalPoint(rs.getInt("final_point"));
             article.setBeginningDate(rs.getObject("beginning_date", LocalDate.class));
             article.setEndingDate(rs.getObject("ending_date", LocalDate.class));
