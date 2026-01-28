@@ -40,10 +40,7 @@ public class User {
     @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$", message = "Le nom de la ville n'est pas valide")
     private String city;
 
-    @PositiveOrZero
     private int walletPoint;
-
-    @PositiveOrZero
     private int walletPending;
 
     private boolean actif;

@@ -3,6 +3,7 @@ package fr.eni.encheres.controller;
 import fr.eni.encheres.entity.User;
 import fr.eni.encheres.service.UserService;
 import fr.eni.encheres.service.exceptions.SignUpException;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,7 +29,7 @@ public class SignUpController {
     }
 
     @PostMapping("/inscription/new")
-    public String pushInscription(@ModelAttribute("newUser") User user, BindingResult bindingresult){
+    public String pushInscription(@Valid @ModelAttribute("newUser") User user, BindingResult bindingresult){
 
         if (bindingresult.hasErrors()) {
             return "inscription";
