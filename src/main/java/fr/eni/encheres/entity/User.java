@@ -1,7 +1,5 @@
 package fr.eni.encheres.entity;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class User {
@@ -17,11 +15,12 @@ public class User {
     private String city;
     private int walletPoint = 0;
     private int walletPending;
+    private boolean actif;
 
     public User() {
     }
 
-    public User(long idUser, String pseudo, String firstName, String lastName, String email, String password, String address, String zipCode, String phone, String city, int walletPoint, int walletPending) {
+    public User(long idUser, String pseudo, String firstName, String lastName, String email, String password, String address, String zipCode, String phone, String city, int walletPoint, int walletPending, boolean actif) {
         this.idUser = idUser;
         this.pseudo = pseudo;
         this.firstName = firstName;
@@ -34,9 +33,10 @@ public class User {
         this.city = city;
         this.walletPoint = walletPoint;
         this.walletPending = walletPending;
+        this.actif = actif;
     }
 
-    public User(String pseudo, String firstName, String lastName, String email, String password, String address, String zipCode, String phone, String city, int walletPoint, int walletPending) {
+    public User(String pseudo, String firstName, String lastName, String email, String password, String address, String zipCode, String phone, String city, int walletPoint, int walletPending, boolean actif) {
         this.pseudo = pseudo;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -48,6 +48,14 @@ public class User {
         this.city = city;
         this.walletPoint = walletPoint;
         this.walletPending = walletPending;
+        this.actif = actif;
+    }
+
+    public User(String pseudo, String email, String password, boolean actif) {
+        this.pseudo = pseudo;
+        this.email = email;
+        this.password = password;
+        this.actif = actif;
     }
 
     public long getIdUser() {
@@ -146,33 +154,28 @@ public class User {
         this.walletPending = walletPending;
     }
 
+    public boolean isActif() {
+        return actif;
+    }
+
+    public void setActif(boolean actif) {
+        this.actif = actif;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return idUser == user.idUser && walletPoint == user.walletPoint && walletPending == user.walletPending && Objects.equals(pseudo, user.pseudo) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(address, user.address) && Objects.equals(zipCode, user.zipCode) && Objects.equals(phone, user.phone) && Objects.equals(city, user.city);
+        return idUser == user.idUser && walletPoint == user.walletPoint && walletPending == user.walletPending && actif == user.actif && Objects.equals(pseudo, user.pseudo) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(address, user.address) && Objects.equals(zipCode, user.zipCode) && Objects.equals(phone, user.phone) && Objects.equals(city, user.city);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idUser, pseudo, firstName, lastName, email, password, address, zipCode, phone, city, walletPoint, walletPending);
+        return Objects.hash(idUser, pseudo, firstName, lastName, email, password, address, zipCode, phone, city, walletPoint, walletPending, actif);
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "idUser=" + idUser +
-                ", pseudo='" + pseudo + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", address='" + address + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", phone='" + phone + '\'' +
-                ", city='" + city + '\'' +
-                ", walletPoint=" + walletPoint +
-                ", walletPending=" + walletPending +
-                '}';
+        return "User{" + "idUser=" + idUser + ", pseudo='" + pseudo + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", email='" + email + '\'' + ", password='" + password + '\'' + ", address='" + address + '\'' + ", zipCode='" + zipCode + '\'' + ", phone='" + phone + '\'' + ", city='" + city + '\'' + ", walletPoint=" + walletPoint + ", walletPending=" + walletPending + ", actif=" + actif + '}';
     }
 }

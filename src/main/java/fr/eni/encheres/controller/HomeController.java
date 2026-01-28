@@ -34,17 +34,10 @@ public class HomeController {
         return "mon-compte";
     }
 
-    @GetMapping("/connexion")
-    public String displayConnexion() {
-        return "connexion";
-    }
-
     @GetMapping("/inscription")
     public String displayInscription() {
         return "inscription";
     }
-
-
 
 
 }
