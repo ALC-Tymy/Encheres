@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<div th:replace="~{fragments/layout :: layout(content= ~{::main}) }">
+
+  <main>
+
+    <h2>Modifier mes informations</h2>
+
+    <form th:action="@{/mon-compte/update-post}"
+          method="post"
+          th:object="${userConnected}">
+
+      <input type="hidden" th:field="*{idUser}">
+      <input type="hidden" th:field="*{walletPending}">
+      <input type="hidden" th:field="*{walletPoint}">
+      <input type="hidden" th:field="*{actif}">
+      <input type="hidden" th:field="*{pseudo}">
+
+      <h3>Modifier vos informations de connexion :</h3>
+
+      <div>
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" th:field="*{email}">
+      </div>
+      <div class="error" th:errors="*{email}"></div>
+
+      <div class="error" th:each="err : ${#fields.errors('global')}" th:text="${err}"></div>
+
+      <div>
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" th:field="*{password}">
+      </div>
+      <div class="error" th:errors="*{password}"></div>
+
+      <h3>Modifier vos informations de contact :</h3>
+
+      <div>
+        <label for="lastName">Nom</label>
+        <input type="text" id="lastName" name="lastName" th:field="*{lastName}">
+      </div>
+      <div class="error" th:errors="*{lastName}"></div>
+
+      <div>
+        <label for="firstName">Prénom</label>
+        <input type="text" id="firstName" name="firstName" th:field="*{firstName}">
+      </div>
+      <div class="error" th:errors="*{firstName}"></div>
+
+      <div>
+        <label for="address">Adresse</label>
+        <input type="text" id="address" name="address" th:field="*{address}">
+      </div>
+      <div class="error" th:errors="*{address}"></div>
+
+      <div>
+        <label for="zipCode">Code Postal</label>
+        <input type="text" id="zipCode" name="zipCode" th:field="*{zipCode}">
+      </div>
+      <div class="error" th:errors="*{zipCode}"></div>
+
+      <div>
+        <label for="city">Ville</label>
+        <input type="text" id="city" name="city" th:field="*{city}">
+      </div>
+      <div class="error" th:errors="*{city}"></div>
+
+      <div>
+        <label for="phone">Numéro de téléphone</label>
+        <input type="text" id="phone" name="phone" th:field="*{phone}">
+      </div>
+      <div class="error" th:errors="*{phone}"></div>
+
+      <button type="submit">Valider mes modifications</button>
+      <a href="/mon-compte">Annuler</a>
+
+    </form>
+
+  </main>
+
+</div>

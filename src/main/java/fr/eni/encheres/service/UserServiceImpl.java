@@ -68,9 +68,23 @@ public class UserServiceImpl implements UserService {
         return this.userRepository.readById(id);
     }
 
+    @Transactional
     @Override
-    public void updateUser(User user) {
-        this.userRepository.updateUser(user);
+    public void updateUser(User user) throws SignUpException{
+
+        // On ne regarde si l'email est déjà utilisé QUE si l'utilisateur a updaté le champ
+        if (!user.getEmail().matches(userRepository.readById(user.getIdUser()).getEmail())){
+            if (userRepository.readByEmail(user.getEmail()) != null){
+                throw new SignUpException("Cet email est déjà enregistré");
+            }
+        }
+
+        // Hash du password
+        User newUser = new User(user.getIdUser(), user.getPseudo(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(),
+                user.getAddress(), user.getZipCode(), user.getPhone(), user.getCity(), user.getWalletPoint(), user.getWalletPending(), user.isActif());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.updateUser(newUser);
+
     }
 
     @Override
