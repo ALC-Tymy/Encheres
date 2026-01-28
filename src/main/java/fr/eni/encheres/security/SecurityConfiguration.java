@@ -66,8 +66,7 @@ public class SecurityConfiguration {
                 // Page appelée si la connexion échoue
                 .failureUrl("/connexion?error=true")
                 // Autorise tout le monde à accéder à la page de connexion
-                .permitAll()
-        );
+                .permitAll());
 
         http.logout(logout -> logout
                 // URL déclenchant la déconnexion
@@ -75,17 +74,17 @@ public class SecurityConfiguration {
                 // Page de redirection après une déconnexion réussie
                 .logoutSuccessUrl("/")
                 // Autorise tout le monde à se déconnecter
-                .permitAll()
-        );
+                .permitAll());
 
         http.logout(logout -> {
-            logout.logoutUrl("/logout")
-                    .logoutSuccessUrl("/");
+            logout.logoutUrl("/logout").logoutSuccessUrl("/");
         });
 
         return http.build();
 
-    };
+    }
+
+    ;
 
 
 }

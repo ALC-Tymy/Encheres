@@ -36,7 +36,7 @@ public class UserRepositorySQL implements UserRepository {
         map.addValue("firstName", user.getFirstName());
         map.addValue("lastName", user.getLastName());
         map.addValue("address", user.getAddress());
-        map.addValue("zipCode",user.getZipCode());
+        map.addValue("zipCode", user.getZipCode());
         map.addValue("city", user.getCity());
         map.addValue("phone", user.getPhone());
 
@@ -48,7 +48,7 @@ public class UserRepositorySQL implements UserRepository {
         String sqlRole = "INSERT INTO ROLES (pseudo, role) VALUES (:pseudoRole, :role)";
         MapSqlParameterSource mapRole = new MapSqlParameterSource();
         mapRole.addValue("pseudoRole", user.getPseudo());
-        mapRole.addValue("role", "USER");
+        mapRole.addValue("role", "ROLE_USER");
         namedParameterJdbcTemplate.update(sqlRole, mapRole);
 
     }
@@ -84,6 +84,7 @@ public class UserRepositorySQL implements UserRepository {
         map.addValue("idUser", id);
         this.namedParameterJdbcTemplate.update(sql, map);
     }
+
     /**
      * Recherche un utilisateur par email ou par pseudo.
      * <p>
