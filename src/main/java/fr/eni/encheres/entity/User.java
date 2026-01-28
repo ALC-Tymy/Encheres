@@ -1,23 +1,69 @@
 package fr.eni.encheres.entity;
 
 import java.util.Objects;
+import jakarta.validation.constraints.*;
 
 public class User {
     private long idUser;
+
+    @Size(min=3, max=30)
+    @Pattern(regexp = "^[a-zA-Z0-9]+$")
     private String pseudo;
+
+    @Size(min=2, max=30)
+    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ -]+$")
     private String firstName;
+
+    @Size(min=2, max=30)
+    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ -]+$")
     private String lastName;
+
+    @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")
     private String email;
+
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{6,}$")
     private String password;
+
+    @Size(min=3, max=30)
+    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ0-9 -]+$")
     private String address;
+
+    @Size(min=3, max=10)
+    @Pattern(regexp = "^[A-Za-z0-9]+$")
     private String zipCode;
+
+    @Size(min=10, max=20)
+    @Pattern(regexp = "^(\\+?[0-9]{1,3}[\\s.-]?)?([0-9][\\s.-]?){6,14}[0-9]$")
     private String phone;
+
+    @Size(min=2, max=30)
+    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$")
     private String city;
-    private int walletPoint = 0;
+
+    @PositiveOrZero
+    private int walletPoint;
+    @PositiveOrZero
     private int walletPending;
+
     private boolean actif;
 
+
+    /****************************************/
+
+
     public User() {
+    }
+
+    public User(String pseudo, String firstName, String lastName, String email, String password, String address, String zipCode, String phone, String city) {
+        this.pseudo = pseudo;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.address = address;
+        this.zipCode = zipCode;
+        this.phone = phone;
+        this.city = city;
     }
 
     public User(long idUser, String pseudo, String firstName, String lastName, String email, String password, String address, String zipCode, String phone, String city, int walletPoint, int walletPending, boolean actif) {
@@ -176,6 +222,20 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "idUser=" + idUser + ", pseudo='" + pseudo + '\'' + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + ", email='" + email + '\'' + ", password='" + password + '\'' + ", address='" + address + '\'' + ", zipCode='" + zipCode + '\'' + ", phone='" + phone + '\'' + ", city='" + city + '\'' + ", walletPoint=" + walletPoint + ", walletPending=" + walletPending + ", actif=" + actif + '}';
+        return "User{" +
+                "idUser=" + idUser +
+                ", pseudo='" + pseudo + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", address='" + address + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                ", phone='" + phone + '\'' +
+                ", city='" + city + '\'' +
+                ", walletPoint=" + walletPoint +
+                ", walletPending=" + walletPending +
+                ", actif=" + actif +
+                '}';
     }
 }

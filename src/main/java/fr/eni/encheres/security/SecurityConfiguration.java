@@ -2,10 +2,16 @@ package fr.eni.encheres.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class SecurityConfiguration {
@@ -28,34 +34,22 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-
-//    @Bean
-//    CommandLineRunner printHashes(PasswordEncoder encoder) {
-//        return args -> {
-//            System.out.println("admin => " + encoder.encode("admin"));
-//            System.out.println("adrien => " + encoder.encode("adrien"));
-//            System.out.println("maud => " + encoder.encode("maud"));
-//            System.out.println("adrienlc => " + encoder.encode("adrienlc"));
-//            System.out.println("desac => " + encoder.encode("desac"));
-//        };
-//    }
+    ;
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-        http.userDetailsService(customUserDetailsService);
-//        http.authorizeHttpRequests(auth -> {
+        http.authorizeHttpRequests(auth -> {
 //            auth.requestMatchers(HttpMethod.GET, "/mes-encheres").hasRole("USER")
 //                    .requestMatchers(HttpMethod.GET, "/mes-ventes").hasRole("USER")
 //                    .requestMatchers(HttpMethod.GET, "/mon-compte").hasRole("USER")
 //                    .requestMatchers(HttpMethod.GET, "/vendre").hasRole("USER")
+//                    .requestMatchers(HttpMethod.POST, "/inscription/new").permitAll()
 //                    .requestMatchers("/*").permitAll()
 //                    .requestMatchers("/css/*").permitAll()
-//                   .requestMatchers("/image/*").permitAll()
+//                    .requestMatchers("/image/*").permitAll()
 //                    .anyRequest().denyAll();
-        http.authorizeHttpRequests(auth -> auth.anyRequest().denyAll()
-//        }
-        );
+            auth.anyRequest().permitAll();
+        });
 
         http.formLogin(form -> form
                 // URL de la page de connexion personnalisée
@@ -84,11 +78,14 @@ public class SecurityConfiguration {
                 .permitAll()
         );
 
+        http.logout(logout -> {
+            logout.logoutUrl("/logout")
+                    .logoutSuccessUrl("/");
+        });
 
         return http.build();
 
-    }
+    };
 
-    ;
 
 }

@@ -34,10 +34,8 @@ public class HomeController {
         return "mon-compte";
     }
 
-    @GetMapping("/inscription")
-    public String displayInscription() {
-        return "inscription";
-    }
+
+
 
 
 }
