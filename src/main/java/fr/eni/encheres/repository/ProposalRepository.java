@@ -9,6 +9,8 @@ public interface ProposalRepository {
 
     List<Proposal> readAll();
 
+    List<Proposal> readFullAll();
+
     Proposal readById(long id);
 
 

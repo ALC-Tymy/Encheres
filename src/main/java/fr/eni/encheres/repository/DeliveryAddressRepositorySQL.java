@@ -46,7 +46,7 @@ public class DeliveryAddressRepositorySQL implements DeliveryAddressRepository{
 
     @Override
     public DeliveryAddress readById(long id){
-        String sql = "SELECT * FROM DELIVERY_ADDRESS WHERE id=:id";
+        String sql = "SELECT * FROM DELIVERY_ADDRESS WHERE id_delivery_address=:id";
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
         DeliveryAddress deliveryAddress = namedParameterJdbcTemplate.queryForObject(sql, map, new BeanPropertyRowMapper<>(DeliveryAddress.class));
@@ -62,7 +62,7 @@ public class DeliveryAddressRepositorySQL implements DeliveryAddressRepository{
 
     @Override
     public void deleteDeliveryAddress(long id){
-        String sql = "DELETE FROM DELIVERY_ADDRESS WHERE id=:id";
+        String sql = "DELETE FROM DELIVERY_ADDRESS WHERE id_delivery_address=:id";
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
         this.namedParameterJdbcTemplate.update(sql, map);

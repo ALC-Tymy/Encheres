@@ -10,6 +10,8 @@ public interface ArticleRepository {
 
     List<Article> readAll();
 
+    List<Article> readFullAll();
+
     Article readById(long id);
 
     void updateArticle(Article article);
