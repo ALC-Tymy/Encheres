@@ -3,16 +3,17 @@ package fr.eni.encheres.controller;
 import fr.eni.encheres.entity.User;
 import fr.eni.encheres.service.UserService;
 import fr.eni.encheres.service.exceptions.SignUpException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.Principal;
 
 @Controller
 public class UserController {
@@ -50,6 +51,16 @@ public class UserController {
         }
 
         return "redirect:/mon-compte";
+    }
+
+    @GetMapping("/mon-compte/desactivate")
+    public String desactivateAccount(HttpServletRequest request, HttpServletResponse response){
+        userService.desactivateUser(userService.getIdLoggedUser());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null){
+            new SecurityContextLogoutHandler().logout(request, response, authentication);
+        }
+        return "redirect:/";
     }
 
 }

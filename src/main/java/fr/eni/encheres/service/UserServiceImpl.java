@@ -3,10 +3,7 @@ package fr.eni.encheres.service;
 import fr.eni.encheres.entity.User;
 import fr.eni.encheres.repository.UserRepository;
 import fr.eni.encheres.service.exceptions.SignUpException;
-import org.jspecify.annotations.Nullable;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -90,6 +87,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(long id) {
         this.userRepository.deleteUser(id);
+    }
+
+    @Override
+    public void desactivateUser(long id) {
+        this.userRepository.desactivateUser(id);
     }
 
 

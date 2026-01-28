@@ -121,6 +121,15 @@ public class UserRepositorySQL implements UserRepository {
         this.namedParameterJdbcTemplate.update(sql, map);
     }
 
+    // Passe le statut à false mais ne supprime pas le compte de la BDD
+    @Override
+    public void desactivateUser(long id) {
+        String sql = "UPDATE [USER] SET actif=0 WHERE id_user=:idUser";
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("idUser", id);
+        this.namedParameterJdbcTemplate.update(sql, map);
+    }
+
     /**
      * Recherche un utilisateur par email ou par pseudo.
      * <p>

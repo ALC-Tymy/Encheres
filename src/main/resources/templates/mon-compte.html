@@ -28,6 +28,19 @@
             <p>Téléphone : <span th:text="*{phone}"></span></p>
 
             <a href="/mon-compte/update">Modifier mes informations</a>
+            <a href="#modaleConfirmationDesactivate">Désactiver mon compte</a>
+
+        </div>
+
+        <!-- Modale pour la confirmation de désactivation -->
+        <div id="modaleConfirmationDesactivate" class="modal">
+            <a href="#" class="overlay"></a>
+            <div class="modal_content">
+                <p>Êtes-vous sûr de vouloir désactiver votre compte ?
+                    Vous ne pourrez plus vous connecter</p>
+                <a href="/mon-compte/desactivate">Désactiver</a>
+                <a href="#">Annuler</a>
+            </div>
 
         </div>
 

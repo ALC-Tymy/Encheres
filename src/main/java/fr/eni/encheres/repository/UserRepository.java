@@ -21,6 +21,8 @@ public interface UserRepository {
 
     void deleteUser(long id);
 
+    void desactivateUser(long id);
+
     /**
      * Recherche un utilisateur par email ou par pseudo.
      * <p>
