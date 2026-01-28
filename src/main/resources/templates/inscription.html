@@ -53,6 +53,8 @@
                 <input type="text" id="phone" name="phone" th:field="*{phone}">
             </div>
 
+            <div class="error" th:each="err : ${#fields.errors('global')}" th:text="${err}"></div>
+
             <button type="submit">Créer mon compte</button>
 
         </form>

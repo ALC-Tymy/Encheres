@@ -23,3 +23,12 @@ WHERE id_category = :idCategory;
 INSERT INTO CATEGORY(name)
 VALUES (:name)
 -- INSERT INTO CATEGORY(name) VALUES ('+1ajout')
+
+SELECT Top 1 u.pseudo, u.email, u.password, u.actif
+FROM [USER] AS u
+
+WHERE LOWER(u.email) = LOWER('admin@admin.fr')
+   OR LOWER(u.pseudo) = LOWER('admin');
+
+
+SELECT pseudo,email,password FROM [USER] WHERE pseudo OR email
