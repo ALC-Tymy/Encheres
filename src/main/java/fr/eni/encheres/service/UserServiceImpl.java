@@ -39,7 +39,11 @@ public class UserServiceImpl implements UserService {
             throw new SignUpException("Cet email est déjà enregistré");
         }
 
-        userRepository.createUser(user);
+        // Hash du password
+        User newUser = new User(user.getPseudo(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(),
+                user.getAddress(), user.getZipCode(), user.getPhone(), user.getCity());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.createUser(newUser);
     }
 
     @Override
