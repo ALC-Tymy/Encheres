@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 
-<div data-th-replace="~{fragments/layout :: layout(content= ~{::main}) }">
-
+<div th:replace="~{fragments/layout :: layout(content= ~{::main}) }">
     <main>
-
-        <h2>Bienvenue sur le site des enchères !</h2>
-
-        <textarea th:text="${listArticle}"></textarea>
+        index
         <table>
             <thead>
+            <tr>
                 <th>Nom</th>
                 <th>Catégorie</th>
                 <th>Description</th>
-                <th>Fin de l'enchère</th>
+                <th>Date de fin d'enchère</th>
+            </tr>
             </thead>
-            <thead>
-                <tr th:each="item : ${listArticle}">
-                    <td th:text="${item.name}"></td>
-                    <td th:text="${item.category}"></td>
-                </tr>
-            </thead>
+            <tbody>
+            <tr th:each="item : ${listArticle}">
+                <td th:text="${item.name}"></td>
+                <td th:text="${item.category}"></td>
+                <td th:text="${item.description}"></td>
+                <td th:text="${item.endingDate}"></td>
+            </tr>
+            </tbody>
         </table>
     </main>
-
 </div>

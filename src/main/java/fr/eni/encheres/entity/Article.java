@@ -9,7 +9,7 @@ public class Article {
     private String name;
     private String description;
     private int originalPoint;
-    private int finalPoint;
+    private Integer finalPoint;
     private LocalDate beginningDate;
     private LocalDate endingDate;
     private String status;
@@ -21,7 +21,7 @@ public class Article {
     public Article() {
     }
 
-    public Article(long idArticle, String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
+    public Article(long idArticle, String name, String description, int originalPoint, Integer finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
         this.idArticle = idArticle;
         this.name = name;
         this.description = description;
@@ -36,7 +36,7 @@ public class Article {
         this.seller = seller;
     }
 
-    public Article(String name, String description, int originalPoint, int finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
+    public Article(String name, String description, int originalPoint, Integer finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
         this.name = name;
         this.description = description;
         this.originalPoint = originalPoint;
@@ -82,11 +82,11 @@ public class Article {
         this.originalPoint = originalPoint;
     }
 
-    public int getFinalPoint() {
+    public Integer getFinalPoint() {
         return finalPoint;
     }
 
-    public void setFinalPoint(int finalPoint) {
+    public void setFinalPoint(Integer finalPoint) {
         this.finalPoint = finalPoint;
     }
 
@@ -150,7 +150,7 @@ public class Article {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Article article = (Article) o;
-        return idArticle == article.idArticle && originalPoint == article.originalPoint && finalPoint == article.finalPoint && Objects.equals(name, article.name) && Objects.equals(description, article.description) && Objects.equals(beginningDate, article.beginningDate) && Objects.equals(endingDate, article.endingDate) && Objects.equals(status, article.status) && Objects.equals(category, article.category) && Objects.equals(deliveryAddress, article.deliveryAddress) && Objects.equals(buyer, article.buyer) && Objects.equals(seller, article.seller);
+        return idArticle == article.idArticle && originalPoint == article.originalPoint && Objects.equals(name, article.name) && Objects.equals(description, article.description) && Objects.equals(finalPoint, article.finalPoint) && Objects.equals(beginningDate, article.beginningDate) && Objects.equals(endingDate, article.endingDate) && Objects.equals(status, article.status) && Objects.equals(category, article.category) && Objects.equals(deliveryAddress, article.deliveryAddress) && Objects.equals(buyer, article.buyer) && Objects.equals(seller, article.seller);
     }
 
     @Override

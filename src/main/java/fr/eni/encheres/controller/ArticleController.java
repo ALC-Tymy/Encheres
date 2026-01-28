@@ -13,11 +13,9 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @GetMapping("/index")
+    @GetMapping("/")
     public String readAllArticle(Model model){
         model.addAttribute("listArticle", articleService.readAll());
         return "index";
     }
-
-
 }
