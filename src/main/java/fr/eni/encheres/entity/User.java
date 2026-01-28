@@ -98,6 +98,13 @@ public class User {
         this.actif = actif;
     }
 
+    public User(String pseudo, String email, String password, boolean actif) {
+        this.pseudo = pseudo;
+        this.email = email;
+        this.password = password;
+        this.actif = actif;
+    }
+
     public long getIdUser() {
         return idUser;
     }

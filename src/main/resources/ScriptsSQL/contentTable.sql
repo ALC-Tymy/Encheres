@@ -9,19 +9,19 @@
 ---------------------------------------------------------------------------
 
 INSERT INTO [USER] (pseudo, email, password, first_name, last_name, address, zipcode, city, phone, walletPoint, walletPending, actif)
-VALUES ('admin', 'admin@admin.fr', '{bcrypt}$2a$12$SdDhU6ZnkuZU7yWjLFbzy.y9VisytQVs6g14IUkjTdrtyUm8kMm.O',
+VALUES ('admin', 'admin@admin.fr', '{bcrypt}$2a$10$hSCmeZHBaSRZZ8CB5dWIe.91xwnT.R7lBbvKp4Ji7pYWqQdNm1UhS',
         'Admin', 'Admin', 'Rue des Tulipes', '35000', 'Rennes', '0758454896', '0', '0', 1);
 INSERT INTO [USER] (pseudo, email, password, first_name, last_name, address, zipcode, city, phone, walletPoint, walletPending, actif)
-VALUES ('adrien', 'adrien@adrien.fr', '{bcrypt}$2a$12$Q4F2RduYzvePa9mPu98B6uYdcgoBHH8tXfaD0DVLstzXSflsR9UqO',
+VALUES ('adrien', 'adrien@adrien.fr', '{bcrypt}$2a$10$iF6CHrHcFM7mMLlLcZOVI.51mHdzwgFVW0.XeEAt052bmVQutOF3O',
         'Adrien', 'Quintard', 'Rue des Lilas', '35000', 'Rennes', '0758454896', '100', '375', 1);
 INSERT INTO [USER] (pseudo, email, password, first_name, last_name, address, zipcode, city, phone, walletPoint, walletPending, actif)
-VALUES ('adrienlc', 'adrienlc@adrien.fr', '{bcrypt}$2a$12$9MVRlk3SO0x3s3St/VPeDeCQL2VEkF3pW0qT7qWanLsrh0/NUG4FK',
+VALUES ('adrienlc', 'adrienlc@adrien.fr', '{bcrypt}$2a$10$MoubKTySCT9QB9PBb8J9CuADdUFW1vvxu9rdm71XaZbrRqSJI0l6O',
         'Adrien', 'Le Clech', 'Allée du Bouleau', '33000', 'Bordeaux', '0654154736', '300', '0', 1);
 INSERT INTO [USER] (pseudo, email, password, first_name, last_name, address, zipcode, city, phone, walletPoint, walletPending, actif)
-VALUES ('maud', 'maud@maud.fr', '{bcrypt}$2a$12$X1wh20hNn49vroms6vLRFuej3i.Z6lsy.JbQNwSlZPQK4JsptmO5K',
+VALUES ('maud', 'maud@maud.fr', '{bcrypt}$2a$10$AQiTU3TqHdmMFFTs.CKVW.Q8EBBmQRHAUYiXDztElRUEXwlE/lTii',
         'Maud', 'Butin', 'Chemin de Caran', '54000', 'Nancy', '0606154777', '1500', '0', 1);
 INSERT INTO [USER] (pseudo, email, password, first_name, last_name, address, zipcode, city, phone, walletPoint, walletPending, actif)
-VALUES ('desac', 'desac@desac.fr', '{bcrypt}$2a$12$oYGDU4PmtjWDDoknK.a9Fe.uWcheevbEFgt8w9OImxK7OXwyVLO.K',
+VALUES ('desac', 'desac@desac.fr', '{bcrypt}$2a$10$MSturKTLfQT1vcHoQZa82u3RfDJ9OIXAbiPHVgW6k1tHMRWkcbjIa',
         'Desac', 'Tive', 'Chemin des mouettes', '57000', 'Metz', '0706224677', '0', '0', 0);
 
 
