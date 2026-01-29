@@ -6,7 +6,51 @@
 
         <h2>Vendre un objet</h2>
 
-        <form th:action="@{}"
+        <form method="post" th:action="@{/vendre/add}" th:object="${articleDTO}">
+            <div>
+                <label for="idName">Name : </label>
+                <input id="idName" type="text" th:field="*{name}">
+            </div>
+            <div>
+                <label for="idDescription">Description : </label>
+                <input id="idDescription" type="text" th:field="*{description}">
+            </div>
+            <div>
+                <label for="idOriginalPoint">Prix de départ</label>
+                <input id="idOriginalPoint" type="text" th:field="*{originalPoint}">
+            </div>
+            <div>
+                <label for="idBeginningDate">Date de début : </label>
+                <input id="idBeginningDate" type="date" th:field="*{beginningDate}">
+            </div>
+            <div>
+                <label for="idEndingDate">Date de fin : </label>
+                <input id="idEndingDate" type="date" th:field="*{endingDate}">
+            </div>
+            <div>
+                <label for="idCategory">Catégorie : </label>
+                <select name="" id="idCategory" th:field="*{category}">
+                    <option value=""> -- Choisir une catégorie</option>
+                    <option th:each="c : ${categoryList}" th:value="${c.idCategory}" th:text="${c.name}"></option>
+                </select>
+            </div>
+            <div>
+                <label for="idAddress">Adresse de livraison : </label>
+                <input id="idAddress" th:field="*{address}">
+            </div>
+            <div>
+                <label for="idZipCode">Code postal : </label>
+                <input id="idZipCode" type="text" th:field="*{zipCode}">
+            </div>
+            <div>
+                <label for="idCity">Ville : </label>
+                <input id="idCity" type="text" th:field="*{city}">
+            </div>
+
+            <button type="submit"> Ajouter un article a la vente</button>
+
+        </form>
+
     </main>
 
 </div>

@@ -2,6 +2,7 @@ package fr.eni.encheres.repository;
 
 import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.repository.rowMapper.ArticleRowMapper;
+import fr.eni.encheres.service.CategoryService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -9,25 +10,38 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository
-public class ArticleRepositorySQL implements ArticleRepository{
+public class ArticleRepositorySQL implements ArticleRepository {
+    private final CategoryService categoryService;
     JdbcTemplate jdbcTemplate;
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
-    public ArticleRepositorySQL(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+    public ArticleRepositorySQL(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate, CategoryService categoryService) {
         this.jdbcTemplate = jdbcTemplate;
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
+        this.categoryService = categoryService;
     }
 
     @Override
-    public void createArticle(Article article){
+    public void createArticle(Article article) {
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
-        String sql = "INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status) " +
-                " + VALUES(:name, :description, :original_point, :final_point, :beginning_date, :ending_date, :status)";
+        String sql = """
+                INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date,status, id_category, id_del_address)
+                                VALUES(:name, :description, :original_point, :final_point, :beginning_date, :ending_date,:status, :id_category , :id_del_address)
+                """;
+
+        Long categoryId = null;
+        if (article.getCategory() != null) {
+            categoryId = article.getCategory().getIdCategory();
+        }
+
+        Long deliveryAddressId = null;
+        if (article.getDeliveryAddress() != null) {
+            deliveryAddressId = article.getDeliveryAddress().getIdDeladdress();
+        }
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("name", article.getName());
@@ -36,7 +50,10 @@ public class ArticleRepositorySQL implements ArticleRepository{
         map.addValue("final_point", article.getFinalPoint());
         map.addValue("beginning_date", article.getBeginningDate());
         map.addValue("ending_date", article.getEndingDate());
-        map.addValue("status", article.getStatus());
+        map.addValue("status", "CR"); //
+        map.addValue("id_category", categoryId);
+        map.addValue("id_del_address", deliveryAddressId);
+
 
         namedParameterJdbcTemplate.update(sql, map, keyHolder);
         long id = keyHolder.getKey().longValue();
@@ -44,7 +61,7 @@ public class ArticleRepositorySQL implements ArticleRepository{
     }
 
     @Override
-    public List<Article> readAll(){
+    public List<Article> readAll() {
         String sql = "SELECT * FROM ARTICLE";
         List<Article> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Article.class));
         return list;
@@ -68,7 +85,7 @@ public class ArticleRepositorySQL implements ArticleRepository{
     }
 
     @Override
-    public Article readById(long id){
+    public Article readById(long id) {
         String sql = "SELECT * FROM ARTICLE WHERE id_article=:id";
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
@@ -77,14 +94,14 @@ public class ArticleRepositorySQL implements ArticleRepository{
     }
 
     @Override
-    public void updateArticle(Article article){
+    public void updateArticle(Article article) {
         String sql = "UPDATE ARTICLE SET name=:name, description=:description, original_point=:original_point, final_point=:final_point, beginning_date=:beginning_date, ending_date=:ending_date, status=:status WHERE id_article = :idArticle;";
         BeanPropertySqlParameterSource map = new BeanPropertySqlParameterSource(Article.class);
         namedParameterJdbcTemplate.update(sql, map);
     }
 
     @Override
-    public void deleteArticle(long id){
+    public void deleteArticle(long id) {
         String sql = "DELETE FROM ARTICLE WHERE id_article=:id";
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);

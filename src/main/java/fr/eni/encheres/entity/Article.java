@@ -50,6 +50,17 @@ public class Article {
         this.seller = seller;
     }
 
+    public Article(String name, String description, int originalPoint, LocalDate beginningDate, LocalDate endingDate, Category category) {
+        this.name = name;
+        this.description = description;
+        this.originalPoint = originalPoint;
+        this.beginningDate = beginningDate;
+        this.endingDate = endingDate;
+        this.category = category;
+    }
+
+
+
     public long getIdArticle() {
         return idArticle;
     }

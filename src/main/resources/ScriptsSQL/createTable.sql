@@ -1,4 +1,3 @@
-
 ---------------------------------------------------------------------------
 -- DROP POUR CLEAR BDD
 ---------------------------------------------------------------------------
@@ -28,9 +27,9 @@ CREATE TABLE [USER]
     zipcode       VARCHAR(10)  NOT NULL,
     city          VARCHAR(30)  NOT NULL,
     phone         VARCHAR(20)  NOT NULL,
-    walletPoint   INTEGER      NOT NULL CHECK (walletPoint >= 0) DEFAULT 0,
+    walletPoint   INTEGER      NOT NULL CHECK (walletPoint >= 0)   DEFAULT 0,
     walletPending INTEGER      NOT NULL CHECK (walletPending >= 0) DEFAULT 0,
-    actif         BIT          NOT NULL DEFAULT 1
+    actif         BIT          NOT NULL                            DEFAULT 1
 )
 
 CREATE TABLE ARTICLE
@@ -42,7 +41,15 @@ CREATE TABLE ARTICLE
     final_point    INTEGER,
     beginning_date DATETIME2    NOT NULL,
     ending_date    DATETIME2    NOT NULL,
-    status         CHAR(2)      NOT NULL CHECK ((status IN ('CR', 'EC', 'VD', 'LV'))),
+    ---------------------------------
+    -- Les statuts pour les articles
+    ---------------------------------
+    --'CR' = "créé", mis automatiquement à la création de l'article ( DEFAULT 'CR' dans la table )
+    --'EC' = "en cours", ce statut se met automatiquement quand la beginning_date < date of today
+    --'VD' = "vendu", ce statut se met automatiquement quand la ending_date < date of today
+    --'LV' = "livré", on s'en occupe pas pour l'appli
+    ---------------------------------
+    status         CHAR(2) DEFAULT 'CR' CHECK ((status IN ('CR', 'EC', 'VD', 'LV'))),
     id_category    BIGINT,
     id_del_address BIGINT,
     id_seller      BIGINT,
@@ -116,6 +123,6 @@ ALTER TABLE ARTICLE
         ON UPDATE CASCADE
 
 ALTER TABLE ROLES
-    ADD CONSTRAINT fk_roles FOREIGN KEY (pseudo) REFERENCES [USER](pseudo)
+    ADD CONSTRAINT fk_roles FOREIGN KEY (pseudo) REFERENCES [USER] (pseudo)
         ON DELETE NO ACTION
         ON UPDATE NO ACTION

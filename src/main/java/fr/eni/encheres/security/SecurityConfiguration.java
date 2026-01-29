@@ -43,6 +43,7 @@ public class SecurityConfiguration {
 //                    .requestMatchers(HttpMethod.GET, "/mes-ventes").hasRole("USER")
 //                    .requestMatchers(HttpMethod.GET, "/mon-compte").hasRole("USER")
 //                    .requestMatchers(HttpMethod.GET, "/vendre").hasRole("USER")
+//                    .requestMatchers(HttpMethod.GET, "/inscription").permitAll()
 //                    .requestMatchers(HttpMethod.POST, "/inscription/new").permitAll()
 //                    .requestMatchers("/*").permitAll()
 //                    .requestMatchers("/css/*").permitAll()

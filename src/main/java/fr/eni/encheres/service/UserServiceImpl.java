@@ -3,7 +3,6 @@ package fr.eni.encheres.service;
 import fr.eni.encheres.entity.User;
 import fr.eni.encheres.repository.UserRepository;
 import fr.eni.encheres.service.exceptions.SignUpException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

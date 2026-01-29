@@ -1,6 +1,9 @@
 package fr.eni.encheres.service;
 
 import fr.eni.encheres.entity.Article;
+import fr.eni.encheres.entity.dto.CreateArticleDTO;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 public interface ArticleService {
@@ -11,4 +14,6 @@ public interface ArticleService {
     void updateArticle(Article article);
     void deleteArticle(long id);
 
+    @Transactional
+    void createArticleDTO (CreateArticleDTO articleDTO);
 }
