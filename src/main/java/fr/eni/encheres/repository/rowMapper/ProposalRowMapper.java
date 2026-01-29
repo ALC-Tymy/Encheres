@@ -20,6 +20,7 @@ public class ProposalRowMapper implements RowMapper<Proposal> {
         proposalResult.setDateProposal(rs.getObject("dateProposal_proposal", LocalDate.class));
         proposalResult.setRanking(rs.getInt("ranking_proposal"));
 
+
         //Article correspondant à la proposition
         Long articleId = rs.getLong("id_article");
         if(!rs.wasNull()) {

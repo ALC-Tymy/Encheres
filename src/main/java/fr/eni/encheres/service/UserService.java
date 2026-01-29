@@ -13,9 +13,13 @@ public interface UserService {
 
     User readById(long id);
 
-    void updateUser(User user);
+    void updateUser(User user) throws SignUpException;
 
     void deleteUser(long id);
+
+    void desactivateUser(long id);
+
+    long getIdLoggedUser();
 
     /**
      * Recherche un utilisateur par email ou par pseudo.

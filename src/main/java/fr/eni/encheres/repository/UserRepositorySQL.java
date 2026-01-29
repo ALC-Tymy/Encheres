@@ -3,7 +3,6 @@ package fr.eni.encheres.repository;
 import fr.eni.encheres.entity.User;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -61,21 +60,21 @@ public class UserRepositorySQL implements UserRepository {
     }
 
     @Override
-    public List<User> readByPseudo(String pseudo) {
+    public User readByPseudo(String pseudo) {
         String sql = "SELECT * FROM [USER] WHERE pseudo = :pseudo";
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("pseudo", pseudo);
         List<User> userlist = namedParameterJdbcTemplate.query(sql, map, new BeanPropertyRowMapper<>(User.class));
-        return userlist;
+        return userlist != null ? userlist.get(0) : null;
     }
 
     @Override
-    public List<User> readByEmail(String email) {
+    public User readByEmail(String email) {
         String sql = "SELECT * FROM [USER] WHERE email = :email";
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("email", email);
         List<User> userlist = namedParameterJdbcTemplate.query(sql, map, new BeanPropertyRowMapper<>(User.class));
-        return userlist;
+        return userlist != null ? userlist.get(0) : null;
     }
 
     @Override
@@ -90,14 +89,42 @@ public class UserRepositorySQL implements UserRepository {
 
     @Override
     public void updateUser(User user) {
-        String sql = "UPDATE [USER] SET pseudo=:pseudo, email=:email, password=:password, first_name=:firstname, last_name=:lastname, address=:address, zipcode=:zipcode, city=:city, phone=:phone, walletPoint=:walletPoint, walletPending=:walletPending";
-        BeanPropertySqlParameterSource map = new BeanPropertySqlParameterSource(user);
+
+        String sql = "UPDATE [USER] " +
+                " SET pseudo=:pseudo, email=:email, password=:password, " +
+                " first_name=:firstname, last_name=:lastname, address=:address, " +
+                " zipcode=:zipcode, city=:city, phone=:phone, walletPoint=:walletPoint, " +
+                " walletPending=:walletPending, actif=:actif WHERE id_user=:idUser";
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("idUser", user.getIdUser());
+        map.addValue("pseudo", user.getPseudo());
+        map.addValue("email", user.getEmail());
+        map.addValue("password", user.getPassword());
+        map.addValue("firstname", user.getFirstName());
+        map.addValue("lastname", user.getLastName());
+        map.addValue("address", user.getAddress());
+        map.addValue("zipcode", user.getZipCode());
+        map.addValue("city", user.getCity());
+        map.addValue("phone", user.getPhone());
+        map.addValue("walletPoint", user.getWalletPoint());
+        map.addValue("walletPending", user.getWalletPending());
+        map.addValue("actif", user.isActif());
+
         namedParameterJdbcTemplate.update(sql, map);
     }
 
     @Override
     public void deleteUser(long id) {
         String sql = "DELETE FROM [USER] WHERE id_user=:idUser";
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("idUser", id);
+        this.namedParameterJdbcTemplate.update(sql, map);
+    }
+
+    // Passe le statut à false mais ne supprime pas le compte de la BDD
+    @Override
+    public void desactivateUser(long id) {
+        String sql = "UPDATE [USER] SET actif=0 WHERE id_user=:idUser";
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("idUser", id);
         this.namedParameterJdbcTemplate.update(sql, map);

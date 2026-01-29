@@ -48,9 +48,6 @@ public class HomeController {
         return "mes-encheres";
     }
 
-    @GetMapping("/mon-compte")
-    public String displayMonCompte() {
-        return "mon-compte";
-    }
+
 
 }
