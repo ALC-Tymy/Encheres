@@ -1,6 +1,7 @@
 package fr.eni.encheres.controller;
 
 import fr.eni.encheres.entity.dto.CreateArticleDTO;
+import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.service.ArticleService;
 import fr.eni.encheres.service.CategoryService;
 import fr.eni.encheres.service.DeliveryAddressService;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ArticleController {
@@ -40,4 +42,15 @@ public class ArticleController {
         articleService.createArticleDTO(articleDTO);
         return "redirect:/";
     }
+
+    @GetMapping("/article/{id}")
+    public String article(@PathVariable("id") final long id, Model model) {
+        //récup des détails d'un article
+        Article article = articleService.readById(id);
+        model.addAttribute("article", article);
+        //Affichage de la page détails d'un article
+        return "details";
+    }
+
+
 }

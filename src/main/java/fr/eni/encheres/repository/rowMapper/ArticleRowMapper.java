@@ -28,9 +28,9 @@ public class ArticleRowMapper implements RowMapper<Article> {
 
         //User qui est le vendeur de l'article
         Long sellerId = rs.getLong("id_user_seller");
-        if(!rs.wasNull()){
+        if(sellerId >0 ){
             User user = new User();
-            user.setIdUser(rs.getLong("id_user_seller"));
+            user.setIdUser(sellerId);
             user.setPseudo(rs.getString("pseudo_seller"));
             user.setEmail(rs.getString("email_seller"));
             user.setPassword(rs.getString("password_seller"));
@@ -48,9 +48,9 @@ public class ArticleRowMapper implements RowMapper<Article> {
 
         //User qui a fait acheter l'article
         Long buyerId = rs.getLong("id_user_buyer");
-        if(!rs.wasNull()){
+        if(buyerId >0 ){
             User user = new User();
-            user.setIdUser(rs.getLong("id_user_buyer"));
+            user.setIdUser(buyerId);
             user.setPseudo(rs.getString("pseudo_buyer"));
             user.setEmail(rs.getString("email_buyer"));
             user.setPassword(rs.getString("password_buyer"));

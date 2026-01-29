@@ -10,6 +10,9 @@ public interface ArticleService {
 
     void createArticle(Article article);
     List<Article> readAll();
+
+    List<Article> readFullAll();
+
     Article readById(long id);
     void updateArticle(Article article);
     void deleteArticle(long id);
