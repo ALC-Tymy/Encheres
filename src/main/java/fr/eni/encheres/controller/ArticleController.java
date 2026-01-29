@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
 
 @Controller
 public class ArticleController {
@@ -45,6 +46,7 @@ public class ArticleController {
 
         model.addAttribute("articleDTO", articleDTO);
         model.addAttribute("categoryList", this.categoryService.getAll());
+        model.addAttribute("addressByPseudo", this.userService.readById(userService.getIdLoggedUser()));
         return "vendre";
     }
 
@@ -66,6 +68,4 @@ public class ArticleController {
         //Affichage de la page détails d'un article
         return "details";
     }
-
-
 }
