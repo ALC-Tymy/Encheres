@@ -1,6 +1,7 @@
 package fr.eni.encheres.controller;
 
 import fr.eni.encheres.entity.User;
+import fr.eni.encheres.service.ArticleService;
 import fr.eni.encheres.service.UserService;
 import fr.eni.encheres.service.exceptions.SignUpException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,9 +20,11 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     UserService userService;
+    ArticleService articleService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ArticleService articleService) {
         this.userService = userService;
+        this.articleService = articleService;
     }
 
     @GetMapping("/mon-compte")
@@ -61,6 +64,13 @@ public class UserController {
             new SecurityContextLogoutHandler().logout(request, response, authentication);
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/mes-ventes")
+    public String displayMesVentes(Model model) {
+        model.addAttribute("articleCRList", articleService.readArticleCRByIdSeller(userService.getIdLoggedUser()));
+//        model.addAttribute("articleECList", articleService.readArticleECByIdSeller(userService.getIdLoggedUser()));
+        return "mes-ventes";
     }
 
 }

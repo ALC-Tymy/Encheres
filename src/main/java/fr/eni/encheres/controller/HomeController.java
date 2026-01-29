@@ -38,11 +38,6 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @GetMapping("/mes-ventes")
-    public String displayMesVentes() {
-        return "mes-ventes";
-    }
-
     @GetMapping("/mes-encheres")
     public String displayMesEncheres() {
         return "mes-encheres";

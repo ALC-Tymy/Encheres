@@ -4,7 +4,30 @@
 
     <main>
 
-        <h2>Mes ventes (en cours et terminées)</h2>
+        <h2>Mes ventes (en cours et terminées)</h2><br>
+
+        <h3>Ventes en attente de démarrage</h3>
+
+        <div class="box-enchere" th:each="el : ${articleCRList}">
+
+            <p>Objet : <span th:text="${el.getName()}"></span></p>
+            <p>Date de début des enchères : <span th:text="${el.getBeginningDate()}"></span></p>
+            <p>Mise à prix : <span th:text="${el.getOriginalPoint()}"></span> points</p>
+
+        </div><br>
+
+        <h3>Ventes en cours</h3><br>
+
+        <!-- WIP -->
+<!--        <div class="box-enchere" th:each="el : ${articleECList}">-->
+
+<!--            <p>Objet : <span th:text="${el.getName()}"></span></p>-->
+<!--            <p>Date de début des enchères : <span th:text="${el.getBeginningDate()}"></span></p>-->
+<!--            <p>Mise à prix : <span th:text="${el.getOriginalPoint()}"></span> points</p>-->
+
+<!--        </div><br>-->
+
+        <h3>Ventes terminées</h3><br>
 
     </main>
 

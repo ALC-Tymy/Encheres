@@ -87,3 +87,10 @@ footer {
     background: white;
     padding: 1.5em 2em;
 }
+
+.box-enchere{
+    width: 500px;
+    margin: 10px;
+    padding: 5px;
+    background-color: #d1d1d1;
+}

@@ -17,4 +17,8 @@ public interface ArticleRepository {
     void updateArticle(Article article);
 
     void deleteArticle(long id);
+
+    List<Article> readArticleCRByIdSeller(long id);
+
+    List<Article> readArticleECByIdSeller(long id);
 }

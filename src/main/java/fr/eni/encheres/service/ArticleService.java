@@ -13,6 +13,8 @@ public interface ArticleService {
     Article readById(long id);
     void updateArticle(Article article);
     void deleteArticle(long id);
+    List<Article> readArticleCRByIdSeller(long id);
+    List<Article> readArticleECByIdSeller(long id);
 
     @Transactional
     void createArticleDTO (CreateArticleDTO articleDTO);

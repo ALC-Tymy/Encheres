@@ -76,6 +76,18 @@ VALUES ('Jean délavé', 'Jean Uniqlo, je le porte encore un peu mais il est tro
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
 VALUES ('Ballon de foot', 'Ballon quasi-neuf', '10', null, '2026-02-20 10:00:00', '2026-03-15 08:30:00', 'CR', '4', '4', '2', null);
 
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
+VALUES ('Robe de princesse', 'Robe de la princesse Belle de Disney, taille 4 ans', '50', null, '2026-02-10 10:00:00', '2026-03-15 08:30:00', 'CR', '1', '4', '2', null);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
+VALUES ('Carte SD', 'Elle fonctionne', '20', null, '2026-02-07 10:00:00', '2026-03-15 08:30:00', 'CR', '3', '4', '2', null);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
+VALUES ('Ordinateur quantique', 'Il est super', '1000', null, '2026-01-07 10:00:00', '2026-03-15 08:30:00', 'EC', '3', '4', '2', null);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
+VALUES ('Arrosoir', 'Il arrose très bien', '5', null, '2026-01-15 10:00:00', '2026-03-15 08:30:00', 'EC', '3', '4', '2', null);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
+VALUES ('Bulbes de tulipes', 'Rouges et jaunes', '20', null, '2026-01-07 10:00:00', '2026-03-15 08:30:00', 'EC', '3', '4', '2', null);
+
+
 
 ---------------------------------------------------------------------------
 -- PROPOSAL
@@ -101,3 +113,20 @@ INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_artic
 VALUES ('150', '2026-01-20 11:00:00', '2', '3', '4');
 INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
 VALUES ('175', '2026-01-21 11:00:00', '1', '2', '4');
+
+INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+VALUES ('1200', '2026-01-21 11:00:00', '1', '3', '9');
+INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+VALUES ('1100', '2026-01-20 11:00:00', '2', '4', '9');
+INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+VALUES ('1050', '2026-01-18 11:00:00', '3', '3', '9');
+INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+VALUES ('50', '2026-01-21 11:00:00', '1', '4', '10');
+INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+VALUES ('20', '2026-01-20 11:00:00', '2', '3', '10');
+INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+VALUES ('18', '2026-01-18 11:00:00', '3', '1', '10');
+INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+VALUES ('25', '2026-01-10 11:00:00', '1', '1', '11');
+INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+VALUES ('22', '2026-01-09 11:00:00', '3', '3', '11');

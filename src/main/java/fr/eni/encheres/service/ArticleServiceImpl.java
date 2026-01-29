@@ -5,9 +5,13 @@ import fr.eni.encheres.entity.DeliveryAddress;
 import fr.eni.encheres.entity.dto.CreateArticleDTO;
 import fr.eni.encheres.repository.ArticleRepository;
 import fr.eni.encheres.repository.DeliveryAddressRepository;
+import org.springframework.data.domain.Score;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -44,6 +48,23 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public void deleteArticle(long id) {
         this.articleRepository.deleteArticle(id);
+    }
+
+    @Override
+    public List<Article> readArticleCRByIdSeller(long id) {
+
+//        Collections.sort(articleRepository.readArticleCRByIdSeller(id), new Comparator<Article>() {
+//            public int compare(Article a, Article b) {
+//                return a.getBeginningDate().compareTo(b.getBeginningDate());
+//            }
+//        });
+
+        return articleRepository.readArticleCRByIdSeller(id);
+    }
+
+    @Override
+    public List<Article> readArticleECByIdSeller(long id){
+        return articleRepository.readArticleECByIdSeller(id);
     }
 
     @Transactional
