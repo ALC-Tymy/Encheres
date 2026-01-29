@@ -10,5 +10,7 @@ public interface ProposalService {
     Proposal readById(long id);
     void updateProposal(Proposal proposal);
     void deleteProposal(long id);
+    List<Proposal> readProposalECByIdUser(long id);
 
+    List<Proposal> readProposalVDLVByIdUser(long id);
 }

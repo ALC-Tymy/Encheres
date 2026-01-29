@@ -39,4 +39,14 @@ public class ProposalServiceImpl implements ProposalService{
     public void deleteProposal(long id) {
 
     }
+
+    @Override
+    public List<Proposal> readProposalECByIdUser(long id) {
+        return proposalRepository.readProposalECByIdUser(id);
+    }
+
+    @Override
+    public List<Proposal> readProposalVDLVByIdUser(long id){
+        return proposalRepository.readProposalVDLVByIdUser(id);
+    }
 }

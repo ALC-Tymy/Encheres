@@ -4,7 +4,30 @@
 
   <main>
 
-    <h2>Mes enchères (en cours et terminées)</h2>
+    <h2>Mes enchères</h2>
+
+    <h3>En cours</h3>
+
+    <div class="box-enchere" th:each="el : ${proposalECList}">
+
+      <p>Objet : <span th:text="${el.article.getName()}"></span></p>
+      <p>Prix proposé : <span th:text="${el.pointProposal}"></span> point(s)</p>
+      <p>Classement : <span th:text="${el.ranking}"></span></p>
+      <p>Date de fin de la vente : <span th:text="${el.article.getEndingDate()}"></span></p>
+
+    </div><br>
+
+    <h3>Terminées</h3>
+
+    <div class="box-enchere" th:each="el : ${proposalVDLVList}">
+
+      <p>Objet : <span th:text="${el.article.getName()}"></span></p>
+      <p>Prix proposé : <span th:text="${el.pointProposal}"></span> point(s)</p>
+      <p>Prix final : <span th:text="${el.article.getFinalPoint()}"></span> point(s)</p>
+      <p>Classement final : <span th:text="${el.ranking}"></span></p>
+      <p>Vente terminée depuis le : <span th:text="${el.article.getEndingDate()}"></span></p>
+
+    </div><br>
 
   </main>
 

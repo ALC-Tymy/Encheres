@@ -17,4 +17,9 @@ public interface ProposalRepository {
     void updateProposal(Proposal proposal);
 
     void deleteProposal(long id);
+
+    List<Proposal> readProposalECByIdUser(long id);
+
+    // Récupère la liste des propositions pour des ventes TERMINÉES selon l'ID user
+    List<Proposal> readProposalVDLVByIdUser(long id);
 }

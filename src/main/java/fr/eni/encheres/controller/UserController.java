@@ -2,6 +2,7 @@ package fr.eni.encheres.controller;
 
 import fr.eni.encheres.entity.User;
 import fr.eni.encheres.service.ArticleService;
+import fr.eni.encheres.service.ProposalService;
 import fr.eni.encheres.service.UserService;
 import fr.eni.encheres.service.exceptions.SignUpException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,12 +20,14 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class UserController {
 
+    private final ProposalService proposalService;
     UserService userService;
     ArticleService articleService;
 
-    public UserController(UserService userService, ArticleService articleService) {
+    public UserController(UserService userService, ArticleService articleService, ProposalService proposalService) {
         this.userService = userService;
         this.articleService = articleService;
+        this.proposalService = proposalService;
     }
 
     @GetMapping("/mon-compte")
@@ -71,6 +74,13 @@ public class UserController {
         model.addAttribute("articleCRList", articleService.readArticleCRByIdSeller(userService.getIdLoggedUser()));
 //        model.addAttribute("articleECList", articleService.readArticleECByIdSeller(userService.getIdLoggedUser()));
         return "mes-ventes";
+    }
+
+    @GetMapping("/mes-encheres")
+    public String displayMesEncheres(Model model){
+        model.addAttribute("proposalECList", proposalService.readProposalECByIdUser(userService.getIdLoggedUser()));
+        model.addAttribute("proposalVDLVList", proposalService.readProposalVDLVByIdUser(userService.getIdLoggedUser()));
+        return "mes-encheres";
     }
 
 }

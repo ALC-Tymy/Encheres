@@ -133,16 +133,18 @@ public class ArticleRepositorySQL implements ArticleRepository {
     public List<Article> readArticleECByIdSeller(long id){
 
         String sql = "SELECT " +
-                " article.id_seller, article.id_article, article.name, status, " +
-                " beginning_date, ending_date, ranking, PROPOSAL.point_proposal, PROPOSAL.id_buyer, [USER].first_name " +
+                " article.id_seller, article.id_article, article.name, article.status, " +
+                " article.beginning_date, article.ending_date, proposal.ranking, PROPOSAL.point_proposal, " +
+                " PROPOSAL.id_buyer, [USER].first_name " +
                 " FROM ARTICLE " +
                 " LEFT JOIN PROPOSAL ON article.id_article = PROPOSAL.id_article " +
                 " LEFT JOIN [USER] ON PROPOSAL.id_buyer = [USER].id_user " +
-                " WHERE id_seller=:id AND (ranking=1 OR ranking IS NULL) AND status='EC'";
+                " WHERE article.id_seller=:id AND (ranking=1 OR ranking IS NULL) AND status='EC'";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
 
         return namedParameterJdbcTemplate.query(sql, map, new ArticleRowMapper());
     }
+
 }

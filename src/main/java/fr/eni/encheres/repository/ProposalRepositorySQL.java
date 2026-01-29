@@ -1,6 +1,7 @@
 package fr.eni.encheres.repository;
 
 import fr.eni.encheres.entity.Proposal;
+import fr.eni.encheres.repository.rowMapper.ProposalByUserRowMapper;
 import fr.eni.encheres.repository.rowMapper.ProposalRowMapper;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -85,4 +86,44 @@ public class ProposalRepositorySQL implements ProposalRepository{
         map.addValue("id", id);
         namedParameterJdbcTemplate.update(sql, map);
     }
+
+
+    // Récupère la liste des propositions pour des ventes EN COURS selon l'ID user
+    @Override
+    public List<Proposal> readProposalECByIdUser(long id){
+
+        String sql = "SELECT PROPOSAL.id_proposal, PROPOSAL.point_proposal, PROPOSAL.date_proposal, " +
+                "       PROPOSAL.ranking, proposal.id_buyer, PROPOSAL.id_article, " +
+                "       ARTICLE.name, ARTICLE.status, ARTICLE.final_point, ARTICLE.beginning_date, " +
+                "       ARTICLE.ending_date " +
+                "FROM PROPOSAL " +
+                "    LEFT JOIN ARTICLE ON PROPOSAL.id_article = ARTICLE.id_article " +
+                "    LEFT JOIN [USER] on PROPOSAL.id_buyer = id_user " +
+                "WHERE PROPOSAL.id_buyer=:id AND ARTICLE.status='EC'";
+
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id", id);
+
+        return namedParameterJdbcTemplate.query(sql, map, new ProposalByUserRowMapper());
+    }
+
+    // Récupère la liste des propositions pour des ventes TERMINÉES selon l'ID user
+    @Override
+    public List<Proposal> readProposalVDLVByIdUser(long id) {
+
+        String sql = "SELECT PROPOSAL.id_proposal, PROPOSAL.point_proposal, PROPOSAL.date_proposal, " +
+                "       PROPOSAL.ranking, proposal.id_buyer, PROPOSAL.id_article, " +
+                "       ARTICLE.name, ARTICLE.status, ARTICLE.final_point, ARTICLE.beginning_date, " +
+                "       ARTICLE.ending_date " +
+                "FROM PROPOSAL " +
+                "    LEFT JOIN ARTICLE ON PROPOSAL.id_article = ARTICLE.id_article " +
+                "    LEFT JOIN [USER] on PROPOSAL.id_buyer = id_user " +
+                "WHERE PROPOSAL.id_buyer=:id AND (ARTICLE.status='VD' OR ARTICLE.status='LV')";
+
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id", id);
+
+        return namedParameterJdbcTemplate.query(sql, map, new ProposalByUserRowMapper());
+    }
+
 }
