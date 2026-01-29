@@ -31,7 +31,7 @@
                 <div>Nom : <span th:text="${item.name}"></span></div>
                 <div th:text="${item.category?.name}">Catégorie :</div>
                 <div th:text="${item.finalPoint}">Enchère finale</div>
-                <div th:text="${item.endingDate}">Fin de l'enchère</div>
+                <div th:text="${#temporals.format(item.endingDate, 'dd-MM-yyyy HH:mm') }">Fin de l'enchère</div>
                 <div>Vendeur : <span th:text="${item.seller?.pseudo}"></span></div>
                 <a th:href="@{/article/{id}(id=${item.idArticle})}">Consulter</a>
             </div>
