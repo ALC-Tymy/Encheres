@@ -10,23 +10,18 @@
 
 
             <div>
-<!--                <div>-->
-<!--                    <form>-->
-<!--                        <label for="name">Nom</label>-->
-<!--                        <input type="text" id="name" name="name" th:field="*{name}">-->
-<!--                    </form>-->
-<!--                </div>-->
-
-                <select id="category" name="category">
-                    <option value="Informatique">Informatique</option>
-                    <option value="Ameublement">Ameublement</option>
-                    <option value="Vetement">Vetement</option>
-                    <option value="Loisir">Loisir</option>
-                    <option value="Sport">Sport</option>
-                </select>
+                <form th:action="@{/search}"
+                       th:object="${searching}"
+                       methode="post">
+                    <select th:field="*{category}">
+                        <option value="NULL">Tous</option>
+                        <option th:each="item : ${listCategory}" th:value="${item.idCategory}" th:text="${item.name}"></option>
+                    </select>
+                    <button type="submit">Rechercher</button>
+                </form>
 
             </div>
-            <button>Rechercher</button>
+
         </div>
         <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; margin: 20px; background-color: white">
             <div style="display: flex; flex-direction: column; justify-content: space-around;background-color: #dcdcdc; margin: 1rem; padding: 1rem; width: 15rem; height: 20rem"
@@ -34,14 +29,14 @@
                 <div style="display: flex; flex-direction: row; justify-content: center; width: 15rem; height: 15rem; background-color: white">
                     Image
                 </div>
-                <div th:text="${item.name}">Nom :</div>
-                <div th:text="${item.category}">Catégorie :</div>
+                <div>Nom : <span th:text="${item.name}"></span></div>
+                <div>Status : <span th:text="${item.status}"></span></div>
+                <div th:text="${item.category?.name}">Catégorie :</div>
                 <div th:text="${item.finalPoint}">Enchère finale</div>
                 <div th:text="${item.endingDate}">Fin de l'enchère</div>
-                <button>Consulter</button>
+                <div>Vendeur : <span th:text="${item.seller?.pseudo}"></span></div>
+                <a th:href="@{/article/{id}(id=${item.idArticle})}">Consulter</a>
             </div>
         </div>
-
-
     </main>
 </div>

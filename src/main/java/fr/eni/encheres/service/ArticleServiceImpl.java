@@ -32,6 +32,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> readFullAll() {
+        return this.articleRepository.readFullAll();
+    }
+
+    @Override
     public Article readById(long id) {
         return this.articleRepository.readById(id);
     }
