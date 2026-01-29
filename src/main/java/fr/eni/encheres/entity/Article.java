@@ -51,16 +51,16 @@ public class Article {
         this.seller = seller;
     }
 
-    public Article(String name, String description, int originalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, Category category) {
+
+    public Article(String name, String description, int originalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, Category category, User seller) {
         this.name = name;
         this.description = description;
         this.originalPoint = originalPoint;
         this.beginningDate = beginningDate;
         this.endingDate = endingDate;
         this.category = category;
+        this.seller = seller;
     }
-
-
 
     public long getIdArticle() {
         return idArticle;

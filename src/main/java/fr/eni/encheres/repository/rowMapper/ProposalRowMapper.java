@@ -24,12 +24,15 @@ public class ProposalRowMapper implements RowMapper<Proposal> {
 
         //Article correspondant à la proposition
         Long articleId = rs.getLong("id_article");
-        if(articleId > 0) {
+        if(!rs.wasNull()) {
             Article article = new Article();
-            article.setIdArticle(articleId);
+            article.setIdArticle(rs.getLong("id_article"));
             article.setName(rs.getString("name"));
             article.setDescription(rs.getString("description"));
             article.setOriginalPoint(rs.getInt("originalPoint"));
+
+
+
             article.setFinalPoint(rs.getInt("final_point"));
             article.setBeginningDate(rs.getObject("beginning_date", LocalDateTime.class));
             article.setEndingDate(rs.getObject("ending_date", LocalDateTime.class));
@@ -37,10 +40,10 @@ public class ProposalRowMapper implements RowMapper<Proposal> {
             proposalResult.setArticle(article);
 
             //User qui est le vendeur de l'article
-            Long sellerId = rs.getLong("id_user-seller");
-            if(sellerId > 0){
+            Long userId = rs.getLong("id_user-seller");
+            if(!rs.wasNull()){
                 User user = new User();
-                user.setIdUser(sellerId);
+                user.setIdUser(rs.getLong("id_user_seller"));
                 user.setPseudo(rs.getString("pseudo_seller"));
                 user.setEmail(rs.getString("email_seller"));
                 user.setPassword(rs.getString("password_seller"));
@@ -59,10 +62,10 @@ public class ProposalRowMapper implements RowMapper<Proposal> {
         }
 
         //User qui a fait la proposition
-        Long buyerId = rs.getLong("id_user_buyer");
-        if(buyerId > 0){
+        Long userId = rs.getLong("id_user_buyer");
+        if(!rs.wasNull()){
             User user = new User();
-            user.setIdUser(buyerId);
+            user.setIdUser(rs.getLong("id_user_buyer"));
             user.setPseudo(rs.getString("pseudo_buyer"));
             user.setEmail(rs.getString("email_buyer"));
             user.setPassword(rs.getString("password_buyer"));

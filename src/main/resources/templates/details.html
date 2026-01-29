@@ -3,11 +3,25 @@
 <div th:replace="~{fragments/layout :: layout(content= ~{::main}) }" xmlns:margin="http://www.w3.org/1999/xhtml">
     <main>
 
-            <h2>Détails de l'article</h2>
+        <h2>Détails de l'article</h2>
 
-        <textarea th:text="${}"></textarea>
-        <form>
+        <div style="display: flex; justify-content: center; align-items: center; margin-top: 3rem">
 
-        </form>
+
+            <div style="display: flex">
+                <div style="margin: 2rem; width: 20rem; height: 20rem; background-color: #dcdcdc"></div>
+
+                <div style="display: flex; flex-direction: column; margin: 2rem; justify-content: space-between;">
+                    <div>Nom : <span th:text="${article.name}"></span></div>
+                    <div>Catégorie : <span th:text="${article.category.name}"></span></div>
+                    <div>Description : <span th:text="${article.description}"></span></div>
+                    <div>Mise à prix : <span th:text="${article.originalPoint}"></span></div>
+                    <div>Montant actuel : <span th:text="${article.finalPoint}"></span></div>
+                    <div>Début de l'enchère : <span th:text="${article.beginningDate}"></span></div>
+                    <div>Fin de l'enchère : <span th:text="${article.endingDate}"></span></div>
+                    <div>Vendeur : <span th:text="${article.seller.pseudo}"></span></div>
+                </div>
+            </div>
+        </div>
     </main>
 </div>

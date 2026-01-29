@@ -19,7 +19,6 @@
                     </select>
                     <button type="submit">Rechercher</button>
                 </form>
-
             </div>
 
         </div>
@@ -30,7 +29,6 @@
                     Image
                 </div>
                 <div>Nom : <span th:text="${item.name}"></span></div>
-                <div>Status : <span th:text="${item.status}"></span></div>
                 <div th:text="${item.category?.name}">Catégorie :</div>
                 <div th:text="${item.finalPoint}">Enchère finale</div>
                 <div th:text="${item.endingDate}">Fin de l'enchère</div>

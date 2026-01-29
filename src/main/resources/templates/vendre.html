@@ -11,11 +11,12 @@
                 <label for="idName">Name : </label>
                 <input id="idName" type="text" th:field="*{name}">
             </div>
+            <div class="error" th:errors="*{name}"></div>
             <div>
                 <label for="idDescription">Description : </label>
                 <textarea rows="2" cols="30" name="address" id="idDescription" th:field="*{description}"></textarea>
-
             </div>
+            <div class="error" th:errors="*{description}"></div>
             <div>
                 <label for="idOriginalPoint">Prix de départ</label>
                 <input id="idOriginalPoint" type="text" th:field="*{originalPoint}">
@@ -38,17 +39,20 @@
             </div>
             <div>
                 <label for="idAddress">Adresse de livraison : </label>
-                <input id="idAddress" th:text="${addressByPseudo.address}" th:field="*{address}">
+                <input id="idAddress"  th:field="*{address}">
             </div>
+            <div class="error" th:errors="*{address}"></div>
             <div>
                 <label for="idZipCode">Code postal : </label>
-                <input id="idZipCode" type="text" th:text="${addressByPseudo.zipCode}" th:field="*{zipCode}">
+                <input id="idZipCode" type="text"  th:field="*{zipCode}">
 
             </div>
+            <div class="error" th:errors="*{zipCode}"></div>
             <div>
                 <label for="idCity">Ville : </label>
-                <input id="idCity" type="text" th:text="${addressByPseudo.city}" th:field="*{city}">
+                <input id="idCity" type="text"  th:field="*{city}">
             </div>
+            <div class="error" th:errors="*{city}"></div>
 
             <button type="submit"> Ajouter un article a la vente</button>
 

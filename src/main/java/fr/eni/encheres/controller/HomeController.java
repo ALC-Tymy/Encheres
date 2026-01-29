@@ -3,7 +3,6 @@ package fr.eni.encheres.controller;
 
 import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.entity.Searching;
-import fr.eni.encheres.entity.dto.CreateArticleDTO;
 import fr.eni.encheres.service.ArticleService;
 import fr.eni.encheres.service.CategoryService;
 import fr.eni.encheres.service.DeliveryAddressService;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
@@ -31,7 +29,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String readAllArticle(Model model){
+    public String readAllArticle(Model model) {
         List<Article> allArticles = articleService.readFullAll();
         //Liste des article envoyée à la page html, eventuellement filtrée dans la fonction articleFiltering
         model.addAttribute("listArticle", articleFiltering(allArticles));
