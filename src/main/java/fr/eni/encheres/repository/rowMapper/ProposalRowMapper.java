@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ProposalRowMapper implements RowMapper<Proposal> {
     @Override
@@ -33,8 +34,8 @@ public class ProposalRowMapper implements RowMapper<Proposal> {
 
 
             article.setFinalPoint(rs.getInt("final_point"));
-            article.setBeginningDate(rs.getObject("beginning_date", LocalDate.class));
-            article.setEndingDate(rs.getObject("ending_date", LocalDate.class));
+            article.setBeginningDate(rs.getObject("beginning_date", LocalDateTime.class));
+            article.setEndingDate(rs.getObject("ending_date", LocalDateTime.class));
             article.setStatus(rs.getString("status"));
             proposalResult.setArticle(article);
 

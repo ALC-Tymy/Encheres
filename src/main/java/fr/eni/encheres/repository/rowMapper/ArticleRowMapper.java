@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ArticleRowMapper implements RowMapper<Article> {
 
@@ -16,14 +16,14 @@ public class ArticleRowMapper implements RowMapper<Article> {
     public Article mapRow(ResultSet rs, int rowNum) throws SQLException{
         Article articleResult = new Article();
 
-        //Attribus principaux du l'article
+        //Attributes principaux de l'article
         articleResult.setIdArticle(rs.getLong("id_article"));
         articleResult.setName(rs.getString("name"));
         articleResult.setDescription(rs.getString("description"));
         articleResult.setOriginalPoint(rs.getInt("original_point"));
         articleResult.setFinalPoint(rs.getInt("final_point"));
-        articleResult.setBeginningDate(rs.getObject("beginning_date", LocalDate.class));
-        articleResult.setEndingDate(rs.getObject("ending_date", LocalDate.class));
+        articleResult.setBeginningDate(rs.getObject("beginning_date", LocalDateTime.class));
+        articleResult.setEndingDate(rs.getObject("ending_date", LocalDateTime.class));
         articleResult.setStatus(rs.getString("status"));
 
         //User qui est le vendeur de l'article
@@ -46,7 +46,7 @@ public class ArticleRowMapper implements RowMapper<Article> {
             articleResult.setSeller(user);
         }
 
-        //User qui a fait acheté l'article
+        //User qui a fait acheter l'article
         Long buyerId = rs.getLong("id_user_buyer");
         if(!rs.wasNull()){
             User user = new User();
@@ -66,7 +66,7 @@ public class ArticleRowMapper implements RowMapper<Article> {
             articleResult.setBuyer(user);
         }
 
-        // categorie de l'article
+        // catégorie de l'article
         Long categoryId = rs.getLong("id_category");
         if(!rs.wasNull()) {
             Category category = new Category();

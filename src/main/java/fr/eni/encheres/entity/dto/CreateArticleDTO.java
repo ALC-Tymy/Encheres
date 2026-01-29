@@ -1,20 +1,18 @@
 package fr.eni.encheres.entity.dto;
 
-import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.entity.Category;
-import fr.eni.encheres.entity.DeliveryAddress;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class CreateArticleDTO {
-    //Article
+    //DTO de Article
     private String name;
     private String description;
     private int originalPoint;
-    private LocalDate beginningDate;
-    private LocalDate endingDate;
+    private LocalDateTime beginningDate;
+    private LocalDateTime endingDate;
     private Category category;
-    //DeliveryAddress
+    //DTO De DeliveryAddress
     private String address;
     private String zipCode;
     private String city;
@@ -22,7 +20,7 @@ public class CreateArticleDTO {
     public CreateArticleDTO() {
     }
 
-    public CreateArticleDTO(String name, String description, int originalPoint, LocalDate beginningDate, LocalDate endingDate, Category category, String address, String zipCode, String city) {
+    public CreateArticleDTO(String name, String description, int originalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, Category category, String address, String zipCode, String city) {
         this.name = name;
         this.description = description;
         this.originalPoint = originalPoint;
@@ -58,19 +56,19 @@ public class CreateArticleDTO {
         this.originalPoint = originalPoint;
     }
 
-    public LocalDate getBeginningDate() {
+    public LocalDateTime getBeginningDate() {
         return beginningDate;
     }
 
-    public void setBeginningDate(LocalDate beginningDate) {
+    public void setBeginningDate(LocalDateTime beginningDate) {
         this.beginningDate = beginningDate;
     }
 
-    public LocalDate getEndingDate() {
+    public LocalDateTime getEndingDate() {
         return endingDate;
     }
 
-    public void setEndingDate(LocalDate endingDate) {
+    public void setEndingDate(LocalDateTime endingDate) {
         this.endingDate = endingDate;
     }
 
@@ -108,16 +106,6 @@ public class CreateArticleDTO {
 
     @Override
     public String toString() {
-        return "CreateArticleDTO{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", originalPoint=" + originalPoint +
-                ", beginningDate=" + beginningDate +
-                ", endingDate=" + endingDate +
-                ", category=" + category +
-                ", address='" + address + '\'' +
-                ", zipCode='" + zipCode + '\'' +
-                ", city='" + city + '\'' +
-                '}';
+        return "CreateArticleDTO{" + "name='" + name + '\'' + ", description='" + description + '\'' + ", originalPoint=" + originalPoint + ", beginningDate=" + beginningDate + ", endingDate=" + endingDate + ", category=" + category + ", address='" + address + '\'' + ", zipCode='" + zipCode + '\'' + ", city='" + city + '\'' + '}';
     }
 }
