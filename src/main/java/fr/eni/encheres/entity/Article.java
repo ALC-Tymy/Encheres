@@ -1,6 +1,7 @@
 package fr.eni.encheres.entity;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Article {
@@ -10,8 +11,8 @@ public class Article {
     private String description;
     private int originalPoint;
     private Integer finalPoint;
-    private LocalDate beginningDate;
-    private LocalDate endingDate;
+    private LocalDateTime beginningDate;
+    private LocalDateTime endingDate;
     private String status;
     private Category category;
     private DeliveryAddress deliveryAddress;
@@ -21,7 +22,7 @@ public class Article {
     public Article() {
     }
 
-    public Article(long idArticle, String name, String description, int originalPoint, Integer finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
+    public Article(long idArticle, String name, String description, int originalPoint, Integer finalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
         this.idArticle = idArticle;
         this.name = name;
         this.description = description;
@@ -36,7 +37,7 @@ public class Article {
         this.seller = seller;
     }
 
-    public Article(String name, String description, int originalPoint, Integer finalPoint, LocalDate beginningDate, LocalDate endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
+    public Article(String name, String description, int originalPoint, Integer finalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
         this.name = name;
         this.description = description;
         this.originalPoint = originalPoint;
@@ -50,7 +51,7 @@ public class Article {
         this.seller = seller;
     }
 
-    public Article(String name, String description, int originalPoint, LocalDate beginningDate, LocalDate endingDate, Category category) {
+    public Article(String name, String description, int originalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, Category category) {
         this.name = name;
         this.description = description;
         this.originalPoint = originalPoint;
@@ -101,20 +102,20 @@ public class Article {
         this.finalPoint = finalPoint;
     }
 
-    public LocalDate getBeginningDate() {
-        return beginningDate;
-    }
-
-    public void setBeginningDate(LocalDate beginningDate) {
-        this.beginningDate = beginningDate;
-    }
-
-    public LocalDate getEndingDate() {
+    public LocalDateTime getEndingDate() {
         return endingDate;
     }
 
-    public void setEndingDate(LocalDate endingDate) {
+    public void setEndingDate(LocalDateTime endingDate) {
         this.endingDate = endingDate;
+    }
+
+    public LocalDateTime getBeginningDate() {
+        return beginningDate;
+    }
+
+    public void setBeginningDate(LocalDateTime beginningDate) {
+        this.beginningDate = beginningDate;
     }
 
     public String getStatus() {

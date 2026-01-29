@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class ArticleRowMapper implements RowMapper<Article> {
 
@@ -16,21 +16,21 @@ public class ArticleRowMapper implements RowMapper<Article> {
     public Article mapRow(ResultSet rs, int rowNum) throws SQLException{
         Article articleResult = new Article();
 
-        //Attribus principaux du l'article
+        //Attributes principaux de l'article
         articleResult.setIdArticle(rs.getLong("id_article"));
         articleResult.setName(rs.getString("name"));
         articleResult.setDescription(rs.getString("description"));
         articleResult.setOriginalPoint(rs.getInt("original_point"));
         articleResult.setFinalPoint(rs.getInt("final_point"));
-        articleResult.setBeginningDate(rs.getObject("beginning_date", LocalDate.class));
-        articleResult.setEndingDate(rs.getObject("ending_date", LocalDate.class));
+        articleResult.setBeginningDate(rs.getObject("beginning_date", LocalDateTime.class));
+        articleResult.setEndingDate(rs.getObject("ending_date", LocalDateTime.class));
         articleResult.setStatus(rs.getString("status"));
 
         //User qui est le vendeur de l'article
         Long sellerId = rs.getLong("id_user_seller");
-        if(!rs.wasNull()){
+        if(sellerId >0 ){
             User user = new User();
-            user.setIdUser(rs.getLong("id_user_seller"));
+            user.setIdUser(sellerId);
             user.setPseudo(rs.getString("pseudo_seller"));
             user.setEmail(rs.getString("email_seller"));
             user.setPassword(rs.getString("password_seller"));
@@ -46,11 +46,11 @@ public class ArticleRowMapper implements RowMapper<Article> {
             articleResult.setSeller(user);
         }
 
-        //User qui a fait acheté l'article
+        //User qui a fait acheter l'article
         Long buyerId = rs.getLong("id_user_buyer");
-        if(!rs.wasNull()){
+        if(buyerId >0 ){
             User user = new User();
-            user.setIdUser(rs.getLong("id_user_buyer"));
+            user.setIdUser(buyerId);
             user.setPseudo(rs.getString("pseudo_buyer"));
             user.setEmail(rs.getString("email_buyer"));
             user.setPassword(rs.getString("password_buyer"));
@@ -66,7 +66,7 @@ public class ArticleRowMapper implements RowMapper<Article> {
             articleResult.setBuyer(user);
         }
 
-        // categorie de l'article
+        // catégorie de l'article
         Long categoryId = rs.getLong("id_category");
         if(!rs.wasNull()) {
             Category category = new Category();
