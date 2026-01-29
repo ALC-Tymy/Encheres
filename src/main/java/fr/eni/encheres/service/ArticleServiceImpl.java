@@ -5,13 +5,10 @@ import fr.eni.encheres.entity.DeliveryAddress;
 import fr.eni.encheres.entity.dto.CreateArticleDTO;
 import fr.eni.encheres.repository.ArticleRepository;
 import fr.eni.encheres.repository.DeliveryAddressRepository;
-import org.springframework.data.domain.Score;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
+
 import java.util.List;
 
 @Service
@@ -19,10 +16,12 @@ public class ArticleServiceImpl implements ArticleService {
 
     ArticleRepository articleRepository;
     DeliveryAddressRepository deliveryAddressRepository;
+    UserService userService;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository, DeliveryAddressRepository deliveryAddressRepository) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, DeliveryAddressRepository deliveryAddressRepository, UserService userService) {
         this.articleRepository = articleRepository;
         this.deliveryAddressRepository = deliveryAddressRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -89,11 +88,12 @@ public class ArticleServiceImpl implements ArticleService {
                 articleDTO.getOriginalPoint(),
                 articleDTO.getBeginningDate(),
                 articleDTO.getEndingDate(),
-                articleDTO.getCategory()
+                articleDTO.getCategory(),
+                articleDTO.getSeller()
         );
 
         addArticle.setDeliveryAddress(addDeliAddr);
-
+        addArticle.setSeller(this.userService.readById(userService.getIdLoggedUser()));
         articleRepository.createArticle(addArticle);
     }
 }

@@ -29,9 +29,13 @@ public class ArticleRepositorySQL implements ArticleRepository {
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
         String sql = """
-                INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date,status, id_category, id_del_address)
-                                VALUES(:name, :description, :original_point, :final_point, :beginning_date, :ending_date,:status, :id_category , :id_del_address)
+                INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date,status, id_category, id_del_address, id_seller )
+                                VALUES(:name, :description, :original_point, :final_point, :beginning_date, :ending_date,:status, :id_category , :id_del_address,  :id_seller)
                 """;
+        Long sellerId = null;
+            if(article.getSeller() != null){
+                sellerId = article.getSeller().getIdUser();
+            }
 
         Long categoryId = null;
         if (article.getCategory() != null) {
@@ -50,9 +54,10 @@ public class ArticleRepositorySQL implements ArticleRepository {
         map.addValue("final_point", article.getFinalPoint());
         map.addValue("beginning_date", article.getBeginningDate());
         map.addValue("ending_date", article.getEndingDate());
-        map.addValue("status", "CR"); //
+        map.addValue("status", "CR");
         map.addValue("id_category", categoryId);
         map.addValue("id_del_address", deliveryAddressId);
+        map.addValue("id_seller", sellerId);
 
 
         namedParameterJdbcTemplate.update(sql, map, keyHolder);

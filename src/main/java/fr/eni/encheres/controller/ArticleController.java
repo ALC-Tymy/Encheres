@@ -1,17 +1,21 @@
 package fr.eni.encheres.controller;
 
+import fr.eni.encheres.entity.User;
 import fr.eni.encheres.entity.dto.CreateArticleDTO;
 import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.service.ArticleService;
 import fr.eni.encheres.service.CategoryService;
 import fr.eni.encheres.service.DeliveryAddressService;
 import fr.eni.encheres.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
 
 @Controller
 public class ArticleController {
@@ -29,16 +33,27 @@ public class ArticleController {
     }
 
     @GetMapping("/vendre")
-    public String displayVendre(Model model, CreateArticleDTO articleDTO) {
+    public String displaySell(Model model, CreateArticleDTO articleDTO) {
+
+        //donne les valeur de l'adresse du user
+        long idSeller = userService.getIdLoggedUser();
+        User Userlogged = this.userService.readById(idSeller);
+        articleDTO.setSeller(Userlogged);
+        articleDTO.setAddress(Userlogged.getAddress());
+        articleDTO.setZipCode(Userlogged.getZipCode());
+        articleDTO.setCity(Userlogged.getCity());
+
         model.addAttribute("articleDTO", articleDTO);
         model.addAttribute("categoryList", this.categoryService.getAll());
-        model.addAttribute("addressByPseudo", this.userService.readById(userService.getIdLoggedUser()));
         return "vendre";
     }
 
     @PostMapping("/vendre/add")
-    public String addArticleVendre(@ModelAttribute("articleDTO") CreateArticleDTO articleDTO) {
-        System.out.println(articleDTO);
+    public String addArticleSell(@Valid @ModelAttribute("articleDTO") CreateArticleDTO articleDTO, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            return "vendre";
+        }
+
         articleService.createArticleDTO(articleDTO);
         return "redirect:/";
     }
