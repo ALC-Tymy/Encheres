@@ -51,21 +51,6 @@ public class HomeController {
         return  new ModelAndView("redirect:/");
     }
 
-    @GetMapping("/vendre")
-    public String displayVendre(Model model, CreateArticleDTO articleDTO) {
-        model.addAttribute("articleDTO", articleDTO);
-        model.addAttribute("addressList", this.deliveryAddressService.readAll());
-        model.addAttribute("categoryList", this.categoryService.getAll());
-        return "vendre";
-    }
-
-    @PostMapping("/vendre/add")
-    public String addArticleVendre(@ModelAttribute("articleDTO") CreateArticleDTO articleDTO) {
-        System.out.println(articleDTO);
-        articleService.createArticleDTO(articleDTO);
-        return "redirect:/";
-    }
-
     @GetMapping("/mes-encheres")
     public String displayMesEncheres() {
         return "mes-encheres";
