@@ -34,9 +34,9 @@
             <li th:if="${!#authorization.expression('isAuthenticated()')}">
                 <a href="/inscription">Inscription</a>
             </li>
-            <p sec:authorize="isAuthenticated()">
+            <li sec:authorize="isAuthenticated()">
                 Bonjour <span sec:authentication="name"></span>
-            </p>
+            </li>
             <li th:if="${#authorization.expression('isAuthenticated()')}">
                 <form class="formBoutonLogout" data-th-action="@{/logout}" method="post">
                     <input name="_csrf" type="hidden" value="${_csrf.token}">
