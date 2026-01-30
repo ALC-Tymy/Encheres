@@ -3,7 +3,7 @@
 <div th:replace="~{fragments/layout :: layout(content= ~{::main}) }" xmlns:margin="http://www.w3.org/1999/xhtml">
     <main>
         <div style="display: flex; justify-content: center">
-            <h2>Acceuil</h2>
+            <h2>Accueil</h2>
         </div>
 
         <div style="display: flex; flex-direction: row; justify-content: center; background-color: #dcdcdc; height: 10rem; margin: 20px;">
@@ -11,11 +11,13 @@
 
             <div>
                 <form th:action="@{/search}"
-                       th:object="${searching}"
-                       methode="post">
-                    <select th:field="*{category}">
+                      th:object="${searching}"
+                      method="post">
+                    <label for="idSearch"></label>
+                    <select id="idSearch" th:field="*{category}">
                         <option value="NULL">Tous</option>
-                        <option th:each="item : ${listCategory}" th:value="${item.idCategory}" th:text="${item.name}"></option>
+                        <option th:each="item : ${listCategory}" th:value="${item.idCategory}"
+                                th:text="${item.name}"></option>
                     </select>
                     <button type="submit">Rechercher</button>
                 </form>
@@ -31,7 +33,8 @@
                 <div>Nom : <span th:text="${item.name}"></span></div>
                 <div th:text="${item.category?.name}">Catégorie :</div>
                 <div th:text="${item.finalPoint}">Enchère finale</div>
-                <div th:text="${#temporals.format(item.endingDate, 'dd-MM-yyyy HH:mm') }">Fin de l'enchère</div>
+                <div th:text="${#temporals.format(item.endingDate, 'dd-MM-yyyy') }"></div>
+                <div> à : <span th:text="${#temporals.format(item.endingDate, 'HH:mm') }"></span></div>
                 <div>Vendeur : <span th:text="${item.seller?.pseudo}"></span></div>
                 <a th:href="@{/article/{id}(id=${item.idArticle})}">Consulter</a>
             </div>
