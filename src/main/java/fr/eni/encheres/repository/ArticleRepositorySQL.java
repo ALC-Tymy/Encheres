@@ -144,7 +144,8 @@ public class ArticleRepositorySQL implements ArticleRepository {
                 "       [USER].id_user, [USER].pseudo " +
                 "    FROM ARTICLE " +
                 "    LEFT JOIN [USER] ON article.id_buyer = [USER].id_user " +
-                " WHERE article.id_seller=:id AND status='EC' ";
+                " WHERE article.id_seller=:id AND status='EC' " +
+                " ORDER BY article.ending_date ";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
@@ -162,7 +163,8 @@ public class ArticleRepositorySQL implements ArticleRepository {
                 "       [USER].id_user, [USER].pseudo " +
                 "    FROM ARTICLE " +
                 "    LEFT JOIN [USER] ON article.id_buyer = [USER].id_user " +
-                " WHERE article.id_seller=:id AND (status='VD' OR status='LV') ";
+                " WHERE article.id_seller=:id AND (status='VD' OR status='LV') " +
+                " ORDER BY article.ending_date DESC ";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);

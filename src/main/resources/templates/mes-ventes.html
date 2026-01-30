@@ -10,6 +10,8 @@
 
         <div class="box-enchere" th:each="el : ${articleCRList}">
 
+<!--            th:classapend="'category' + ${el.category.name.toLowerCase()}"-->
+
             <a th:href="@{/article/{id}(id=${el.idArticle})}">
 
                 <p th:text="${el.getName()}"></p>

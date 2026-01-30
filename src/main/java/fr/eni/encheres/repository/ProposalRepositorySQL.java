@@ -102,7 +102,8 @@ public class ProposalRepositorySQL implements ProposalRepository{
                 " WHERE PROPOSAL.id_buyer=:id AND ARTICLE.status='EC' " +
                 " GROUP BY PROPOSAL.id_article, PROPOSAL.id_buyer, " +
                 "         article.name, article.final_point, article.ending_date, " +
-                "         article.beginning_date ";
+                "         article.beginning_date " +
+                " ORDER BY article.ending_date ";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
