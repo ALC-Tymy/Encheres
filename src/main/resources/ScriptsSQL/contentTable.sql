@@ -21,8 +21,8 @@ INSERT INTO [USER] (pseudo, email, password, first_name, last_name, address, zip
 VALUES ('maud', 'maud@maud.fr', '{bcrypt}$2a$10$AQiTU3TqHdmMFFTs.CKVW.Q8EBBmQRHAUYiXDztElRUEXwlE/lTii',
         'Maud', 'Butin', 'Chemin de Caran', '54000', 'Nancy', '0606154777', '1500', '0', 1);
 INSERT INTO [USER] (pseudo, email, password, first_name, last_name, address, zipcode, city, phone, walletPoint, walletPending, actif)
-VALUES ('desac', 'desac@desac.fr', '{bcrypt}$2a$10$MSturKTLfQT1vcHoQZa82u3RfDJ9OIXAbiPHVgW6k1tHMRWkcbjIa',
-        'Desac', 'Tive', 'Chemin des mouettes', '57000', 'Metz', '0706224677', '0', '0', 0);
+VALUES ('JulienProfDu35', 'desac@desac.fr', '{bcrypt}$2a$10$MSturKTLfQT1vcHoQZa82u3RfDJ9OIXAbiPHVgW6k1tHMRWkcbjIa',
+        'Julien', 'LeProf', 'Chemin des mouettes', '35000', 'Rennes', '0706224677', '0', '0', 1);
 
 
 ---------------------------------------------------------------------------
@@ -34,7 +34,7 @@ INSERT INTO [ROLES] ([pseudo],[role]) VALUES ('admin', 'ROLE_USER');
 INSERT INTO [ROLES] ([pseudo],[role]) VALUES ('adrien', 'ROLE_USER');
 INSERT INTO [ROLES] ([pseudo],[role]) VALUES ('adrienlc', 'ROLE_USER');
 INSERT INTO [ROLES] ([pseudo],[role]) VALUES ('maud', 'ROLE_USER');
-INSERT INTO [ROLES] ([pseudo],[role]) VALUES ('desac', 'ROLE_USER');
+INSERT INTO [ROLES] ([pseudo],[role]) VALUES ('JulienProfDu35', 'ROLE_USER');
 
 
 ---------------------------------------------------------------------------

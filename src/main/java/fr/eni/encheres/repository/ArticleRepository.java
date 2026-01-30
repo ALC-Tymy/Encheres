@@ -21,4 +21,6 @@ public interface ArticleRepository {
     List<Article> readArticleCRByIdSeller(long id);
 
     List<Article> readArticleECByIdSeller(long id);
+
+    List<Article> readArticleVDLVByIdSeller(long id);
 }

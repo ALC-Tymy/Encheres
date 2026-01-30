@@ -15,9 +15,9 @@ public class ProposalByUserRowMapper implements RowMapper<Proposal> {
     public Proposal mapRow(ResultSet rs, int rowNum) throws SQLException {
         Proposal proposalresult = new Proposal();
 
-        proposalresult.setIdProposal(rs.getLong("id_proposal"));
+//        proposalresult.setIdProposal(rs.getLong("id_proposal"));
+//        proposalresult.setDateProposal(rs.getObject("date_proposal", LocalDate.class));
         proposalresult.setPointProposal(rs.getInt("point_proposal"));
-        proposalresult.setDateProposal(rs.getObject("date_proposal", LocalDate.class));
         proposalresult.setRanking(rs.getInt("ranking"));
 
         Long buyerId = rs.getLong("id_buyer");
@@ -32,7 +32,7 @@ public class ProposalByUserRowMapper implements RowMapper<Proposal> {
             Article article = new Article();
             article.setIdArticle(articleId);
             article.setName(rs.getString("name"));
-            article.setStatus(rs.getString("status"));
+//            article.setStatus(rs.getString("status"));
             article.setBeginningDate(rs.getObject("beginning_date", LocalDateTime.class));
             article.setEndingDate(rs.getObject("ending_date", LocalDateTime.class));
             article.setFinalPoint(rs.getInt("final_point"));

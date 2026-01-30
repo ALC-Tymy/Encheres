@@ -18,6 +18,8 @@ public interface ArticleService {
     void deleteArticle(long id);
     List<Article> readArticleCRByIdSeller(long id);
     List<Article> readArticleECByIdSeller(long id);
+    List<Article> readArticleVDLVByIdSeller(long id);
+
 
     @Transactional
     void createArticleDTO (CreateArticleDTO articleDTO);

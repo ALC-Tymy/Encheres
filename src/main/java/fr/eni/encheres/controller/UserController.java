@@ -72,7 +72,8 @@ public class UserController {
     @GetMapping("/mes-ventes")
     public String displayMesVentes(Model model) {
         model.addAttribute("articleCRList", articleService.readArticleCRByIdSeller(userService.getIdLoggedUser()));
-//        model.addAttribute("articleECList", articleService.readArticleECByIdSeller(userService.getIdLoggedUser()));
+        model.addAttribute("articleECList", articleService.readArticleECByIdSeller(userService.getIdLoggedUser()));
+        model.addAttribute("articleVDLVList", articleService.readArticleVDLVByIdSeller(userService.getIdLoggedUser()));
         return "mes-ventes";
     }
 

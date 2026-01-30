@@ -89,17 +89,20 @@ public class ProposalRepositorySQL implements ProposalRepository{
 
 
     // Récupère la liste des propositions pour des ventes EN COURS selon l'ID user
+
     @Override
     public List<Proposal> readProposalECByIdUser(long id){
 
-        String sql = "SELECT PROPOSAL.id_proposal, PROPOSAL.point_proposal, PROPOSAL.date_proposal, " +
-                "       PROPOSAL.ranking, proposal.id_buyer, PROPOSAL.id_article, " +
-                "       ARTICLE.name, ARTICLE.status, ARTICLE.final_point, ARTICLE.beginning_date, " +
-                "       ARTICLE.ending_date " +
-                "FROM PROPOSAL " +
-                "    LEFT JOIN ARTICLE ON PROPOSAL.id_article = ARTICLE.id_article " +
-                "    LEFT JOIN [USER] on PROPOSAL.id_buyer = id_user " +
-                "WHERE PROPOSAL.id_buyer=:id AND ARTICLE.status='EC'";
+        String sql = "SELECT PROPOSAL.id_article, PROPOSAL.id_buyer, " +
+                "       MIN(ranking) AS ranking, MAX(point_proposal) AS point_proposal, " +
+                "       article.name, article.final_point, article.beginning_date, " +
+                "       article.ending_date " +
+                " FROM PROPOSAL " +
+                " LEFT JOIN ARTICLE on PROPOSAL.id_article = ARTICLE.id_article " +
+                " WHERE PROPOSAL.id_buyer=:id AND ARTICLE.status='EC' " +
+                " GROUP BY PROPOSAL.id_article, PROPOSAL.id_buyer, " +
+                "         article.name, article.final_point, article.ending_date, " +
+                "         article.beginning_date ";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
@@ -108,17 +111,21 @@ public class ProposalRepositorySQL implements ProposalRepository{
     }
 
     // Récupère la liste des propositions pour des ventes TERMINÉES selon l'ID user
+
     @Override
     public List<Proposal> readProposalVDLVByIdUser(long id) {
 
-        String sql = "SELECT PROPOSAL.id_proposal, PROPOSAL.point_proposal, PROPOSAL.date_proposal, " +
-                "       PROPOSAL.ranking, proposal.id_buyer, PROPOSAL.id_article, " +
-                "       ARTICLE.name, ARTICLE.status, ARTICLE.final_point, ARTICLE.beginning_date, " +
-                "       ARTICLE.ending_date " +
-                "FROM PROPOSAL " +
-                "    LEFT JOIN ARTICLE ON PROPOSAL.id_article = ARTICLE.id_article " +
-                "    LEFT JOIN [USER] on PROPOSAL.id_buyer = id_user " +
-                "WHERE PROPOSAL.id_buyer=:id AND (ARTICLE.status='VD' OR ARTICLE.status='LV')";
+        String sql = "SELECT PROPOSAL.id_article, PROPOSAL.id_buyer, " +
+                "       MIN(ranking) AS ranking, MAX(point_proposal) AS point_proposal, " +
+                "       article.name, article.final_point, article.beginning_date, " +
+                "       article.ending_date " +
+                " FROM PROPOSAL " +
+                " LEFT JOIN ARTICLE on PROPOSAL.id_article = ARTICLE.id_article " +
+                " WHERE PROPOSAL.id_buyer=:id AND (ARTICLE.status='VD' OR ARTICLE.status='LV') " +
+                " GROUP BY PROPOSAL.id_article, PROPOSAL.id_buyer, " +
+                "         article.name, article.final_point, article.ending_date, " +
+                "         article.beginning_date " +
+                "         ORDER BY article.ending_date DESC ";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);

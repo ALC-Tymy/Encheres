@@ -1,6 +1,7 @@
 package fr.eni.encheres.repository;
 
 import fr.eni.encheres.entity.Article;
+import fr.eni.encheres.repository.rowMapper.ArticleByUserRowMapper;
 import fr.eni.encheres.repository.rowMapper.ArticleRowMapper;
 import fr.eni.encheres.service.CategoryService;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -133,23 +134,41 @@ public class ArticleRepositorySQL implements ArticleRepository {
         return namedParameterJdbcTemplate.query(sql, map, new BeanPropertyRowMapper<>(Article.class));
     }
 
-    /// /////////////// WIP /////////////////////////////////////////
+    // Récupérer la liste des articles mis en vente dont la vente est en cours selon un utilisateur (ex connecté) //
     @Override
     public List<Article> readArticleECByIdSeller(long id){
 
-        String sql = "SELECT " +
-                " article.id_seller, article.id_article, article.name, article.status, " +
-                " article.beginning_date, article.ending_date, proposal.ranking, PROPOSAL.point_proposal, " +
-                " PROPOSAL.id_buyer, [USER].first_name " +
-                " FROM ARTICLE " +
-                " LEFT JOIN PROPOSAL ON article.id_article = PROPOSAL.id_article " +
-                " LEFT JOIN [USER] ON PROPOSAL.id_buyer = [USER].id_user " +
-                " WHERE article.id_seller=:id AND (ranking=1 OR ranking IS NULL) AND status='EC'";
+        String sql = " SELECT article.name, article.original_point, article.final_point, " +
+                "       article.id_buyer, article.id_article, " +
+                "       article.beginning_date, article.ending_date, " +
+                "       [USER].id_user, [USER].pseudo " +
+                "    FROM ARTICLE " +
+                "    LEFT JOIN [USER] ON article.id_buyer = [USER].id_user " +
+                " WHERE article.id_seller=:id AND status='EC' ";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
 
-        return namedParameterJdbcTemplate.query(sql, map, new ArticleRowMapper());
+        return namedParameterJdbcTemplate.query(sql, map, new ArticleByUserRowMapper());
     }
+
+
+    @Override
+    public List<Article> readArticleVDLVByIdSeller(long id){
+
+        String sql = " SELECT article.name, article.original_point, article.final_point, " +
+                "       article.id_buyer, article.id_article, " +
+                "       article.beginning_date, article.ending_date, " +
+                "       [USER].id_user, [USER].pseudo " +
+                "    FROM ARTICLE " +
+                "    LEFT JOIN [USER] ON article.id_buyer = [USER].id_user " +
+                " WHERE article.id_seller=:id AND (status='VD' OR status='LV') ";
+
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id", id);
+
+        return namedParameterJdbcTemplate.query(sql, map, new ArticleByUserRowMapper());
+    }
+
 
 }

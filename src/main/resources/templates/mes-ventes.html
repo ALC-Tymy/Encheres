@@ -10,24 +10,59 @@
 
         <div class="box-enchere" th:each="el : ${articleCRList}">
 
-            <p>Objet : <span th:text="${el.getName()}"></span></p>
-            <p>Date de début des enchères : <span th:text="${el.getBeginningDate()}"></span></p>
-            <p>Mise à prix : <span th:text="${el.getOriginalPoint()}"></span> points</p>
+            <a th:href="@{/article/{id}(id=${el.idArticle})}">
+
+                <p th:text="${el.getName()}"></p>
+                <p>Début de la vente le
+                    <span th:text="${#temporals.format(el.beginningDate, 'dd/MM/yyyy')}"></span>
+                    à <span th:text="${#temporals.format(el.beginningDate, 'HH:mm') }"></span>
+                <p>Mise à prix : <span th:text="${el.originalPoint}"></span> points</p>
+
+            </a>
 
         </div><br>
 
         <h3>Ventes en cours</h3><br>
 
-        <!-- WIP -->
-<!--        <div class="box-enchere" th:each="el : ${articleECList}">-->
+        <div class="box-enchere" th:each="el : ${articleECList}">
 
-<!--            <p>Objet : <span th:text="${el.getName()}"></span></p>-->
-<!--            <p>Date de début des enchères : <span th:text="${el.getBeginningDate()}"></span></p>-->
-<!--            <p>Mise à prix : <span th:text="${el.getOriginalPoint()}"></span> points</p>-->
+            <a th:href="@{/article/{id}(id=${el.idArticle})}">
 
-<!--        </div><br>-->
+                <p th:text="${el.getName()}"></p>
+                <p>Enchère en cours depuis le
+                    <span th:text="${#temporals.format(el.beginningDate, 'dd/MM/yyyy')}"></span>
+                    à <span th:text="${#temporals.format(el.beginningDate, 'HH:mm') }"></span>
+                </p>
+                <p>Fin de l'enchère prévue le
+                    <span th:text="${#temporals.format(el.endingDate, 'dd/MM/yyyy')}"></span>
+                    à <span th:text="${#temporals.format(el.endingDate, 'HH:mm') }"></span>
+                </p>
+                <p>Mise à prix : <span th:text="${el.getOriginalPoint()}"></span> points</p>
+                <p th:if="${el.finalPoint > 0}">
+                    Plus haute enchère actuelle : <span th:text="${el.finalPoint}"></span> points
+                </p>
+                <p th:if="${el.finalPoint == 0}">Désolé, il n'y a aucune enchère sur votre article pour le moment</p>
+
+            </a>
+
+        </div><br>
 
         <h3>Ventes terminées</h3><br>
+
+        <div class="box-enchere" th:each="el : ${articleVDLVList}">
+
+            <a th:href="@{/article/{id}(id=${el.idArticle})}">
+                <p th:text="${el.getName()}"></p>
+                <p>Vente terminée le
+                    <span th:text="${#temporals.format(el.endingDate, 'dd/MM/yyyy')}"></span>
+                    à <span th:text="${#temporals.format(el.endingDate, 'HH:mm') }"></span>
+                <p>Mise à prix : <span th:text="${el.originalPoint}"></span> points</p>
+                <p>Prix final : <span th:text="${el.finalPoint}"></span> points</p>
+                <p th:if="${el.buyer != null}">Acheté par : <span th:text="${el.buyer.pseudo}"></span></p>
+                <p th:if="${el.buyer == null}">Désolé, votre article ne s'est pas vendu. Retentez plus tard !</p>
+            </a>
+
+        </div><br>
 
     </main>
 

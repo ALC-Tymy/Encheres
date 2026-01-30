@@ -56,19 +56,17 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> readArticleCRByIdSeller(long id) {
-
-//        Collections.sort(articleRepository.readArticleCRByIdSeller(id), new Comparator<Article>() {
-//            public int compare(Article a, Article b) {
-//                return a.getBeginningDate().compareTo(b.getBeginningDate());
-//            }
-//        });
-
         return articleRepository.readArticleCRByIdSeller(id);
     }
 
     @Override
     public List<Article> readArticleECByIdSeller(long id){
         return articleRepository.readArticleECByIdSeller(id);
+    }
+
+    @Override
+    public List<Article> readArticleVDLVByIdSeller(long id) {
+        return articleRepository.readArticleVDLVByIdSeller(id);
     }
 
     @Transactional
