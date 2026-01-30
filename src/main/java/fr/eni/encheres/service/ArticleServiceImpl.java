@@ -8,20 +8,21 @@ import fr.eni.encheres.repository.DeliveryAddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.util.List;
 
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
+    private final DeliveryAddressService deliveryAddressService;
     ArticleRepository articleRepository;
     DeliveryAddressRepository deliveryAddressRepository;
     UserService userService;
 
-    public ArticleServiceImpl(ArticleRepository articleRepository, DeliveryAddressRepository deliveryAddressRepository, UserService userService) {
+    public ArticleServiceImpl(ArticleRepository articleRepository, DeliveryAddressRepository deliveryAddressRepository, UserService userService, DeliveryAddressService deliveryAddressService) {
         this.articleRepository = articleRepository;
         this.deliveryAddressRepository = deliveryAddressRepository;
         this.userService = userService;
+        this.deliveryAddressService = deliveryAddressService;
     }
 
     @Override
@@ -69,16 +70,21 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.readArticleVDLVByIdSeller(id);
     }
 
+    /**
+     * Crée un nouvel article à partir d'un DTO.
+     * Associe une adresse de livraison existante ou nouvellement créée,
+     * puis persiste l'article en base de données.
+     */
     @Transactional
     @Override
     public void createArticleDTO(CreateArticleDTO articleDTO) {
 
-        DeliveryAddress addDeliAddr = new DeliveryAddress(
+        // Récupère ou crée l'adresse de livraison associée à l'article
+        DeliveryAddress addDeliAddr = deliveryAddressService.existingCreate(
                 articleDTO.getAddress(),
                 articleDTO.getZipCode(),
                 articleDTO.getCity()
         );
-        deliveryAddressRepository.createDeliveryAddress(addDeliAddr);
 
         Article addArticle = new Article(
                 articleDTO.getName(),
@@ -90,8 +96,11 @@ public class ArticleServiceImpl implements ArticleService {
                 articleDTO.getSeller()
         );
 
+        // Associe l'adresse de livraison et le vendeur à l'article
         addArticle.setDeliveryAddress(addDeliAddr);
         addArticle.setSeller(this.userService.readById(userService.getIdLoggedUser()));
+
+        // Persiste l'article en base de données
         articleRepository.createArticle(addArticle);
     }
 }

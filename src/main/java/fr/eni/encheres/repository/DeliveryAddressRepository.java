@@ -14,4 +14,6 @@ public interface DeliveryAddressRepository {
     void updateDeliveryAddress(DeliveryAddress deliveryAddress);
 
     void deleteDeliveryAddress(long id);
+
+    DeliveryAddress SearchDoublonAddress(String address, String zipCode, String city);
 }

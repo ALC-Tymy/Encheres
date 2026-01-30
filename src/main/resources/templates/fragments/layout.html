@@ -34,9 +34,9 @@
             <li th:if="${!#authorization.expression('isAuthenticated()')}">
                 <a href="/inscription">Inscription</a>
             </li>
-            <p sec:authorize="isAuthenticated()">
+            <li sec:authorize="isAuthenticated()">
                 Bonjour <span sec:authentication="name"></span>
-            </p>
+            </li>
             <li th:if="${#authorization.expression('isAuthenticated()')}">
                 <form class="formBoutonLogout" data-th-action="@{/logout}" method="post">
                     <input name="_csrf" type="hidden" value="${_csrf.token}">
@@ -51,6 +51,11 @@
 
 <!--<footer>-->
 <!--    <p>&copy;ENI 2026 - Adrien Le Clech & Maud Butin & Adrien Quintard</p>-->
+<!--<a href="https://github.com/ALC-Tymy">Adrien Le Clech</a>-->
+<!--<a href="https://github.com/mauditbutin">Maud Butin</a>-->
+<!--<a href="https://github.com/AdrienQ18">Adrien Quintard</a>-->
 <!--</footer>-->
+
+
 </body>
 </html>

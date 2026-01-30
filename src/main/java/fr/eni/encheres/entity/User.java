@@ -19,26 +19,26 @@ public class User {
     @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ -]+$", message = "Le nom ne peut contenir que des lettres, des espaces et des tirets")
     private String lastName;
 
-    @Email(message = "L'adresse email n'est pas valide")
+    @Email(message = "L'''adresse email n'est pas valide")
     private String email;
 
     @Pattern(regexp = "^(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{6,}$", message = "Le mot de passe doit contenir au moins 6 caractères, une majuscule, un chiffre et un caractère spécial")
     private String password;
 
-    @Size(min = 3, max = 30, message = "L'adresse doit contenir entre 3 et 30 caractères")
-    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ0-9 -]+$", message = "L'adresse ne peut pas contenir de caractères spéciaux en dehors des espaces et tirets")
+    @Size(min = 3, max = 30, message = "L''adresse doit contenir entre 3 et 30 caractères")
+    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ0-9 -]+$", message = "L''adresse ne peut pas contenir de caractères spéciaux en dehors des espaces et tirets")
     private String address;
 
     @Size(min = 3, max = 10, message = "Le code postal doit contenir entre 3 et 10 caractères")
-    @Pattern(regexp = "^[A-Za-z0-9]+$", message = "Le code postal n'est pas valide")
+    @Pattern(regexp = "^[A-Za-z0-9]+$", message = "Le code postal n''est pas valide")
     private String zipCode;
 
     @Size(min = 10, max = 20, message = "Le numéro de téléphone doit contenir entre 10 et 20 caractères")
-    @Pattern(regexp = "^(\\+?[0-9]{1,3}[\\s.-]?)?([0-9][\\s.-]?){6,14}[0-9]$", message = "Le numéro de téléphone n'est pas valide")
+    @Pattern(regexp = "^(\\+?[0-9]{1,3}[\\s.-]?)?([0-9][\\s.-]?){6,14}[0-9]$", message = "Le numéro de téléphone n''est pas valide")
     private String phone;
 
     @Size(min = 2, max = 30, message = "Le nom de la ville doit contenir entre 2 et 30 caractères")
-    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$", message = "Le nom de la ville n'est pas valide")
+    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ' -]+$", message = "Le nom de la ville n''est pas valide")
     private String city;
 
     private int walletPoint;
