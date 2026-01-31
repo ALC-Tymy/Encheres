@@ -2,6 +2,7 @@ package fr.eni.encheres.service;
 
 import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.entity.DeliveryAddress;
+import fr.eni.encheres.entity.dto.ArticleLog;
 import fr.eni.encheres.entity.dto.CreateArticleDTO;
 import fr.eni.encheres.repository.ArticleRepository;
 import fr.eni.encheres.repository.DeliveryAddressRepository;
@@ -61,7 +62,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> readArticleECByIdSeller(long id){
+    public List<Article> readArticleECByIdSeller(long id) {
         return articleRepository.readArticleECByIdSeller(id);
     }
 
@@ -103,4 +104,39 @@ public class ArticleServiceImpl implements ArticleService {
         // Persiste l'article en base de données
         articleRepository.createArticle(addArticle);
     }
+
+    @Transactional
+    @Override
+    public List<ArticleLog> updateCRtoECWithLogs() {
+        List<ArticleLog> articles = articleRepository.findCRtoEC();
+        if (!articles.isEmpty()) {
+            articleRepository.updateCRtoEC();
+        }
+        return articles;
+    }
+
+    @Transactional
+    @Override
+    public List<ArticleLog> updateECtoVDWithLogs() {
+        List<ArticleLog> articles = articleRepository.findECtoVD();
+        if (!articles.isEmpty()) {
+            articleRepository.updateECtoVD();
+        }
+        return articles;
+    }
+
+    @Transactional
+    @Override
+    public int updateCRtoEC() {
+        return articleRepository.updateCRtoEC();
+    }
+
+
+    @Transactional
+    @Override
+    public int updateECtoVD() {
+        return articleRepository.updateECtoVD();
+    }
+
+
 }

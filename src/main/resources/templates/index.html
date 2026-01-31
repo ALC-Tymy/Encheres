@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<div th:replace="~{fragments/layout :: layout(content= ~{::main}) }" xmlns:margin="http://www.w3.org/1999/xhtml">
+<div th:replace="~{fragments/layout :: layout(content= ~{::main}) }">
     <main>
         <div style="display: flex; justify-content: center">
             <h2>Accueil</h2>
@@ -10,14 +10,14 @@
 
 
             <div>
-                <form th:action="@{/search}"
-                      th:object="${searching}"
-                      method="post">
+                <form method="post"
+                      th:action="@{/search}"
+                      th:object="${searching}">
                     <label for="idSearch"></label>
                     <select id="idSearch" th:field="*{category}">
                         <option value="NULL">Tous</option>
-                        <option th:each="item : ${listCategory}" th:value="${item.idCategory}"
-                                th:text="${item.name}"></option>
+                        <option th:each="item : ${listCategory}" th:text="${item.name}"
+                                th:value="${item.idCategory}"></option>
                     </select>
                     <button type="submit">Rechercher</button>
                 </form>
@@ -33,6 +33,9 @@
                 <div>Nom : <span th:text="${item.name}"></span></div>
                 <div th:text="${item.category?.name}">Catégorie :</div>
                 <div th:text="${item.finalPoint}">Enchère finale</div>
+                <div> Se termine dans : <span class="countdown"
+                                              th:attr="data-end=${#temporals.format(item.endingDate, 'yyyy-MM-dd''T''HH:mm:ss')}"></span>
+                </div>
                 <div th:text="${#temporals.format(item.endingDate, 'dd-MM-yyyy') }"></div>
                 <div> à : <span th:text="${#temporals.format(item.endingDate, 'HH:mm') }"></span></div>
                 <div>Vendeur : <span th:text="${item.seller?.pseudo}"></span></div>

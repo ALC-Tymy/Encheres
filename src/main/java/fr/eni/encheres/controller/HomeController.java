@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
@@ -33,18 +34,18 @@ public class HomeController {
         List<Article> allArticles = articleService.readFullAll();
         //Liste des article envoyée à la page html, eventuellement filtrée dans la fonction articleFiltering
         model.addAttribute("listArticle", articleFiltering(allArticles));
-        //Envoi la list des catégorie pour le formulaire de recherche
+        //Envoi la list des catégories pour le formulaire de recherche
         model.addAttribute("listCategory", categoryService.getAll());
         //Envoi les param du formulaire dans l'objet "searching"
         model.addAttribute("searching", searching);
         return "index";
     }
 
-    //Quand l'utilisateur clic sur "rechercher", cette fonction est appelée
+    //Quand l'utilisateur clic sur "rechercher", cette fonction est appelée,
     //elle contient le résultat du "search"
-    @GetMapping("/search")
+    @PostMapping("/search")
     public ModelAndView searchArticle(@ModelAttribute Searching inputSearching) throws SQLException{
-        //memoristation de la configuration de la recherche
+        //memorisation de la configuration de la recherche
         searching.setCategory(inputSearching.getCategory());
         return  new ModelAndView("redirect:/");
     }

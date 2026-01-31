@@ -1,8 +1,8 @@
 package fr.eni.encheres.controller;
 
+import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.entity.User;
 import fr.eni.encheres.entity.dto.CreateArticleDTO;
-import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.service.ArticleService;
 import fr.eni.encheres.service.CategoryService;
 import fr.eni.encheres.service.DeliveryAddressService;
@@ -13,10 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.List;
 
 @Controller
 public class ArticleController {
@@ -36,7 +35,7 @@ public class ArticleController {
     @GetMapping("/vendre")
     public String displaySell(Model model, CreateArticleDTO articleDTO) {
 
-        //donne les valeur de l'adresse du user
+        //donne-les valeur de l'adresse de l'user
         long idSeller = userService.getIdLoggedUser();
         User Userlogged = this.userService.readById(idSeller);
         articleDTO.setSeller(Userlogged);
@@ -52,7 +51,7 @@ public class ArticleController {
 
     @PostMapping("/vendre/add")
     public String addArticleSell(@Valid @ModelAttribute("articleDTO") CreateArticleDTO articleDTO, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "vendre";
         }
 
