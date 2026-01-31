@@ -17,9 +17,9 @@ public class ProposalRowMapper implements RowMapper<Proposal> {
 
         //Attribus principaux de Proposal
         proposalResult.setIdProposal(rs.getLong("id_proposal"));
-        proposalResult.setPointProposal(rs.getInt("pointProposal_proposal"));
-        proposalResult.setDateProposal(rs.getObject("dateProposal_proposal", LocalDate.class));
-        proposalResult.setRanking(rs.getInt("ranking_proposal"));
+        proposalResult.setPointProposal(rs.getInt("point_proposal"));
+        proposalResult.setDateProposal(rs.getObject("date_proposal", LocalDate.class));
+        proposalResult.setRanking(rs.getInt("ranking"));
 
 
         //Article correspondant à la proposition
@@ -29,7 +29,7 @@ public class ProposalRowMapper implements RowMapper<Proposal> {
             article.setIdArticle(rs.getLong("id_article"));
             article.setName(rs.getString("name"));
             article.setDescription(rs.getString("description"));
-            article.setOriginalPoint(rs.getInt("originalPoint"));
+            article.setOriginalPoint(rs.getInt("original_point"));
 
 
 
@@ -40,7 +40,7 @@ public class ProposalRowMapper implements RowMapper<Proposal> {
             proposalResult.setArticle(article);
 
             //User qui est le vendeur de l'article
-            Long userId = rs.getLong("id_user-seller");
+            Long userId = rs.getLong("id_user_seller");
             if(!rs.wasNull()){
                 User user = new User();
                 user.setIdUser(rs.getLong("id_user_seller"));

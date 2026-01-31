@@ -1,8 +1,10 @@
 package fr.eni.encheres.controller;
 
+import fr.eni.encheres.entity.Proposal;
 import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.entity.User;
 import fr.eni.encheres.entity.dto.CreateArticleDTO;
+import fr.eni.encheres.service.*;
 import fr.eni.encheres.service.ArticleService;
 import fr.eni.encheres.service.CategoryService;
 import fr.eni.encheres.service.DeliveryAddressService;
@@ -13,23 +15,26 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
 
 @Controller
 public class ArticleController {
 
+    private final ProposalService proposalService;
     ArticleService articleService;
     DeliveryAddressService deliveryAddressService;
     CategoryService categoryService;
     UserService userService;
 
-    public ArticleController(ArticleService articleService, DeliveryAddressService deliveryAddressService, CategoryService categoryService, UserService userService) {
+    public ArticleController(ArticleService articleService, DeliveryAddressService deliveryAddressService, CategoryService categoryService, UserService userService, ProposalService proposalService) {
         this.articleService = articleService;
         this.deliveryAddressService = deliveryAddressService;
         this.categoryService = categoryService;
         this.userService = userService;
+        this.proposalService = proposalService;
     }
 
     @GetMapping("/vendre")
@@ -63,7 +68,9 @@ public class ArticleController {
     public String article(@PathVariable("id") final long id, Model model) {
         //récup des détails d'un article
         Article article = articleService.readById(id);
+        List<Proposal> listProposal = proposalService.readProposalByIdArticle(id);
         model.addAttribute("article", article);
+        model.addAttribute("listProposal", listProposal);
         //Affichage de la page détails d'un article
         return "details";
     }

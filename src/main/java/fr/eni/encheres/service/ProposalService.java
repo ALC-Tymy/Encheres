@@ -13,4 +13,6 @@ public interface ProposalService {
     List<Proposal> readProposalECByIdUser(long id);
 
     List<Proposal> readProposalVDLVByIdUser(long id);
+
+    List<Proposal> readProposalByIdArticle(long id);
 }

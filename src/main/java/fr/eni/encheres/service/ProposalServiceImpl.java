@@ -49,4 +49,8 @@ public class ProposalServiceImpl implements ProposalService{
     public List<Proposal> readProposalVDLVByIdUser(long id){
         return proposalRepository.readProposalVDLVByIdUser(id);
     }
+
+    @Override
+    public List<Proposal> readProposalByIdArticle(long id){ return  proposalRepository.readProposalByIdArticle(id);}
 }
+
