@@ -5,7 +5,7 @@
 
         <h2>Détails de l'article</h2>
 
-        <div style="display: flex; justify-content: center; align-items: center; margin-top: 3rem">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 3rem">
 
 
             <div style="display: flex">
@@ -21,6 +21,24 @@
                     <div>Fin de l'enchère : <span th:text="${article.endingDate}"></span></div>
                     <div>Vendeur : <span th:text="${article.seller.pseudo}"></span></div>
                 </div>
+            </div>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Valeur</th>
+                            <th>Proposeur</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="item : ${listProposal}">
+                            <td th:text="${item.pointProposal}"></td>
+                            <td th:text="${item.buyer.pseudo}"></td>
+                            <td th:text="${item.dateProposal}"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </main>
