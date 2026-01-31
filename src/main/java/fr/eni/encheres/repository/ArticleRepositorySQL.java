@@ -17,7 +17,7 @@ import java.util.List;
 
 @Repository
 public class ArticleRepositorySQL implements ArticleRepository {
-    private final CategoryService categoryService;
+    CategoryService categoryService;
     JdbcTemplate jdbcTemplate;
     NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -61,7 +61,6 @@ public class ArticleRepositorySQL implements ArticleRepository {
         map.addValue("id_category", categoryId);
         map.addValue("id_del_address", deliveryAddressId);
         map.addValue("id_seller", sellerId);
-
 
         namedParameterJdbcTemplate.update(sql, map, keyHolder);
         long id = keyHolder.getKey().longValue();
