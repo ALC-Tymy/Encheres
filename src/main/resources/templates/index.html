@@ -3,41 +3,78 @@
 <div th:replace="~{fragments/layout :: layout(content= ~{::main}) }" xmlns:margin="http://www.w3.org/1999/xhtml">
     <main>
         <div style="display: flex; justify-content: center">
-            <h2>Accueil</h2>
+            <h2 class="baseline-index">Donnez une nouvelle vie à vos objets<br>
+                Enchérissez, utilisez, recommencez</h2>
         </div>
 
-        <div style="display: flex; flex-direction: row; justify-content: center; background-color: #dcdcdc; height: 10rem; margin: 20px;">
-
-
-            <div>
+        <div>
+            <div class="filter-cate">
                 <form th:action="@{/search}"
                       th:object="${searching}"
                       method="post">
-                    <label for="idSearch"></label>
+                    <label for="idSearch">Filtrer par catégorie</label>
                     <select id="idSearch" th:field="*{category}">
-                        <option value="NULL">Tous</option>
+                        <option value="NULL">Toutes</option>
                         <option th:each="item : ${listCategory}" th:value="${item.idCategory}"
                                 th:text="${item.name}"></option>
                     </select>
-                    <button type="submit">Rechercher</button>
+                    <button class="button-filter-validate" type="submit">Valider</button>
                 </form>
             </div>
-
         </div>
-        <div style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between; margin: 20px; background-color: white">
-            <div style="display: flex; flex-direction: column; justify-content: space-around;background-color: #dcdcdc; margin: 1rem; padding: 1rem; width: 15rem; height: 20rem"
-                 th:each="item : ${listArticle}">
-                <div style="display: flex; flex-direction: row; justify-content: center; width: 15rem; height: 15rem; background-color: white">
-                    Image
-                </div>
-                <div>Nom : <span th:text="${item.name}"></span></div>
-                <div th:text="${item.category?.name}">Catégorie :</div>
-                <div th:text="${item.finalPoint}">Enchère finale</div>
-                <div th:text="${#temporals.format(item.endingDate, 'dd-MM-yyyy') }"></div>
-                <div> à : <span th:text="${#temporals.format(item.endingDate, 'HH:mm') }"></span></div>
-                <div>Vendeur : <span th:text="${item.seller?.pseudo}"></span></div>
-                <a th:href="@{/article/{id}(id=${item.idArticle})}">Consulter</a>
+
+        <div>
+            <div th:each="item : ${listArticle}">
+                <a class="lien-box-article" th:href="@{/article/{id}(id=${item.idArticle})}">
+                    <div th:class="'box-article cat-' + ${item.category.idCategory}">
+
+                        <!-- Icône suivant la catégorie de l'article -->
+
+                            <div th:switch="${item.category?.idCategory}">
+                                <div th:case="1">
+                                    <img class="icon-cate" th:src="@{/img/icon-info.svg}" alt="Icône de tablette">
+                                </div>
+                                <div th:case="2">
+                                    <img class="icon-cate" th:src="@{/img/icon-furniture.svg}" alt="Icône de chaise">
+                                </div>
+                                <div th:case="3">
+                                    <img class="icon-cate" th:src="@{/img/icon-clothes.svg}" alt="Icône de chaussettes">
+                                </div>
+                                <div th:case="4">
+                                    <img class="icon-cate" th:src="@{/img/icon-sport.svg}" alt="Icône de ballon">
+                                </div>
+                                <div th:case="5">
+                                    <img class="icon-cate" th:src="@{/img/icon-hobby.svg}" alt="Icône de livre">
+                                </div>
+                            </div>
+
+                            <!-- Infos de l'article -->
+                            <div>
+                                <h3 th:text="${item.name}"></h3>
+                                <p>Montant actuel : <span th:text="${item.finalPoint}"></span> points</p>
+                            </div>
+                        <div class="article-endingDate">
+                            <p>Jusqu'au <span th:text="${#temporals.format(item.endingDate, 'dd-MM-yyyy') }"></span></p>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
+
+        <!-- Liste des articles en vente prochainement (Statut CR) -->
+        <div>
+            <h2 class="soon-title">Bientôt en vente... Restez à l'affut !</h2>
+            <div th:each="el : ${listArticleCR}" class="box-article-CR">
+                <img class="icon-cate" th:src="@{/img/icon-calendar.svg}" alt="Icône de calendrier">
+                <div>
+                    <h3 th:text="${el.name}"></h3>
+                    <p>Mise à prix : <span th:text="${el.originalPoint}"></span> points</p>
+                </div>
+                <div class="article-beginningdate">
+                    <p>Début de la vente le <span th:text="${#temporals.format(el.beginningDate, 'dd-MM-yyyy') }"></span></p>
+                </div>
+            </div>
+        </div>
+
     </main>
 </div>

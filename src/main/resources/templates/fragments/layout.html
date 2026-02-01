@@ -4,57 +4,51 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Enchères</title>
+    <title>AMA</title>
     <link href="/css/general.css" rel="stylesheet">
 </head>
 
 <body>
 <header>
-    <h1><a href="/">Enchères</a></h1>
+    <a href="/" class="div-logo">
+        <img th:src="@{/img/logo-ama2.svg}" alt="logo AMA" class="logo">
+    </a>
     <nav>
-        <ul>
-            <li>
+            <div>
                 <a href="/">Accueil</a>
-            </li>
-            <li th:if="${#authorization.expression('hasRole(''USER'')')}">
-                <a href="/vendre">Vendre un objet</a>
-            </li>
-            <li th:if="${#authorization.expression('hasRole(''USER'')')}">
+            </div>
+            <div th:if="${#authorization.expression('hasRole(''USER'')')}">
+                <a href="/vendre">Vendre</a>
+            </div>
+            <div th:if="${#authorization.expression('hasRole(''USER'')')}">
                 <a href="/mes-ventes">Mes ventes</a>
-            </li>
-            <li th:if="${#authorization.expression('hasRole(''USER'')')}">
+            </div>
+            <div th:if="${#authorization.expression('hasRole(''USER'')')}">
                 <a href="/mes-encheres">Mes enchères</a>
-            </li>
-            <li th:if="${#authorization.expression('hasRole(''USER'')')}">
+            </div>
+            <div th:if="${#authorization.expression('hasRole(''USER'')')}">
                 <a href="/mon-compte">Mon compte</a>
-            </li>
-            <li th:if="${!#authorization.expression('isAuthenticated()')}">
-                <a href="/connexion">Connexion</a>
-            </li>
-            <li th:if="${!#authorization.expression('isAuthenticated()')}">
+            </div>
+            <div th:if="${!#authorization.expression('isAuthenticated()')}">
                 <a href="/inscription">Inscription</a>
-            </li>
-            <li sec:authorize="isAuthenticated()">
-                Bonjour <span sec:authentication="name"></span>
-            </li>
-            <li th:if="${#authorization.expression('isAuthenticated()')}">
+            </div>
+            <div th:if="${!#authorization.expression('isAuthenticated()')}">
+                <a class="button-connexion" href="/connexion">Connexion</a>
+            </div>
+            <div th:if="${#authorization.expression('isAuthenticated()')}">
                 <form class="formBoutonLogout" data-th-action="@{/logout}" method="post">
                     <input name="_csrf" type="hidden" value="${_csrf.token}">
                     <button class="boutonLogout" type="submit">Déconnexion</button>
                 </form>
-            </li>
-        </ul>
+            </div>
     </nav>
 </header>
 
 <main data-th-replace="${content}"></main>
 
-<!--<footer>-->
-<!--    <p>&copy;ENI 2026 - Adrien Le Clech & Maud Butin & Adrien Quintard</p>-->
-<!--<a href="https://github.com/ALC-Tymy">Adrien Le Clech</a>-->
-<!--<a href="https://github.com/mauditbutin">Maud Butin</a>-->
-<!--<a href="https://github.com/AdrienQ18">Adrien Quintard</a>-->
-<!--</footer>-->
+<footer>
+    <p>ENI 2026 - <a href="https://github.com/ALC-Tymy">Adrien Le Clech</a>, <a href="https://github.com/mauditbutin">Maud Butin</a> & <a href="https://github.com/AdrienQ18">Adrien Quintard</a></p>
+</footer>
 
 
 </body>

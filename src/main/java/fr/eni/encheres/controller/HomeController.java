@@ -31,7 +31,11 @@ public class HomeController {
 
     @GetMapping("/")
     public String readAllArticle(Model model) {
-        List<Article> allArticles = articleService.readFullAll();
+        // Liste des articles créés mais pas encore en vente, pas pris en compte dans le filtre de recherche
+        List<Article> allArticlesCR = articleService.readFullCR();
+        model.addAttribute("listArticleCR", allArticlesCR);
+        //
+        List<Article> allArticles = articleService.readFullEC();
         //Liste des article envoyée à la page html, eventuellement filtrée dans la fonction articleFiltering
         model.addAttribute("listArticle", articleFiltering(allArticles));
         //Envoi la list des catégorie pour le formulaire de recherche

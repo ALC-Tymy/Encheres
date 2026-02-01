@@ -1,50 +1,354 @@
 * {
     margin: 0;
-    font-family: system-ui;
+    font-family: Inter, system-ui;
 }
+
+/********************************************************/
+/** GENERAL **/
+/********************************************************/
+
+body {
+    background: #05252C;
+    background: linear-gradient(180deg, rgba(5, 37, 44, 1) 0%, rgb(15, 75, 85) 100%);
+    background-attachment: fixed;
+}
+
+h2 {
+    font-weight: bolder;
+    font-size: 2.8em;
+    color: #2ECEA4;
+    margin-top: 13vh;
+    line-height: 1.2em;
+    text-align: center;
+}
+
+footer {
+    position: relative;
+    width: 100%; height: 20px;
+    margin-top: 5em;
+    bottom: 1em; left: 0; right: 0;
+    text-align: center;
+    font-size: 0.8em;
+    color: white;
+}
+
+footer a {
+    color: #2ECEA4;
+    text-decoration: none;
+}
+
+
+/********************************************************/
+/** NAV **/
+/********************************************************/
+
+header {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    right: 0;
+    width: 90%;
+    /*width: fit-content;*/
+    margin: auto;
+    border-radius: 100px;
+    background: rgba(43, 96, 104, 0.8);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
+    display: flex;
+    justify-content: space-between;
+}
+
+.div-logo {
+    margin-left: 2em;
+    margin-bottom: 0.3em;
+    display: flex;
+}
+
+.logo {
+    height: 40px;
+}
+
+header nav {
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+    height: 55px;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 1em;
+    margin: auto 1.8em auto auto;
+}
+
+header a:hover {
+    color : #2ECEA4;
+    transition: all .1s ease-in;
+}
+
+.button-connexion,
+.boutonLogout {
+    color: #2ECEA4;
+    padding: 0.3em 0.8em;
+    border: solid 1px #2ECEA4;
+    border-radius: 50px;
+}
+
+.boutonLogout {
+    background-color: rgba(26, 96, 94, 0);
+    margin: auto 1.8em auto auto;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.button-connexion:hover,
+.boutonLogout:hover{
+    background-color: #2ECEA4;
+    color: #05252C;
+    transition: all .2s ease-in;
+}
+
+
+
+/********************************************************/
+/** INDEX **/
+/********************************************************/
+
+.baseline-index{
+    background-image: url("img/underline-icon.svg");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-position-y: 105px ;
+    padding-bottom: 80px;
+    background-size: 40% ;
+}
+
+/* Filtre de recherche */
+
+.filter-cate {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    max-width: 1110px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.filter-cate select,
+.filter-cate select::picker(select){
+    appearance: base-select;
+    width: 150px;
+    border: 1px solid #2ECEA4;
+    background-color: #05252C;
+    color: #fff;
+    font-size: 0.95em;
+}
+
+.filter-cate select::picker(select){
+    padding: 10px 0 10px 0;
+    border: none;
+}
+
+option::checkmark {
+    color: #2ECEA4;
+}
+
+.button-filter-validate {
+    background-color: #05252C;
+    padding: 0.4em 0.7em 0.3em 0.7em;
+    border: 1px solid #2ECEA4;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+
+/*
+LISTE DES ARTICLES DONT LA VENTE EST EN COURS
+COULEURS DIFFÉRENTES SELON CATÉGORIE
+ */
+
+.box-article {
+    width: 90%;
+    max-width: 1110px;
+    height: 130px;
+    border-radius: 16px;
+    margin: auto auto 20px auto;
+    display: flex;
+    align-items: center;
+}
+
+
+.box-article h3 {
+    font-size: 2em;
+}
+
+.icon-cate {
+    margin-right: 1.5em;
+    margin-left: 1.5em;
+}
+
+.article-endingDate {
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-top: 1.2em;
+    margin-right: 1.2em;
+    padding: 0.2em 1em 0.2em 1em;
+    border-radius: 50px;
+}
+
+/*
+    CATÉGORIES =>
+    1 = Informatique
+    2 = Ameublement
+    3 = Vêtements
+    4 = Sport
+    5 = Loisirs
+ */
+.box-article.cat-1 {
+    background-color: #B8EAD7;
+}
+
+.box-article.cat-1 h3 {
+    color: #3E6A59;
+    text-decoration: none;
+}
+
+.box-article.cat-1 .article-endingDate {
+    background-color: #7BB8A1;
+}
+
+.box-article.cat-2 {
+    background-color: #7FE3CC;
+}
+
+.box-article.cat-2 h3 {
+    color: #105344;
+}
+
+.box-article.cat-2 .article-endingDate {
+    background-color: #2CA88C;
+}
+
+.box-article.cat-3 {
+    background-color: #59D2E5;
+}
+
+.box-article.cat-3 h3 {
+    color: #115762;
+}
+
+.box-article.cat-3 .article-endingDate {
+    background-color: #2FA4B7;
+}
+
+.box-article.cat-4 {
+    background-color: #ECF7CF;
+}
+
+.box-article.cat-4 h3 {
+    color: #616C43;
+}
+
+.box-article.cat-4 .article-endingDate {
+    background-color: #B5C78C;
+}
+
+.box-article.cat-5 {
+    background-color: #6BDAD8;
+}
+
+.box-article.cat-5 h3 {
+    color: #1A605E;
+}
+
+.box-article.cat-5 .article-endingDate {
+    background-color: #3DACAA;
+}
+
+.lien-box-article {
+    text-decoration: none;
+    color: #05252C;
+}
+
+/*
+LISTE DES ARTICLES CRÉÉS MAIS PAS ENCORE EN VENTE
+ */
+
+.soon-title {
+    font-weight: bold;
+    font-size: 1.8em;
+    color: #2ECEA4;
+    margin-top: 8vh;
+    margin-bottom: 5vh;
+    text-align: center;
+}
+
+.box-article-CR {
+    width: 90%;
+    max-width: 1110px;
+    height: 130px;
+    border-radius: 16px;
+    margin: auto auto 20px auto;
+    display: flex;
+    align-items: center;
+    background-color: #2B6068;
+    color: white;
+}
+
+.box-article-CR h3 {
+    font-size: 2em;
+    color: #2ECEA4;
+}
+
+.article-beginningdate {
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-top: 1.2em;
+    margin-right: 1.2em;
+    padding: 0.2em 1em 0.2em 1em;
+    border-radius: 50px;
+    background-color: #2ECEA4;
+    color: #05252C;
+}
+
+
 
 /********************************************************/
 /** CSS PROVISOIRE **/
 /********************************************************/
 
-header {
-    background-color: #dcdcdc;
-    text-decoration: none;
-    color: black;
-    padding-left: 10px;
-    text-align: center;
-}
 
-main {
-    padding-left: 10px;
-}
+/*main {*/
+/*    padding-left: 10px;*/
+/*}*/
 
-header a {
-    text-decoration: none;
-    color: black;
-}
+/*header a {*/
+/*    text-decoration: none;*/
+/*    color: black;*/
+/*}*/
 
-ul {
-    display: flex;
-    list-style-type: none;
-    padding-inline-start: 0;
-    padding: 10px 0 10px 0;
-    margin-bottom: 20px;
-    justify-content: center;
-}
+/*ul {*/
+/*    display: flex;*/
+/*    list-style-type: none;*/
+/*    padding-inline-start: 0;*/
+/*    padding: 10px 0 10px 0;*/
+/*    margin-bottom: 20px;*/
+/*    justify-content: center;*/
+/*}*/
 
-li {
-    margin-right: 10px;
-    margin-left: 0;
-}
+/*li {*/
+/*    margin-right: 10px;*/
+/*    margin-left: 0;*/
+/*}*/
 
-footer {
-    background-color: #dcdcdc;
-    position: relative;
-    width: 100%; height: 20px;
-    bottom: 0; left: 0; right: 0;
-    text-align: center;
-}
+
 
 .error {
     color: red;
