@@ -71,6 +71,8 @@ public class ArticleController {
         List<Proposal> listProposal = proposalService.readProposalByIdArticle(id);
         model.addAttribute("article", article);
         model.addAttribute("listProposal", listProposal);
+        //Recup de l'id utilisateur connecté pour afficher son portefeuille
+        model.addAttribute("userConnected", this.userService.readById(userService.getIdLoggedUser()));
         //Affichage de la page détails d'un article
         return "details";
     }
