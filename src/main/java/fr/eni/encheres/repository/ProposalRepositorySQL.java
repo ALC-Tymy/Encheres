@@ -57,7 +57,8 @@ public class ProposalRepositorySQL implements ProposalRepository {
                         LEFT JOIN ARTICLE a ON a.id_article = p.id_article
                         LEFT JOIN [USER] ub ON ub.id_user = p.id_buyer
                         LEFT JOIN [USER] us ON us.id_user = a.id_seller
-                WHERE a.id_article=:id;
+                WHERE a.id_article=:id
+                ORDER BY p.ranking;
                 """;
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);

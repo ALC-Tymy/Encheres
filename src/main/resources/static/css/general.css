@@ -325,6 +325,206 @@ LISTE DES ARTICLES CRÉÉS MAIS PAS ENCORE EN VENTE
 }
 
 
+/********************************************************/
+/** DÉTAIL D'UN ARTICLE **/
+/********************************************************/
+
+.countdown {
+    color: white;
+    text-align: center;
+    font-size: 6em;
+    font-family: "Roboto Mono", ui-sans-serif;
+    font-weight: 500;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+}
+
+/** Conteneurs **/
+
+.conteneur-details-article {
+    width: 90%;
+    max-width: 1110px;
+    margin: auto;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
+.details-article-infos {
+    width: 50%;
+    background-color: #2B6068;
+    border-radius: 20px;
+    padding: 30px;
+    margin-right: 2vw;
+}
+
+.details-article-propositions {
+    width: 50%;
+    margin-left: 20px;
+}
+
+
+/** Colonne des infos sur l'article **/
+
+.details-article-cate {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.icon-cate-detail {
+    width: 20px;
+    margin-right: 10px;
+}
+
+.details-article-infos p {
+    color: white;
+}
+
+.details-article-dates {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.details-article-description {
+    margin-top: 2vh;
+    line-height: 1.5em;
+}
+
+.details-article-divider {
+    height: 1px;
+    width: 50%;
+    background-color: #05252C;
+    border: 0;
+}
+
+.article-detail-cartouches {
+    background-color: #05252C;
+    border-radius: 50px;
+    width: fit-content;
+    padding: 5px 12px 5px 12px;
+    margin-bottom: 0.2vh;
+    margin-top: 2vh;
+}
+
+/** Modification des couleurs suivant la catégorie **/
+
+.details-article-cate.cat-1 {
+    background-color: #B8EAD7;
+    color: #3E6A59;
+}
+
+.details-article-cate.cat-2 {
+    background-color: #7FE3CC;
+    color: #105344;
+
+}
+
+.details-article-cate.cat-3 {
+    background-color: #59D2E5;
+    color: #115762;
+
+}
+
+.details-article-cate.cat-4 {
+    background-color: #ECF7CF;
+    color: #616C43;
+}
+
+.details-article-cate.cat-5 {
+    background-color: #6BDAD8;
+    color: #1A605E;
+}
+
+
+/** Colonne des enchères sur l'article **/
+
+.box-enchere-article {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2B6068;
+    border-radius: 20px;
+    color: #DCEFEB;
+    height: 80px;
+    margin-bottom: 1.5vh;
+    padding: 20px;
+}
+
+.details-encheres-points {
+    font-size: 1.9em;
+    margin-bottom: 3%;
+    font-weight: bolder;
+}
+
+.details-encheres-ranking {
+    color: #51949E;
+    font-size: 4em;
+    font-weight: bolder;
+    margin-left: auto;
+    padding: 0;
+ }
+
+/* Mise en valeur du rank 1 */
+
+.box-enchere-article.ranking1 {
+    background-color: #2ECEA4;
+    color: #105344;
+}
+
+.box-enchere-article.ranking1 .details-encheres-ranking {
+    color: #1A8D6E;
+}
+
+
+/* Box pour faire une enchère */
+
+.box-create-proposition {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px #2ECEA4;
+    border-radius: 20px;
+    color: #DCEFEB;
+    height: 80px;
+    margin-bottom: 1.5vh;
+    padding: 20px;
+}
+
+.box-create-proposition .box-proposition-title {
+    font-size: 1.9em;
+    font-weight: bolder;
+    color: white;
+}
+
+.box-create-proposition p {
+    color: #2ECEA4;
+}
+
+.input-proposition {
+    background-color: #05252C;
+    padding: 0.4em 0.7em 0.3em 0.7em;
+    border: 1px solid #2ECEA4;
+    border-radius: 8px;
+    color: white;
+    max-width: 90px;
+}
+
+.button-proposition-validate {
+    background-color: #05252C;
+    padding: 0.4em 0.7em 0.3em 0.7em;
+    border: 1px solid #2ECEA4;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+
 
 /********************************************************/
 /** CSS PROVISOIRE **/
