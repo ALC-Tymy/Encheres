@@ -3,14 +3,9 @@
     <main>
         <h2>Connexion</h2>
         <!-- Formulaire de connexion envoyé en POST vers /connexion (Spring Security) -->
-        <form method="post" th:action="@{/connexion}">
+        <form class="form-login" method="post" th:action="@{/connexion}">
 
             <div>
-
-                <!-- Message d'erreur affiché si la connexion a échoué -->
-                <p style="color:red;" th:if="${param.error}">
-                    Identifiant ou mot de passe incorrect.
-                </p>
 
                 <!-- Champ pour l'identifiant (email ou pseudo) -->
                 <label for="identifiantID">Identifiant : </label>
@@ -23,8 +18,14 @@
                 <input id="passwordID" name="password" type="password">
             </div>
 
+
+            <!-- Message d'erreur affiché si la connexion a échoué -->
+            <p class="error-login" th:if="${param.error}">
+                Identifiant ou mot de passe incorrect.
+            </p>
+
             <!-- Bouton d'envoi du formulaire -->
-            <button type="submit">Connexion</button>
+            <button class="button-login-connexion" type="submit">Connexion</button>
         </form>
     </main>
 </div>
