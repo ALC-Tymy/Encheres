@@ -42,10 +42,14 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public List<Article> readFullEC(){ return this.articleRepository.readFullEC(); }
+    public List<Article> readFullEC() {
+        return this.articleRepository.readFullEC();
+    }
 
     @Override
-    public List<Article> readFullCR(){ return this.articleRepository.readFullCR(); }
+    public List<Article> readFullCR() {
+        return this.articleRepository.readFullCR();
+    }
 
     @Override
     public Article readById(long id) {

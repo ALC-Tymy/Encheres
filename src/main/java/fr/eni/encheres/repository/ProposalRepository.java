@@ -5,7 +5,7 @@ import fr.eni.encheres.entity.Proposal;
 import java.util.List;
 
 public interface ProposalRepository {
-    void createProposal(Proposal proposal);
+
 
     List<Proposal> readAll();
 
@@ -26,6 +26,8 @@ public interface ProposalRepository {
     List<Proposal> readProposalVDLVByIdUser(long id);
 
     void updateRankByArticle(long id);
+
+    void createProposal(Proposal proposal);
 
     void checkWallet();
 }

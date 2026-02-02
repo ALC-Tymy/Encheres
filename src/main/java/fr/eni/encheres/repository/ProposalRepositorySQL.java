@@ -139,16 +139,19 @@ public class ProposalRepositorySQL implements ProposalRepository {
     /**
      * Methode pour mettre à jour les ranks en fonction de l'id de l'article
      * et changer le rank des propositions liées à cet article.
+     *
      * @param id id de l'article
      */
     @Override
-    public void updateRankByArticle(long id){
+    public void updateRankByArticle(long id) {
         String sql = """
-                UPDATE PROPOSAL SET ranking = ranking + 1 WHERE id_article = :id_article
+                UPDATE PROPOSAL 
+                SET ranking = ranking + 1 
+                WHERE id_article = :id_article
                 """;
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id_article", id);
-        ;
+        namedParameterJdbcTemplate.update(sql, map);
     }
 
     /**
@@ -160,25 +163,24 @@ public class ProposalRepositorySQL implements ProposalRepository {
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
         String sql = """
-                 INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
-                 VALUES (:point_proposal, :date_proposal, :ranking, :id_buyer, :id_article)
-        """;
+                         INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+                         VALUES (:point_proposal, :date_proposal, :ranking, :id_buyer, :id_article)
+                """;
         MapSqlParameterSource map = new MapSqlParameterSource();
-        map.addValue("pointProposal", proposal.getPointProposal());
-        map.addValue("dateProposal", proposal.getDateProposal());
-        map.addValue("ranking","1");
-        map.addValue("idBuyer", proposal.getBuyer());
-        map.addValue("idArticle", proposal.getArticle());
-
+        map.addValue("point_proposal", proposal.getPointProposal());
+        map.addValue("date_proposal", proposal.getDateProposal());
+        map.addValue("ranking", "1");
+        map.addValue("id_buyer", proposal.getBuyer().getIdUser());
+        map.addValue("id_article", proposal.getArticle().getIdArticle());
         namedParameterJdbcTemplate.update(sql, map, keyHolder);
         long id = keyHolder.getKey().longValue();
         proposal.setIdProposal(id);
     }
+
     @Override
-    public void checkWallet(){
+    public void checkWallet() {
 
     }
-
 
 
 }

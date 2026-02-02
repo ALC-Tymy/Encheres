@@ -22,7 +22,7 @@ public interface ProposalService {
     List<Proposal> readProposalByIdArticle(long id);
 
     @Transactional
-    void createProposal(Proposal proposal, long id_article);
+    void createProposal(long id_article, int pointProposal);
 
     void updateRankByArticle(long id);
 }

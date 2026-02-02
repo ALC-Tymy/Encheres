@@ -13,7 +13,6 @@ public class StartUpRunner {
     }
     @PostConstruct
     public  void run(){
-        System.out.println("lancement au start du scheduler");
         scheduler.updateStatusEncheres();
     }
 }

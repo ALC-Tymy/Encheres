@@ -11,12 +11,14 @@ import java.util.List;
 @Service
 public class ProposalServiceImpl implements ProposalService {
 
+    private final ArticleService articleService;
     ProposalRepository proposalRepository;
     UserService userService;
 
-    public ProposalServiceImpl(ProposalRepository proposalRepository, UserService userService) {
+    public ProposalServiceImpl(ProposalRepository proposalRepository, UserService userService, ArticleService articleService) {
         this.proposalRepository = proposalRepository;
         this.userService = userService;
+        this.articleService = articleService;
     }
 
     @Override
@@ -58,25 +60,22 @@ public class ProposalServiceImpl implements ProposalService {
 
     @Transactional
     @Override
-    public void createProposal(Proposal proposal, long id_article) {
+    public void createProposal(long id_article, int pointProposal) {
         //je fais la mise à jour des rank en premier
         this.proposalRepository.updateRankByArticle(id_article);
 
         //TODO : pense a faire la vérification du Wallet de l'utilisateur
 
         // puis le crée la nouvelle enchère
-        Proposal newProposal = new Proposal(
-                proposal.getPointProposal(),
-                proposal.getDateProposal(),
-                proposal.getRanking(),
-                proposal.getBuyer(),
-                proposal.getArticle()
-        );
-
-        // Associe id de l'acheteur à la proposition
-        newProposal.setBuyer(userService.readById(userService.getIdLoggedUser()));
-        // Associe l'heures actuel a dateProposal
+        Proposal newProposal = new Proposal();
+        newProposal.setPointProposal(pointProposal);
         newProposal.setDateProposal(LocalDateTime.now());
+        newProposal.setRanking(1);
+        newProposal.setBuyer(userService.readById(userService.getIdLoggedUser()));
+
+        newProposal.setArticle(articleService.readById(id_article));
+
+        proposalRepository.createProposal(newProposal);
     }
 
     @Override

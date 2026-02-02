@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<div th:replace="~{fragments/layout :: layout(content= ~{::main}) }" xmlns:margin="http://www.w3.org/1999/xhtml">
+<div th:replace="~{fragments/layout :: layout(content= ~{::main}) }">
     <main>
 
         <h2 th:text="${article.name}"></h2>
@@ -18,19 +18,19 @@
                     <!-- Icône suivant la catégorie de l'article -->
                     <div th:switch="${article.category?.idCategory}">
                         <div th:case="1">
-                            <img class="icon-cate-detail" th:src="@{/img/icon-info.svg}" alt="Icône de tablette">
+                            <img alt="Icône de tablette" class="icon-cate-detail" th:src="@{/img/icon-info.svg}">
                         </div>
                         <div th:case="2">
-                            <img class="icon-cate-detail" th:src="@{/img/icon-furniture.svg}" alt="Icône de chaise">
+                            <img alt="Icône de chaise" class="icon-cate-detail" th:src="@{/img/icon-furniture.svg}">
                         </div>
                         <div th:case="3">
-                            <img class="icon-cate-detail" th:src="@{/img/icon-clothes.svg}" alt="Icône de chaussettes">
+                            <img alt="Icône de chaussettes" class="icon-cate-detail" th:src="@{/img/icon-clothes.svg}">
                         </div>
                         <div th:case="4">
-                            <img class="icon-cate-detail" th:src="@{/img/icon-sport.svg}" alt="Icône de ballon">
+                            <img alt="Icône de ballon" class="icon-cate-detail" th:src="@{/img/icon-sport.svg}">
                         </div>
                         <div th:case="5">
-                            <img class="icon-cate-detail" th:src="@{/img/icon-hobby.svg}" alt="Icône de livre">
+                            <img alt="Icône de livre" class="icon-cate-detail" th:src="@{/img/icon-hobby.svg}">
                         </div>
                     </div>
                     <span th:text="${article.category.name}"></span>
@@ -61,22 +61,27 @@
 
             </div>
 
-            <div class="details-article-propositions"> <!-- Deuxième colonne : les propositions (enchères) pour cet article -->
+            <div class="details-article-propositions">
+                <!-- Deuxième colonne : les propositions (enchères) pour cet article -->
 
                 <div class="box-create-proposition">
                     <div>
                         <p class="box-proposition-title">Faire une offre</p>
                         <p>Montant disponible : <span th:text="${userConnected?.walletPoint}"></span> points</p>
                     </div>
-<!--                    th:action="@{/article/{id}/addProposal(id=${article.id})}" th:object="${proposal}"      th:field="*{pointProposal}"-->
-                    <form method="post" >
+                    <!--                    th:action="@{/article/{id}/addProposal(id=${article.id})}" th:object="${proposal}"      th:field="*{pointProposal}"-->
+                    <form method="post" th:action="@{/article/{id}/addProposal(id=${article.idArticle})}"
+                          th:object="${newProposal}">
                         <label for="PointProposal"></label>
-                        <input class="input-proposition" type="number" id="PointProposal" name="pointProposal">
+                        <input class="input-proposition" id="PointProposal" name="pointProposal"
+                               th:field="*{pointProposal}"
+                               type="number">
                         <button class="button-proposition-validate" type="submit">Valider</button>
                     </form>
                 </div>
 
-                <div th:each="el : ${listProposal}" class="box-enchere-article" th:classappend="${el.ranking == 1 ? 'ranking1' : ''}" >
+                <div class="box-enchere-article" th:classappend="${el.ranking == 1 ? 'ranking1' : ''}"
+                     th:each="el : ${listProposal}">
                     <div> <!-- Infos de la proposition -->
                         <p class="details-encheres-points"><span th:text="${el.pointProposal}"></span> points</p>
                         <p>Proposée par <span th:text="${el.buyer.pseudo}"></span>

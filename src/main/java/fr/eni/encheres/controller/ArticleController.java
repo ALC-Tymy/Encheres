@@ -1,22 +1,18 @@
 package fr.eni.encheres.controller;
 
-import fr.eni.encheres.entity.Proposal;
 import fr.eni.encheres.entity.Article;
+import fr.eni.encheres.entity.Proposal;
 import fr.eni.encheres.entity.User;
 import fr.eni.encheres.entity.dto.CreateArticleDTO;
 import fr.eni.encheres.service.*;
-import fr.eni.encheres.service.ArticleService;
-import fr.eni.encheres.service.CategoryService;
-import fr.eni.encheres.service.DeliveryAddressService;
-import fr.eni.encheres.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -65,22 +61,23 @@ public class ArticleController {
     }
 
     @GetMapping("/article/{id}")
-    public String article(@PathVariable("id") final long id, Model model) {
+    public String article(@PathVariable("id") final long id, Model model, Proposal proposal) {
         //récup des détails d'un article
         Article article = articleService.readById(id);
         List<Proposal> listProposal = proposalService.readProposalByIdArticle(id);
         model.addAttribute("article", article);
         model.addAttribute("listProposal", listProposal);
+        model.addAttribute("newProposal", new Proposal());
         //Recup de l'id utilisateur connecté pour afficher son portefeuille
         model.addAttribute("userConnected", this.userService.readById(userService.getIdLoggedUser()));
         //Affichage de la page détails d'un article
         return "details";
     }
 
-//    @PostMapping("/article/{id}/addProposal")
-//    public String addProposal(@ModelAttribute"newProposal")  {
-//        System.out.println("proposal: " + proposal + " id: " + id_article);
-//        proposalService.createProposal(proposal, id_article);
-//        return "redirect:/mes-encheres";
-//    }
+    @PostMapping("/article/{id}/addProposal")
+    public String addProposal(@ModelAttribute("newProposal") Proposal newProposal,
+                              @PathVariable("id") long id) {
+        proposalService.createProposal(id, newProposal.getPointProposal());
+        return "redirect:/mes-encheres";
+    }
 }
