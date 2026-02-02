@@ -118,7 +118,7 @@ header a:hover {
 /********************************************************/
 
 .baseline-index{
-    background-image: url("img/underline-icon.svg");
+    background-image: url("../img/underline-icon.svg");
     background-repeat: no-repeat;
     background-position: bottom right;
     background-position-y: 105px ;

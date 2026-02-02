@@ -76,4 +76,11 @@ public class ArticleController {
         //Affichage de la page détails d'un article
         return "details";
     }
+
+//    @PostMapping("/article/{id}/addProposal")
+//    public String addProposal(@ModelAttribute"newProposal")  {
+//        System.out.println("proposal: " + proposal + " id: " + id_article);
+//        proposalService.createProposal(proposal, id_article);
+//        return "redirect:/mes-encheres";
+//    }
 }

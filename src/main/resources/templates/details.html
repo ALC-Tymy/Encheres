@@ -68,9 +68,10 @@
                         <p class="box-proposition-title">Faire une offre</p>
                         <p>Montant disponible : <span th:text="${userConnected?.walletPoint}"></span> points</p>
                     </div>
-                    <form method="post" th:action="@{/article/{id}/addProposal(id=${article.id})}" th:object="${proposal}">
+<!--                    th:action="@{/article/{id}/addProposal(id=${article.id})}" th:object="${proposal}"      th:field="*{pointProposal}"-->
+                    <form method="post" >
                         <label for="PointProposal"></label>
-                        <input class="input-proposition" type="number" id="PointProposal" name="pointProposal" th:field="*{pointProposal}">
+                        <input class="input-proposition" type="number" id="PointProposal" name="pointProposal">
                         <button class="button-proposition-validate" type="submit">Valider</button>
                     </form>
                 </div>
