@@ -46,11 +46,13 @@ public class SecurityConfiguration {
 //                    .requestMatchers(HttpMethod.POST, "/mon-compte/update-post").hasRole("USER")
 //                    .requestMatchers(HttpMethod.GET, "/mon-compte/desactivate").hasRole("USER")
 //                    .requestMatchers(HttpMethod.GET, "/vendre").hasRole("USER")
+//                    .requestMatchers(HttpMethod.GET, "/details").hasRole("USER")
+//                    .requestMatchers(HttpMethod.GET, "/article/*").hasRole("USER")
 //                    .requestMatchers(HttpMethod.GET, "/inscription").permitAll()
 //                    .requestMatchers(HttpMethod.POST, "/inscription/new").permitAll()
 //                    .requestMatchers("/*").permitAll()
-//                    .requestMatchers("/css/*").permitAll()
-//                    .requestMatchers("/image/*").permitAll()
+//                    .requestMatchers("/css/**").permitAll()
+//                    .requestMatchers("/img/**").permitAll()
 //                    .anyRequest().denyAll();
             auth.anyRequest().permitAll();
         });

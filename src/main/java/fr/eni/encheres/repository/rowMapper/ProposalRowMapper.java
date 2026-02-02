@@ -18,7 +18,7 @@ public class ProposalRowMapper implements RowMapper<Proposal> {
         //Attribus principaux de Proposal
         proposalResult.setIdProposal(rs.getLong("id_proposal"));
         proposalResult.setPointProposal(rs.getInt("point_proposal"));
-        proposalResult.setDateProposal(rs.getObject("date_proposal", LocalDate.class));
+        proposalResult.setDateProposal(rs.getObject("date_proposal", LocalDateTime.class));
         proposalResult.setRanking(rs.getInt("ranking"));
 
 

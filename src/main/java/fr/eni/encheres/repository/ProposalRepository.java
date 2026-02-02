@@ -24,4 +24,8 @@ public interface ProposalRepository {
 
     // Récupère la liste des propositions pour des ventes TERMINÉES selon l'ID user
     List<Proposal> readProposalVDLVByIdUser(long id);
+
+    void updateRankByArticle(long id);
+
+    void checkWallet();
 }

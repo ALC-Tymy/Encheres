@@ -119,7 +119,7 @@ header a:hover {
 /********************************************************/
 
 .baseline-index{
-    background-image: url("img/underline-icon.svg");
+    background-image: url("../img/underline-icon.svg");
     background-repeat: no-repeat;
     background-position: bottom right;
     background-position-y: 105px ;
@@ -140,6 +140,12 @@ header a:hover {
     margin-left: auto;
     margin-right: auto;
 }
+.filter-cate select{
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+}
+
 
 .filter-cate select,
 .filter-cate select::picker(select){
