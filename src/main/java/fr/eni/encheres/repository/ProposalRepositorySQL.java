@@ -24,24 +24,6 @@ public class ProposalRepositorySQL implements ProposalRepository {
     }
 
     @Override
-    public void createProposal(Proposal proposal) {
-        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
-
-        String sql = "INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)" +
-                " VALUES (:point_proposal, :date_proposal, :ranking, :id_buyer, :id_article)";
-        MapSqlParameterSource map = new MapSqlParameterSource();
-        map.addValue("pointProposal", proposal.getPointProposal());
-        map.addValue("dateProposal", proposal.getDateProposal());
-        map.addValue("ranking", proposal.getRanking());
-        map.addValue("idBuyer", proposal.getBuyer());
-        map.addValue("idArticle", proposal.getArticle());
-
-        namedParameterJdbcTemplate.update(sql, map, keyHolder);
-        long id = keyHolder.getKey().longValue();
-        proposal.setIdProposal(id);
-    }
-
-    @Override
     public List<Proposal> readAll() {
         String sql = "SELECT * FROM PROPOSAL";
         List<Proposal> list = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Proposal.class));
@@ -152,5 +134,50 @@ public class ProposalRepositorySQL implements ProposalRepository {
 
         return namedParameterJdbcTemplate.query(sql, map, new ProposalByUserRowMapper());
     }
+
+    /**
+     * Methode pour mettre à jour les ranks en fonction de l'id de l'article
+     * et changer le rank des propositions liées à cet article.
+     * @param id id de l'article
+     */
+    @Override
+    public void updateRankByArticle(long id){
+        String sql = """
+                UPDATE PROPOSAL SET ranking = ranking + 1 WHERE id_article = :id_article
+                """;
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id_article", id);
+        ;
+    }
+
+    /**
+     * Création d'une proposition d'enchères
+     * et l'ajoute en base de donnes dans la table PROPOSAL
+     */
+    @Override
+    public void createProposal(Proposal proposal) {
+        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+
+        String sql = """
+                 INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+                 VALUES (:point_proposal, :date_proposal, :ranking, :id_buyer, :id_article)
+        """;
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("pointProposal", proposal.getPointProposal());
+        map.addValue("dateProposal", proposal.getDateProposal());
+        map.addValue("ranking","1");
+        map.addValue("idBuyer", proposal.getBuyer());
+        map.addValue("idArticle", proposal.getArticle());
+
+        namedParameterJdbcTemplate.update(sql, map, keyHolder);
+        long id = keyHolder.getKey().longValue();
+        proposal.setIdProposal(id);
+    }
+    @Override
+    public void checkWallet(){
+
+    }
+
+
 
 }

@@ -1,45 +1,70 @@
 <!DOCTYPE html>
-
 <div th:replace="~{fragments/layout :: layout(content= ~{::main}) }" xmlns:margin="http://www.w3.org/1999/xhtml">
-    <main>
-
-        <h2>Détails de l'article</h2>
-
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 3rem">
-
-
-            <div style="display: flex">
-                <div style="margin: 2rem; width: 20rem; height: 20rem; background-color: #dcdcdc"></div>
-
-                <div style="display: flex; flex-direction: column; margin: 2rem; justify-content: space-between;">
-                    <div>Nom : <span th:text="${article.name}"></span></div>
-                    <div>Catégorie : <span th:text="${article.category.name}"></span></div>
-                    <div>Description : <span th:text="${article.description}"></span></div>
-                    <div>Mise à prix : <span th:text="${article.originalPoint}"></span></div>
-                    <div>Montant actuel : <span th:text="${article.finalPoint}"></span></div>
-                    <div>Début de l'enchère : <span th:text="${article.beginningDate}"></span></div>
-                    <div>Fin de l'enchère : <span th:text="${article.endingDate}"></span></div>
-                    <div>Vendeur : <span th:text="${article.seller.pseudo}"></span></div>
+    <main><h2 th:text="${article.name}"></h2>
+        <div class="countdown"
+             th:attr="data-end=${#temporals.format(article.endingDate, 'yyyy-MM-dd''T''HH:mm:ss')}"></div>
+        <div class="conteneur-details-article"> <!-- Section des infos / 2 colonnes -->
+            <div class="details-article-infos"> <!-- 1ère colonne : infos de l'article -->
+                <div th:class="'details-article-cate cat-' + ${article.category.idCategory}">
+                    <!-- Icône suivant la catégorie de l'article -->
+                    <div th:switch="${article.category?.idCategory}">
+                        <div th:case="1"><img class="icon-cate-detail" th:src="@{/img/icon-info.svg}"
+                                              alt="Icône de tablette"></div>
+                        <div th:case="2"><img class="icon-cate-detail" th:src="@{/img/icon-furniture.svg}"
+                                              alt="Icône de chaise"></div>
+                        <div th:case="3"><img class="icon-cate-detail" th:src="@{/img/icon-clothes.svg}"
+                                              alt="Icône de chaussettes"></div>
+                        <div th:case="4"><img class="icon-cate-detail" th:src="@{/img/icon-sport.svg}"
+                                              alt="Icône de ballon"></div>
+                        <div th:case="5"><img class="icon-cate-detail" th:src="@{/img/icon-hobby.svg}"
+                                              alt="Icône de livre"></div>
+                    </div>
+                    <span th:text="${article.category.name}"></span></div>                <!-- Dates des enchères --> <p
+                        class="details-article-dates">Enchères du <span
+                        th:text="${#temporals.format(article.beginningDate, 'dd/MM/yyyy') }"></span> au <span
+                        th:text="${#temporals.format(article.endingDate, 'dd/MM/yyyy') }"></span></p>
+                <hr class="details-article-divider">                <!-- Description --> <p
+                        class="details-article-description" th:text="${article.description}"></p>
+                <!-- Infos sur le vendeur -->
+                <div class="article-detail-cartouches"><p>Vendeur</p></div>
+                <p th:text="${article.seller.pseudo}"></p>                <!-- Infos sur le lieu de retrait -->
+                <div class="article-detail-cartouches"><p>Lieu de retrait</p></div>
+                <p th:text="${article.getDeliveryAddress().address} + ', ' + ${article.getDeliveryAddress().zipCode} + ' ' + ${article.getDeliveryAddress().city}"></p>
+                <!--                <div>Nom : <span th:text="${article.name}"></span></div>-->
+                <!--                <div>Catégorie : <span th:text="${article.category.name}"></span></div>-->
+                <!--                <div>Description : <span th:text="${article.description}"></span></div>-->
+                <!--                <div>Mise à prix : <span th:text="${article.originalPoint}"></span></div>-->
+                <!--                <div>Montant actuel : <span th:text="${article.finalPoint}"></span></div>-->
+                <!--                <div>Début de l'enchère : <span th:text="${article.beginningDate}"></span></div>-->
+                <!--                <div>Fin de l'enchère : <span th:text="${article.endingDate}"></span></div>-->
+                <!--                <div>Vendeur : <span th:text="${article.seller.pseudo}"></span></div>-->
+            </div>
+            <div class="details-article-propositions">
+                <!-- Deuxième colonne : les propositions (enchères) pour cet article -->
+                <div class="box-create-proposition"><p>Faire une offre</p>
+                    <form method="post" th:action="@{/article/{id}/addProposal(id=${article.id})}" th:object="${proposal}">
+                        <label for="PointProposal"></label>
+                        <input type="number" id="PointProposal" name="pointProposal" th:field="*{pointProposal}">
+                        <button class="button-filter-validate" type="submit">Valider</button>
+                    </form>
                 </div>
-            </div>
-            <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Valeur</th>
-                            <th>Proposeur</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="item : ${listProposal}">
-                            <td th:text="${item.pointProposal}"></td>
-                            <td th:text="${item.buyer.pseudo}"></td>
-                            <td th:text="${item.dateProposal}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                <div th:each="el : ${listProposal}" class="box-enchere-article"
+                     th:classappend="${el.ranking == 1 ? 'ranking1' : ''}">
+                    <div> <!-- Infos de la proposition --> <p class="details-encheres-points"><span
+                            th:text="${el.pointProposal}"></span> points</p>
+                        <p>Proposée par <span th:text="${el.buyer.pseudo}"></span> le <span
+                                th:text="${#temporals.format(el.dateProposal, 'dd/MM/yyyy') }"></span></p></div>
+                    <div> <!-- ranking --> <p class="details-encheres-ranking" th:text="${el.ranking}"></p></div>
+                </div>
+            </div><!--            <div>--><!--                <table>--><!--                    <thead>-->
+            <!--                        <tr>--><!--                            <th>Valeur</th>-->
+            <!--                            <th>Proposeur</th>--><!--                            <th>Date</th>-->
+            <!--                        </tr>--><!--                    </thead>--><!--                    <tbody>-->
+            <!--                        <tr th:each="el : ${listProposal}">-->
+            <!--                            <td th:text="${el.pointProposal}"></td>-->
+            <!--                            <td th:text="${el.buyer.pseudo}"></td>-->
+            <!--                            <td th:text="${el.dateProposal}"></td>-->
+            <!--                        </tr>--><!--                    </tbody>--><!--                </table>-->
+            <!--            </div>-->        </div>
     </main>
 </div>

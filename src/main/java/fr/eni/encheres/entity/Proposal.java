@@ -1,13 +1,14 @@
 package fr.eni.encheres.entity;
 
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Proposal {
 
     private long idProposal;
     private int pointProposal;
-    private LocalDate dateProposal;
+    private LocalDateTime dateProposal;
     private int ranking;
     private User buyer;
     private Article article;
@@ -15,7 +16,7 @@ public class Proposal {
     public Proposal() {
     }
 
-    public Proposal(long idProposal, int pointProposal, LocalDate dateProposal, int ranking, User buyer, Article article) {
+    public Proposal(long idProposal, int pointProposal, LocalDateTime dateProposal, int ranking, User buyer, Article article) {
         this.idProposal = idProposal;
         this.pointProposal = pointProposal;
         this.dateProposal = dateProposal;
@@ -24,11 +25,16 @@ public class Proposal {
         this.article = article;
     }
 
-    public Proposal(int pointProposal, LocalDate dateProposal, int ranking, User buyer, Article article) {
+    public Proposal(int pointProposal, LocalDateTime dateProposal, int ranking, User buyer, Article article) {
         this.pointProposal = pointProposal;
         this.dateProposal = dateProposal;
         this.ranking = ranking;
         this.buyer = buyer;
+        this.article = article;
+    }
+
+    public Proposal(int pointProposal, Article article) {
+        this.pointProposal = pointProposal;
         this.article = article;
     }
 
@@ -48,11 +54,11 @@ public class Proposal {
         this.pointProposal = pointProposal;
     }
 
-    public LocalDate getDateProposal() {
+    public LocalDateTime getDateProposal() {
         return dateProposal;
     }
 
-    public void setDateProposal(LocalDate dateProposal) {
+    public void setDateProposal(LocalDateTime dateProposal) {
         this.dateProposal = dateProposal;
     }
 
@@ -81,18 +87,6 @@ public class Proposal {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Proposal proposal = (Proposal) o;
-        return idProposal == proposal.idProposal && pointProposal == proposal.pointProposal && ranking == proposal.ranking && Objects.equals(dateProposal, proposal.dateProposal) && Objects.equals(buyer, proposal.buyer) && Objects.equals(article, proposal.article);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idProposal, pointProposal, dateProposal, ranking, buyer, article);
-    }
-
-    @Override
     public String toString() {
         return "Proposal{" +
                 "idProposal=" + idProposal +
@@ -102,5 +96,17 @@ public class Proposal {
                 ", buyer=" + buyer +
                 ", article=" + article +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Proposal proposal = (Proposal) o;
+        return idProposal == proposal.idProposal && pointProposal == proposal.pointProposal && ranking == proposal.ranking && Objects.equals(dateProposal, proposal.dateProposal) && Objects.equals(buyer, proposal.buyer) && Objects.equals(article, proposal.article);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idProposal, pointProposal, dateProposal, ranking, buyer, article);
     }
 }

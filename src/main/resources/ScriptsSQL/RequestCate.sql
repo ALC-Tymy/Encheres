@@ -50,5 +50,17 @@ FROM ARTICLE a
 UPDATE ARTICLE SET status = 'EC' WHERE status ='CR' AND beginning_date <= SYSDATETIME();
 
 --Request pour changer l'état de EC a VD
-
 UPDATE ARTICLE SET status = 'VD' WHERE status ='EC' AND ending_date <= SYSDATETIME();
+
+
+--Request pour ajouter une proposition de l'article.
+INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+VALUES ('100', SYSDATETIME(), :ranking, :id_buyer, :id_article)
+
+--Request pour update les rank de tout le monde sur l'article
+--Incrémente le rank de 1 de ceux déjà existent par l'id de l'article.
+UPDATE PROPOSAL SET ranking = ranking + 1 WHERE id_article = 10 ;
+
+SELECT id_article,ranking,id_buyer FROM PROPOSAL
+WHERE  id_article = 10;
+SELECT * from PROPOSAL;
