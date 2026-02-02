@@ -1,10 +1,14 @@
 package fr.eni.encheres.controller;
 
 import fr.eni.encheres.entity.Proposal;
+import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.entity.User;
 import fr.eni.encheres.entity.dto.CreateArticleDTO;
-import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.service.*;
+import fr.eni.encheres.service.ArticleService;
+import fr.eni.encheres.service.CategoryService;
+import fr.eni.encheres.service.DeliveryAddressService;
+import fr.eni.encheres.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +40,7 @@ public class ArticleController {
     @GetMapping("/vendre")
     public String displaySell(Model model, CreateArticleDTO articleDTO) {
 
-        //donne les valeur de l'adresse du user
+        //donne-les valeur de l'adresse de l'user
         long idSeller = userService.getIdLoggedUser();
         User Userlogged = this.userService.readById(idSeller);
         articleDTO.setSeller(Userlogged);
@@ -52,7 +56,7 @@ public class ArticleController {
 
     @PostMapping("/vendre/add")
     public String addArticleSell(@Valid @ModelAttribute("articleDTO") CreateArticleDTO articleDTO, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             return "vendre";
         }
 

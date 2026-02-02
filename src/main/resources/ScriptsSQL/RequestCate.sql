@@ -44,3 +44,11 @@ FROM ARTICLE a
          LEFT JOIN [USER] us ON us.id_user = a.id_seller
          LEFT JOIN CATEGORY c ON c.id_category = a.id_category
          LEFT JOIN DELIVERY_ADDRESS da ON da.id_delivery_address = a.id_del_address
+
+
+--Request pour changer l'état de CR a EC
+UPDATE ARTICLE SET status = 'EC' WHERE status ='CR' AND beginning_date <= SYSDATETIME();
+
+--Request pour changer l'état de EC a VD
+
+UPDATE ARTICLE SET status = 'VD' WHERE status ='EC' AND ending_date <= SYSDATETIME();

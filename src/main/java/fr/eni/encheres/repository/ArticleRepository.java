@@ -1,6 +1,7 @@
 package fr.eni.encheres.repository;
 
 import fr.eni.encheres.entity.Article;
+import fr.eni.encheres.entity.dto.ArticleLog;
 
 import java.util.List;
 
@@ -27,4 +28,12 @@ public interface ArticleRepository {
     List<Article> readArticleECByIdSeller(long id);
 
     List<Article> readArticleVDLVByIdSeller(long id);
+
+    List<ArticleLog> findCRtoEC();
+
+    List<ArticleLog> findECtoVD();
+
+    int updateCRtoEC();
+
+    int updateECtoVD();
 }
