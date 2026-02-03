@@ -1,0 +1,210 @@
+
+/********************************************************/
+/** LISTES DES ENCHERES D'UN USER **/
+/********************************************************/
+
+/** Navigation interne à la page **/
+
+div.encheres-user #encheres-encours,
+div.encheres-user #encheres-terminees {
+    display: none;
+}
+
+div.encheres-user #encheres-encours:target,
+div.encheres-user #encheres-terminees:target {
+    display: flex;
+}
+
+.conteneur-nav-encheres-user,
+.conteneur-nav-ventes-user {
+    text-align: center;
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    justify-content: center;
+}
+
+/**************************** Target / not target à améliorer **/
+
+.conteneur-nav-encheres-user:not(:target) a,
+.conteneur-nav-ventes-user:not(:target) a{
+    text-decoration: none;
+    font-weight: 400;
+    color: white;
+    border: solid 1px #2ECEA4;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    width: 200px;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+.conteneur-nav-encheres-user:target a {
+    text-decoration: none;
+    font-weight: 400;
+    color: #05252C;
+    border: solid 1px #2ECEA4;
+    background-color: #2ECEA4;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    width: 200px;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+
+
+/** Enchères et ventes user **/
+
+.conteneur-encheres-user,
+.conteneur-ventes-user {
+    width: 80%;
+    max-width: 1110px;
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.conteneur-encheres-user-col2,
+.conteneur-ventes-user-col2 {
+    width: 48%;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+.box-enchere-user {
+    display: flex;
+    justify-content: space-between;
+    background-color: #2B6068;
+    text-decoration: none;
+    color: #DCEFEB;
+    margin-bottom: 20px;
+    height: fit-content;
+    border-radius: 16px;
+    align-items: center;
+    padding: 20px;
+}
+
+.conteneur-encheres-user a {
+    text-decoration: none;
+    color: #DCEFEB;
+}
+
+.box-enchere-user h4,
+.box-vente-user h4 {
+    font-size: 1.5em;
+    margin-bottom: 3%;
+}
+
+.details-encheres-user-ranking {
+    color: #51949E;
+    font-size: 4em;
+    font-weight: bolder;
+    margin-left: auto;
+    padding: 0;
+}
+
+.box-enchere-user.ranking1 {
+    background-color: #2ECEA4;
+    color: #105344;
+}
+
+.box-enchere-user.ranking1 .details-encheres-user-ranking {
+    color: #1A8D6E;
+}
+
+.gras {
+    font-weight: 500;
+}
+
+
+
+/********************************************************/
+/** LISTES DES VENTES D'UN USER **/
+/********************************************************/
+
+
+div.ventes-user #ventes-crees,
+div.ventes-user #ventes-encours,
+div.ventes-user #ventes-terminees {
+    display: none;
+}
+
+div.ventes-user #ventes-crees:target,
+div.ventes-user #ventes-encours:target,
+div.ventes-user #ventes-terminees:target {
+    display: flex;
+}
+
+.conteneur-ventes-user {
+    width: 80%;
+    max-width: 1110px;
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.box-vente-user {
+    display: flex;
+    justify-content: flex-start;
+    text-decoration: none;
+    color: #05252C;
+    margin-bottom: 20px;
+    height: fit-content;
+    border-radius: 16px;
+    align-items: center;
+    padding: 20px;
+}
+
+.conteneur-ventes-user a {
+    text-decoration: none;
+}
+
+.icon-cate-vente {
+    margin-right: 20px;
+}
+
+.box-vente-user.cat-1 {
+    background-color: #B8EAD7;
+}
+
+.box-vente-user.cat-1 h4 {
+    color: #3E6A59;
+    text-decoration: none;
+}
+
+.box-vente-user.cat-2 {
+    background-color: #7FE3CC;
+}
+
+.box-vente-user.cat-2 h4 {
+    color: #105344;
+}
+
+.box-vente-user.cat-3 {
+    background-color: #59D2E5;
+}
+
+.box-vente-user.cat-3 h4 {
+    color: #115762;
+}
+
+.box-vente-user.cat-4 {
+    background-color: #ECF7CF;
+}
+
+.box-vente-user.cat-4 h4 {
+    color: #616C43;
+}
+
+.box-vente-user.cat-5 {
+    background-color: #6BDAD8;
+}
+
+.box-vente-user.cat-5 h4 {
+    color: #1A605E;
+}

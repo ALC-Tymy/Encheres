@@ -167,10 +167,28 @@ public class ArticleRepositorySQL implements ArticleRepository {
 
     @Override
     public List<Article> readArticleCRByIdSeller(long id) {
-        String sql = "SELECT * FROM ARTICLE WHERE id_seller=:id AND STATUS='CR'";
+        String sql = """
+                SELECT a.id_article, a.name, a.description, a.original_point, a.final_point, a.beginning_date, a.ending_date, a.status,
+                       ub.id_user AS id_user_buyer, ub.pseudo AS pseudo_buyer, ub.email AS email_buyer, ub.password AS password_buyer, ub.first_name AS first_name_buyer, ub.last_name AS last_name_buyer, ub.address AS address_buyer, ub.zipcode AS zipcode_buyer, ub.city AS city_buyer, ub.phone AS phone_buyer, ub.walletPoint AS walletPoint_buyer, ub.walletPending AS walletPending_buyer, ub.actif AS actif_buyer,
+                       us.id_user AS id_user_seller, us.pseudo AS pseudo_seller, us.email AS email_seller, us.password AS password_seller, us.first_name AS first_name_seller, us.last_name AS last_name_seller, us.address AS address_seller, us.zipcode AS zipcode_seller, us.city AS city_seller, us.phone AS phone_seller, us.walletPoint AS walletPoint_seller, us.walletPending AS walletPending_seller, us.actif AS actif_seller,
+                       c.id_category, c.name AS name_category,
+                       da.id_delivery_address, da.address AS address_delivery_address, da.zipcode AS zipCode_delivery_address, da.city AS city_delivery_address
+                FROM ARTICLE a
+                         LEFT JOIN [USER] ub ON ub.id_user = a.id_buyer
+                         LEFT JOIN [USER] us ON us.id_user = a.id_seller
+                         LEFT JOIN CATEGORY c ON c.id_category = a.id_category
+                         LEFT JOIN DELIVERY_ADDRESS da ON da.id_delivery_address = a.id_del_address
+                WHERE a.status = 'CR' AND a.id_seller=:id
+                ORDER BY a.beginning_date
+                """;
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
-        return namedParameterJdbcTemplate.query(sql, map, new BeanPropertyRowMapper<>(Article.class));
+        return namedParameterJdbcTemplate.query(sql, map, new ArticleRowMapper());
+
+//        String sql = "SELECT * FROM ARTICLE WHERE id_seller=:id AND STATUS='CR'";
+//        MapSqlParameterSource map = new MapSqlParameterSource();
+//        map.addValue("id", id);
+//        return namedParameterJdbcTemplate.query(sql, map, new BeanPropertyRowMapper<>(Article.class));
     }
 
     // Récupérer la liste des articles mis en vente dont la vente est en cours selon un utilisateur (ex connecté) //
@@ -178,7 +196,7 @@ public class ArticleRepositorySQL implements ArticleRepository {
     public List<Article> readArticleECByIdSeller(long id) {
 
         String sql = " SELECT article.name, article.original_point, article.final_point, " +
-                "       article.id_buyer, article.id_article, " +
+                "       article.id_buyer, article.id_article, article.id_category, " +
                 "       article.beginning_date, article.ending_date, " +
                 "       [USER].id_user, [USER].pseudo " +
                 "    FROM ARTICLE " +
@@ -197,7 +215,7 @@ public class ArticleRepositorySQL implements ArticleRepository {
     public List<Article> readArticleVDLVByIdSeller(long id) {
 
         String sql = " SELECT article.name, article.original_point, article.final_point, " +
-                "       article.id_buyer, article.id_article, " +
+                "       article.id_buyer, article.id_article, article.id_category, " +
                 "       article.beginning_date, article.ending_date, " +
                 "       [USER].id_user, [USER].pseudo " +
                 "    FROM ARTICLE " +

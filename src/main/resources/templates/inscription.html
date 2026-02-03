@@ -39,6 +39,7 @@
                            placeholder="Au moins une majuscule, un chiffre et un caractère spécial">
                 </div>
                 <div class="error-login" th:errors="*{password}"></div>
+                <div class="error-login" th:each="err : ${#fields.errors('global')}" th:text="${err}"></div>
                 <!-- Ajouter confirmation du password -->
 
             </div>
@@ -103,8 +104,6 @@
                 <div class="error-login" th:errors="*{phone}"></div>
 
             </div>
-
-            <div class="error-login" th:each="err : ${#fields.errors('global')}" th:text="${err}"></div>
 
             <button class="button-signin-inscription" type="submit">Créer mon compte</button>
 

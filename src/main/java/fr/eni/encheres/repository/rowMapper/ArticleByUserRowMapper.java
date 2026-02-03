@@ -1,6 +1,7 @@
 package fr.eni.encheres.repository.rowMapper;
 
 import fr.eni.encheres.entity.Article;
+import fr.eni.encheres.entity.Category;
 import fr.eni.encheres.entity.User;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -21,6 +22,13 @@ public class ArticleByUserRowMapper implements RowMapper<Article>
         articleResult.setIdArticle(rs.getLong("id_article"));
         articleResult.setBeginningDate(rs.getObject("beginning_date", LocalDateTime.class));
         articleResult.setEndingDate(rs.getObject("ending_date", LocalDateTime.class));
+
+        Long categoryId = rs.getLong("id_category");
+        if (categoryId > 0){
+            Category category = new Category();
+            category.setIdCategory(categoryId);
+            articleResult.setCategory(category);
+        }
 
         Long buyerId = rs.getLong("id_buyer");
         if (buyerId > 0){
