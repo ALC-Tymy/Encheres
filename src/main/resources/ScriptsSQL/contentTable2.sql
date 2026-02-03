@@ -97,56 +97,56 @@ INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_d
 VALUES ('MacBook Air M1', 'Apple MacBook Air 2020 avec puce M1, 8Go RAM, SSD 256Go, écran Retina 13 pouces. Couleur gris sidéral, clavier AZERTY français. Acheté en 2021, excellent état cosmétique et fonctionnel. Batterie en parfait état avec environ 150 cycles seulement. Vendu avec chargeur MagSafe d''origine et boîte. Rapide et silencieux.', 680, 780, '2026-01-20 10:00:00', '2026-02-05 20:00:00', 'EC', 1, 2, 2, 3);
 
 -- Article 12
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Bibliothèque IKEA Billy', 'Bibliothèque IKEA modèle Billy, coloris blanc, hauteur 202cm, largeur 80cm, profondeur 28cm. 5 étagères réglables en hauteur. Excellent état, très stable et solide. Montée avec soin, aucune vis apparente. Idéale pour livres, déco ou rangement bureau. Démontable facilement pour transport.', 45, 65, '2026-01-22 11:00:00', '2026-02-08 19:00:00', 'EC', 2, 1, 1, 4);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Bibliothèque IKEA Billy', 'Bibliothèque IKEA modèle Billy, coloris blanc, hauteur 202cm, largeur 80cm, profondeur 28cm. 5 étagères réglables en hauteur. Excellent état, très stable et solide. Montée avec soin, aucune vis apparente. Idéale pour livres, déco ou rangement bureau. Démontable facilement pour transport.', 45, 65, '2026-01-22 11:00:00', '2026-02-08 19:00:00', 'EC', 2, 1, 1, 4, '/uploads.article/charlotte-peacock-Fkj2V3fNczM-unsplash.jpg');
 
 -- Article 13
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Basket Nike Air Max', 'Paire de baskets Nike Air Max 90, pointure 42, coloris blanc/gris/rouge. État quasi neuf, portées 3-4 fois seulement. Boîte d''origine incluse. Semelle intermédiaire en mousse et amorti Air visible au talon. Très confortables et iconiques. Aucune tâche ni défaut. Lacets de rechange fournis.', 110, 145, '2026-01-18 09:00:00', '2026-02-03 21:00:00', 'EC', 3, 5, 5, 2);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Basket Nike Air Max', 'Paire de baskets Nike Air Max 90, pointure 42, coloris blanc/gris/rouge. État quasi neuf, portées 3-4 fois seulement. Boîte d''origine incluse. Semelle intermédiaire en mousse et amorti Air visible au talon. Très confortables et iconiques. Aucune tâche ni défaut. Lacets de rechange fournis.', 110, 145, '2026-01-18 09:00:00', '2026-02-03 21:00:00', 'EC', 3, 5, 5, 2, '/uploads/article/brian-hall-OShzOkbodd-unplash.jpg');
 
 -- Article 14
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
 VALUES ('Home trainer vélo', 'Home trainer Tacx Flux S, résistance électromagnétique, compatible vélos route et VTT. Transmission directe, très silencieux. Connectivité ANT+ et Bluetooth, compatible Zwift et autres apps. Utilisé 6 mois pendant hiver dernier. Fonctionne parfaitement. Vendu avec attache rapide et notice.', 420, 480, '2026-01-25 14:00:00', '2026-02-10 18:00:00', 'EC', 4, 3, 3, 1);
 
 -- Article 15
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Guitare acoustique Yamaha', 'Guitare acoustique Yamaha F310, caisse épicéa, manche nato, touche palissandre. Son chaud et équilibré. Parfaite pour débuter ou niveau intermédiaire. Bon état général avec traces d''usage légères. Cordes neuves montées récemment. Vendue avec housse rembourrée et accordeur électronique. Action des cordes confortable.', 140, 175, '2026-01-21 10:30:00', '2026-02-06 22:00:00', 'EC', 5, 4, 4, 5);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Guitare acoustique Yamaha', 'Guitare acoustique Yamaha F310, caisse épicéa, manche nato, touche palissandre. Son chaud et équilibré. Parfaite pour débuter ou niveau intermédiaire. Bon état général avec traces d''usage légères. Cordes neuves montées récemment. Vendue avec housse rembourrée et accordeur électronique. Action des cordes confortable.', 140, 175, '2026-01-21 10:30:00', '2026-02-06 22:00:00', 'EC', 5, 4, 4, 5, '/uploads/article/daniel-hodgkins-CC7avUChQNU-unsplash.jpg');
 
 -- Article 16
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Écran PC 27 pouces', 'Écran PC Samsung 27 pouces, dalle IPS, résolution 2560x1440 (QHD), 75Hz. Borderless sur 3 côtés, pied réglable en hauteur et inclinaison. Connectiques HDMI et DisplayPort. Excellent état, aucun pixel mort. Parfait pour bureautique, photo ou gaming occasionnel. Vendu avec câbles HDMI et alimentation.', 220, NULL, '2026-01-26 12:00:00', '2026-02-11 16:00:00', 'EC', 1, 1, 1, NULL);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Écran PC 27 pouces', 'Écran PC Samsung 27 pouces, dalle IPS, résolution 2560x1440 (QHD), 75Hz. Borderless sur 3 côtés, pied réglable en hauteur et inclinaison. Connectiques HDMI et DisplayPort. Excellent état, aucun pixel mort. Parfait pour bureautique, photo ou gaming occasionnel. Vendu avec câbles HDMI et alimentation.', 220, NULL, '2026-01-26 12:00:00', '2026-02-11 16:00:00', 'EC', 1, 1, 1, NULL, '/uploads/article/alexandre-juca-dSFV8clfe98-unsplash.jpg');
 
 -- Article 17
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Chaise bureau ergonomique', 'Chaise de bureau ergonomique marque Markus IKEA, coloris noir. Dossier haut avec soutien lombaire, accoudoirs réglables, vérin à gaz pour hauteur d''assise. Roulettes pour parquet. Très confortable pour longues sessions. Quelques marques d''usage sur l''assise mais structure impeccable. Nettoyée et désinfectée.', 95, 120, '2026-01-19 15:00:00', '2026-02-04 17:00:00', 'EC', 2, 3, 3, 2);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Chaise bureau ergonomique', 'Chaise de bureau ergonomique marque Markus IKEA, coloris noir. Dossier haut avec soutien lombaire, accoudoirs réglables, vérin à gaz pour hauteur d''assise. Roulettes pour parquet. Très confortable pour longues sessions. Quelques marques d''usage sur l''assise mais structure impeccable. Nettoyée et désinfectée.', 95, 120, '2026-01-19 15:00:00', '2026-02-04 17:00:00', 'EC', 2, 3, 3, 2, '/uploads/article/igor-omilaev-63hYwd9J0X0-unsplash.jpg');
 
 -- Article 18
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Jean Levi''s 501', 'Jean Levi''s 501 original fit, taille W32 L32, couleur bleu brut. Coupe droite iconique, 100% coton denim. Porté et lavé plusieurs fois pour un aspect vintage authentique. Bon état général, pas de trous ni d''accrocs. Boutons à la braguette. Pièce intemporelle qui se bonifie avec le temps.', 55, 72, '2026-01-23 08:30:00', '2026-02-09 20:00:00', 'EC', 3, 2, 2, 4);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Jean Levi''s 501', 'Jean Levi''s 501 original fit, taille W32 L32, couleur bleu brut. Coupe droite iconique, 100% coton denim. Porté et lavé plusieurs fois pour un aspect vintage authentique. Bon état général, pas de trous ni d''accrocs. Boutons à la braguette. Pièce intemporelle qui se bonifie avec le temps.', 55, 72, '2026-01-23 08:30:00', '2026-02-09 20:00:00', 'EC', 3, 2, 2, 4, '/uploads/article/tuananh-blue-wNP79A-_bRY-unsplash.jpg');
 
 -- Article 19
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Tapis de yoga premium', 'Tapis de yoga Manduka PROlite, épaisseur 5mm, dimensions 180x61cm. Matière écologique, surface texturée antidérapante des deux côtés. Excellente absorption des chocs. Coloris violet. Utilisé régulièrement pendant 1 an, bon état. Nettoyé après chaque utilisation. Très durable, garantie à vie du fabricant transférable.', 75, 92, '2026-01-24 11:00:00', '2026-02-07 19:00:00', 'EC', 4, 5, 5, 3);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Tapis de yoga premium', 'Tapis de yoga Manduka PROlite, épaisseur 5mm, dimensions 180x61cm. Matière écologique, surface texturée antidérapante des deux côtés. Excellente absorption des chocs. Coloris violet. Utilisé régulièrement pendant 1 an, bon état. Nettoyé après chaque utilisation. Très durable, garantie à vie du fabricant transférable.', 75, 92, '2026-01-24 11:00:00', '2026-02-07 19:00:00', 'EC', 4, 5, 5, 3, '/uploads/article/the-nix-company-biX8sBfNcPc-unsplash.jpg');
 
 -- Article 20
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Appareil photo Nikon D3500', 'Reflex numérique Nikon D3500, capteur APS-C 24MP, kit avec objectif 18-55mm VR. Excellent pour débuter en photographie. Boîtier en très bon état, quelques micro-rayures sans gravité. 8500 déclenchements environ. Batterie tient bien la charge. Vendu avec chargeur, courroie, bouchons objectif et carte SD 32Go.', 380, 445, '2026-01-27 13:00:00', '2026-02-12 21:00:00', 'EC', 5, 1, 1, 4);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Appareil photo Nikon D3500', 'Reflex numérique Nikon D3500, capteur APS-C 24MP, kit avec objectif 18-55mm VR. Excellent pour débuter en photographie. Boîtier en très bon état, quelques micro-rayures sans gravité. 8500 déclenchements environ. Batterie tient bien la charge. Vendu avec chargeur, courroie, bouchons objectif et carte SD 32Go.', 380, 445, '2026-01-27 13:00:00', '2026-02-12 21:00:00', 'EC', 5, 1, 1, 4, '/uploads/article/jan-kopriva-s2z-tNxo7Eo-unsplash.jpg');
 
 -- Article 21
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
 VALUES ('Clavier mécanique Logitech', 'Clavier mécanique gaming Logitech G Pro X, switches GX Blue tactiles et clicky. Rétroéclairage RGB personnalisable, format TKL compact sans pavé numérique. Câble détachable. Utilisé 1 an, fonctionne parfaitement. Toutes les touches répondent bien. Nettoyé récemment. Idéal pour gaming et frappe intensive.', 95, 128, '2026-01-28 10:00:00', '2026-02-13 18:00:00', 'EC', 1, 2, 2, 5);
 
 -- Article 22
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Lampe sur pied design', 'Lampe sur pied design moderne, hauteur 160cm, abat-jour tissu beige, pied métal noir mat. Éclairage LED intégré, interrupteur au pied. Très bon état esthétique et fonctionnel. Parfaite pour coin lecture ou salon. Style scandinave épuré. Ampoule LED économique incluse (durée vie 20000h).', 68, 88, '2026-01-17 16:00:00', '2026-02-02 22:00:00', 'EC', 2, 4, 4, 1);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Lampe sur pied design', 'Lampe sur pied design moderne, hauteur 160cm, abat-jour tissu beige, pied métal noir mat. Éclairage LED intégré, interrupteur au pied. Très bon état esthétique et fonctionnel. Parfaite pour coin lecture ou salon. Style scandinave épuré. Ampoule LED économique incluse (durée vie 20000h).', 68, 88, '2026-01-17 16:00:00', '2026-02-02 22:00:00', 'EC', 2, 4, 4, 1, '/uploads/article/johnny-GvO1g0AMuWU-unsplash.jpg');
 
 -- Article 23
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
 VALUES ('Sweat à capuche Adidas', 'Sweat à capuche Adidas Originals, taille L, coloris noir avec logo trèfle blanc. Composition 70% coton / 30% polyester. Poche kangourou, cordon de serrage. Porté régulièrement mais bien entretenu. Pas de boulochage. Lavage machine à 30°. Coupe regular fit confortable. Style streetwear intemporel.', 42, 58, '2026-01-29 09:00:00', '2026-02-14 17:00:00', 'EC', 3, 3, 3, 5);
 
 -- Article 24
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Ballon basket Wilson', 'Ballon de basket Wilson Evolution, taille 7 (officielle), cuir composite. Utilisé en salle uniquement, très bon grip. Surface légèrement usée mais parfaitement fonctionnel. Bien gonflé, garde la pression. Idéal pour matchs ou entraînements. Un des meilleurs ballons indoor du marché.', 48, 62, '2026-01-16 14:30:00', '2026-02-01 20:00:00', 'EC', 4, 5, 5, 2);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Ballon basket Wilson', 'Ballon de basket Wilson Evolution, taille 7 (officielle), cuir composite. Utilisé en salle uniquement, très bon grip. Surface légèrement usée mais parfaitement fonctionnel. Bien gonflé, garde la pression. Idéal pour matchs ou entraînements. Un des meilleurs ballons indoor du marché.', 48, 62, '2026-01-16 14:30:00', '2026-02-01 20:00:00', 'EC', 4, 5, 5, 2, '/uploads/article/images.jpg');
 
 -- Article 25
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
@@ -169,8 +169,8 @@ INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_d
 VALUES ('Gourde isotherme Hydro', 'Gourde isotherme Hydro Flask 950ml, coloris bleu océan. Inox double paroi, garde froid 24h et chaud 12h. Goulot large, bouchon étanche avec poignée transport. Quelques petits chocs sur le revêtement extérieur mais isolation intacte. Sans BPA. Parfaite pour sport, randonnée ou quotidien.', 28, 38, '2026-01-11 13:30:00', '2026-01-27 17:00:00', 'EC', 4, 5, 5, 1);
 
 -- Article 30
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Puzzle 1000 pièces', 'Puzzle Ravensburger 1000 pièces, motif paysage de montagne enneigé. Complet, vérifié pièce par pièce. Fait une fois puis rangé dans la boîte. Dimensions assemblé 70x50cm. Carton épais de qualité, découpe précise. Activité relaxante pour soirées d''hiver. Notice avec image de référence incluse.', 18, 26, '2026-01-10 14:00:00', '2026-01-26 20:00:00', 'EC', 5, 3, 3, 4);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Puzzle 1000 pièces', 'Puzzle Ravensburger 1000 pièces, motif paysage de montagne enneigé. Complet, vérifié pièce par pièce. Fait une fois puis rangé dans la boîte. Dimensions assemblé 70x50cm. Carton épais de qualité, découpe précise. Activité relaxante pour soirées d''hiver. Notice avec image de référence incluse.', 18, 26, '2026-01-10 14:00:00', '2026-01-26 20:00:00', 'EC', 5, 3, 3, 4, '/uploads/article/joseph-malone-appzhYEQHhU-unsplash.jpg');
 
 --------------------------------------------------------------------------
 -- ARTICLES - VENTE TERMINÉE (status 'VD' ou 'LV')

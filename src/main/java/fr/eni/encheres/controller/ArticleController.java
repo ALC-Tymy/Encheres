@@ -6,6 +6,7 @@ import fr.eni.encheres.entity.User;
 import fr.eni.encheres.entity.dto.CreateArticleDTO;
 import fr.eni.encheres.service.*;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Null;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

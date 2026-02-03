@@ -18,11 +18,13 @@ public class Article {
     private DeliveryAddress deliveryAddress;
     private User buyer;
     private User seller;
+    private String imagePath;
 
     public Article() {
     }
 
-    public Article(long idArticle, String name, String description, int originalPoint, Integer finalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
+
+    public Article(long idArticle, String name, String description, int originalPoint, Integer finalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller, String imagePath) {
         this.idArticle = idArticle;
         this.name = name;
         this.description = description;
@@ -35,9 +37,10 @@ public class Article {
         this.deliveryAddress = deliveryAddress;
         this.buyer = buyer;
         this.seller = seller;
+        this.imagePath = imagePath;
     }
 
-    public Article(String name, String description, int originalPoint, Integer finalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller) {
+    public Article(String name, String description, int originalPoint, Integer finalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, String status, Category category, DeliveryAddress deliveryAddress, User buyer, User seller, String imagePath) {
         this.name = name;
         this.description = description;
         this.originalPoint = originalPoint;
@@ -49,8 +52,8 @@ public class Article {
         this.deliveryAddress = deliveryAddress;
         this.buyer = buyer;
         this.seller = seller;
+        this.imagePath = imagePath;
     }
-
 
     public Article(String name, String description, int originalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, Category category, User seller) {
         this.name = name;
@@ -158,16 +161,21 @@ public class Article {
         this.seller = seller;
     }
 
+    public String getImagePath() {return imagePath;}
+
+    public void setImagePath(String imagePath) {this.imagePath = imagePath;}
+
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Article article = (Article) o;
-        return idArticle == article.idArticle && originalPoint == article.originalPoint && Objects.equals(name, article.name) && Objects.equals(description, article.description) && Objects.equals(finalPoint, article.finalPoint) && Objects.equals(beginningDate, article.beginningDate) && Objects.equals(endingDate, article.endingDate) && Objects.equals(status, article.status) && Objects.equals(category, article.category) && Objects.equals(deliveryAddress, article.deliveryAddress) && Objects.equals(buyer, article.buyer) && Objects.equals(seller, article.seller);
+        return getIdArticle() == article.getIdArticle() && getOriginalPoint() == article.getOriginalPoint() && Objects.equals(getName(), article.getName()) && Objects.equals(getDescription(), article.getDescription()) && Objects.equals(getFinalPoint(), article.getFinalPoint()) && Objects.equals(getBeginningDate(), article.getBeginningDate()) && Objects.equals(getEndingDate(), article.getEndingDate()) && Objects.equals(getStatus(), article.getStatus()) && Objects.equals(getCategory(), article.getCategory()) && Objects.equals(getDeliveryAddress(), article.getDeliveryAddress()) && Objects.equals(getBuyer(), article.getBuyer()) && Objects.equals(getSeller(), article.getSeller()) && Objects.equals(getImagePath(), article.getImagePath());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idArticle, name, description, originalPoint, finalPoint, beginningDate, endingDate, status, category, deliveryAddress, buyer, seller);
+        return Objects.hash(getIdArticle(), getName(), getDescription(), getOriginalPoint(), getFinalPoint(), getBeginningDate(), getEndingDate(), getStatus(), getCategory(), getDeliveryAddress(), getBuyer(), getSeller(), getImagePath());
     }
 
     @Override
@@ -185,6 +193,7 @@ public class Article {
                 ", deliveryAddress=" + deliveryAddress +
                 ", buyer=" + buyer +
                 ", seller=" + seller +
+                ", imagePath='" + imagePath + '\'' +
                 '}';
     }
 }
