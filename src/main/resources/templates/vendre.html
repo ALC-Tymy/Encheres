@@ -6,60 +6,66 @@
 
         <h2>Vendre un objet</h2>
 
-        <form method="post" th:action="@{/vendre/add}" th:object="${articleDTO}">
-            <div>
-                <label for="idName">Name : </label>
-                <input id="idName" th:field="*{name}" type="text">
-            </div>
-            <div class="error" th:errors="*{name}"></div>
+        <form method="post" th:action="@{/vendre/add}" th:object="${articleDTO}" class="form-signin">
 
-            <div>
-                <label for="idDescription">Description : </label>
-                <textarea cols="30" id="idDescription" name="address" rows="2" th:field="*{description}"></textarea>
-            </div>
-            <div class="error" th:errors="*{description}"></div>
+            <div class="form-col2">
+                <div>
+                    <label for="idName">Titre*</label>
+                    <input id="idName" th:field="*{name}" type="text">
+                </div>
+                <div class="error-login" th:errors="*{name}"></div>
 
-            <div>
-                <label for="idOriginalPoint">Prix de départ</label>
-                <input id="idOriginalPoint" th:field="*{originalPoint}" type="text">
-            </div>
-            <div>
-                <label for="idBeginningDate">Date de début : </label>
-                <input id="idBeginningDate" th:field="*{beginningDate}" type="datetime-local">
-            </div>
-            <div class="error" th:errors="*{beginningDate}"></div>
+                <div>
+                    <label for="idDescription">Description*</label>
+                    <textarea cols="30" id="idDescription" name="address" rows="2" th:field="*{description}"></textarea>
+                </div>
+                <div class="error-login" th:errors="*{description}"></div>
 
-            <div>
-                <label for="idEndingDate">Date de fin : </label>
-                <input id="idEndingDate" th:field="*{endingDate}" type="datetime-local">
+                <div>
+                    <label for="idOriginalPoint">Prix de départ*</label>
+                    <input id="idOriginalPoint" th:field="*{originalPoint}" type="number">
+                </div>
+
+                <div >
+                    <label for="idCategory">Catégorie*</label>
+                        <select id="idCategory" name="" th:field="*{category}" >
+                            <option value=""> -- Choisir une catégorie</option>
+                            <option th:each="c : ${categoryList}" th:text="${c.name}" th:value="${c.idCategory}"></option>
+                        </select>
+                </div>
+            </div>
+            <div class="form-col2">
+                <div>
+                    <label for="idBeginningDate">Date de début des enchères*</label>
+                    <input id="idBeginningDate" th:field="*{beginningDate}" type="datetime-local">
+                </div>
+                <div class="error-login" th:errors="*{beginningDate}"></div>
+
+                <div>
+                    <label for="idEndingDate">Date de fin des enchères*</label>
+                    <input id="idEndingDate" th:field="*{endingDate}" type="datetime-local">
+                </div>
+
+                <div>
+                    <label for="idAddress">Adresse de livraison*</label>
+                    <input id="idAddress" th:field="*{address}">
+                </div>
+                <div class="error-login" th:errors="*{address}"></div>
+
+                <div>
+                    <label for="idZipCode">Code postal*</label>
+                    <input id="idZipCode" th:field="*{zipCode}" type="text">
+
+                </div>
+                <div class="error-login" th:errors="*{zipCode}"></div>
+                <div>
+                    <label for="idCity">Ville*</label>
+                    <input id="idCity" th:field="*{city}" type="text">
+                </div>
+                <div class="error-login" th:errors="*{city}"></div>
             </div>
 
-            <div>
-                <label for="idCategory">Catégorie : </label>
-                <select id="idCategory" name="" th:field="*{category}">
-                    <option value=""> -- Choisir une catégorie</option>
-                    <option th:each="c : ${categoryList}" th:text="${c.name}" th:value="${c.idCategory}"></option>
-                </select>
-            </div>
-            <div>
-                <label for="idAddress">Adresse de livraison : </label>
-                <input id="idAddress" th:field="*{address}">
-            </div>
-            <div class="error" th:errors="*{address}"></div>
-
-            <div>
-                <label for="idZipCode">Code postal : </label>
-                <input id="idZipCode" th:field="*{zipCode}" type="text">
-
-            </div>
-            <div class="error" th:errors="*{zipCode}"></div>
-            <div>
-                <label for="idCity">Ville : </label>
-                <input id="idCity" th:field="*{city}" type="text">
-            </div>
-            <div class="error" th:errors="*{city}"></div>
-
-            <button type="submit"> Ajouter un article a la vente</button>
+            <button class="button-signin-inscription" type="submit"> Ajouter un article a la vente</button>
 
         </form>
 

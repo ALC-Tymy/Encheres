@@ -10,17 +10,18 @@ import java.time.LocalDateTime;
 public class CreateArticleDTO {
     //DTO de Article
 
-    @Size(min = 4, max = 30, message = "Le nom de l''article doit contenir en 4 et 30 caractères")
+    @Size(min = 4, max = 30, message = "Le nom de l''article doit contenir entre 4 et 30 caractères")
     @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ -]+$", message = "Le nom de l''article ne peut contenir que des lettres, des espaces et des tirets")
     private String name;
-    @Size(min = 4, max = 500, message = "Le description de l''article doit contenir en 4 et 500 caractères")
-    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ -]+$", message = "Le description de l''article ne peut contenir que des lettres, des espaces et des tirets")
+    @Size(min = 4, max = 500, message = "La description de l''article doit contenir entre 4 et 500 caractères")
+    @Pattern(regexp = "^[A-Za-zÀ-ÖØ-öø-ÿ -]+$", message = "La description de l''article ne peut contenir que des lettres, des espaces et des tirets")
     private String description;
 
     private int originalPoint;
     @FutureOrPresent (message = "La date et l''heure doivent être dans le futur")
     private LocalDateTime beginningDate;
 
+    @Future (message = "La date et l''heure doivent être dans le futur")
     private LocalDateTime endingDate;
 
     private Category category;
