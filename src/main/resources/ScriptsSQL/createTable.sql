@@ -2,13 +2,13 @@
 -- DROP POUR CLEAR BDD
 ---------------------------------------------------------------------------
 
--- ALTER TABLE PROPOSAL
---     DROP CONSTRAINT fk_buyer,fk_article;
--- ALTER TABLE ARTICLE
---     DROP CONSTRAINT fk_seller,fk_category,fk_del_address;
--- ALTER TABLE ROLES
---     DROP CONSTRAINT fk_roles;
--- DROP TABLE IF EXISTS ROLES,[USER],ARTICLE,PROPOSAL,CATEGORY,DELIVERY_ADDRESS;
+ALTER TABLE PROPOSAL
+    DROP CONSTRAINT fk_buyer,fk_article;
+ALTER TABLE ARTICLE
+    DROP CONSTRAINT fk_seller,fk_category,fk_del_address;
+ALTER TABLE ROLES
+    DROP CONSTRAINT fk_roles;
+DROP TABLE IF EXISTS ROLES,[USER],ARTICLE,PROPOSAL,CATEGORY,DELIVERY_ADDRESS;
 
 
 ---------------------------------------------------------------------------
@@ -53,7 +53,8 @@ CREATE TABLE ARTICLE
     id_category    BIGINT,
     id_del_address BIGINT,
     id_seller      BIGINT,
-    id_buyer       BIGINT
+    id_buyer       BIGINT,
+    image_path     NVARCHAR(500)
 )
 
 CREATE TABLE PROPOSAL

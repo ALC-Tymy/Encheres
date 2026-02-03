@@ -36,6 +36,14 @@
                     <span th:text="${article.category.name}"></span>
                 </div>
 
+                <!-- Image -->
+                <div style="display: flex; justify-content: center; padding: 1rem">
+                    <img th:if="${article.imagePath != null}"
+                         th:src="${article.imagePath}"
+                         style="max-height: 20rem;">
+                    <span th:if="${article.imagePath == null}">Image indisponible</span>
+                </div>
+
                 <!-- Dates des enchères -->
                 <p class="details-article-dates">Enchères du
                     <span th:text="${#temporals.format(article.beginningDate, 'dd/MM/yyyy') }"></span>

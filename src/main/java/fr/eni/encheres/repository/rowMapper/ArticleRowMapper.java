@@ -25,6 +25,7 @@ public class ArticleRowMapper implements RowMapper<Article> {
         articleResult.setBeginningDate(rs.getObject("beginning_date", LocalDateTime.class));
         articleResult.setEndingDate(rs.getObject("ending_date", LocalDateTime.class));
         articleResult.setStatus(rs.getString("status"));
+        articleResult.setImagePath(rs.getString("image_path"));
 
         //User qui est le vendeur de l'article
         Long sellerId = rs.getLong("id_user_seller");

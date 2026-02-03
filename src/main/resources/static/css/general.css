@@ -23,9 +23,8 @@ h2 {
 }
 
 footer {
-    position: fixed;
+    /*position: absolute;*/
     width: 100%; height: 20px;
-    margin-top: 5em;
     bottom: 0; left: 0; right: 0;
     padding-bottom: 0.5em;
     text-align: center;
@@ -527,23 +526,97 @@ LISTE DES ARTICLES CRÉÉS MAIS PAS ENCORE EN VENTE
 
 
 /********************************************************/
-/** PAGE CONNEXION **/
+/** PAGES CONNEXION & INSCRIPTION **/
 /********************************************************/
 
-.form-login {
+.form-login,
+.form-signin {
     display: flex;
-    flex-direction: column;
     background-color: #2B6068;
-    max-width: 400px;
     border-radius: 20px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5vh;
     padding: 30px;
-    color: white;
+    /*color: white;*/
+    color: #011215;
+    font-weight: 500;
+}
+
+.form-signin {
+    flex-wrap: wrap;
+    max-width: 900px;
+    margin-bottom: 4vh;
+}
+
+.form-login {
+    flex-direction: column;
+    max-width: 400px;
+    margin-bottom: 40vh;
+}
+
+.form-col2 {
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.form-souscol {
+    display: flex;
+}
+
+.form-souscol2 {
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.form-col2:first-of-type {
+    border-right:1px solid #2ECEA4;
+    padding-right: 30px;
+}
+
+.form-col2:last-of-type {
+    padding-left: 30px;
+}
+
+.form-souscol2:first-of-type {
+    padding-right: 10px;
+}
+
+.form-souscol2:last-of-type {
+    padding-left: 10px;
+}
+
+.form-col2 p {
+    color: #2ECEA4;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: center;
+    margin-top: 0;
+}
+
+.form-login input,
+.form-signin input {
+    width: 100%;
+    border: none;
+    color: #05252C;
+    box-sizing: border-box;
 }
 
 .form-login input {
+    padding: 10px;
+    margin-bottom: 2vh;
+    margin-top: 1.1vh;
+    border-radius: 3px;
+}
+
+.form-signin input {
+    padding: 8px;
+    margin-bottom: 1.5vh;
+    margin-top: 1vh;
+    border-radius: 3px;
+}
+
+.form-signin textarea {
     width: 100%;
     border: none;
     color: #05252C;
@@ -554,7 +627,26 @@ LISTE DES ARTICLES CRÉÉS MAIS PAS ENCORE EN VENTE
     border-radius: 3px;
 }
 
-.button-login-connexion {
+.form-signin select {
+    width: 100%;
+    border: none;
+    color: #05252C;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 2vh;
+    margin-top: 1.1vh;
+    border-radius: 3px;
+}
+
+.form-legend {
+    font-size: 0.8em;
+    color: #05252C;
+    text-align: center;
+}
+
+.button-login-connexion,
+.button-signin-inscription,
+.button-modification-validation{
     color: #05252C;
     background-color: #2ECEA4;
     padding: 0.3em 0.8em;
@@ -562,21 +654,67 @@ LISTE DES ARTICLES CRÉÉS MAIS PAS ENCORE EN VENTE
     border: none;
     font-size: 1.1em;
     cursor: pointer;
+}
+
+.button-login-connexion {
     margin-top: 2vh;
     margin-left: auto;
     margin-right: auto;
 }
 
-.button-login-connexion:hover {
+.button-signin-inscription {
+    margin-top: 4vh;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1vh;
+}
+
+.button-login-connexion:hover,
+.button-signin-inscription:hover,
+.button-modification-validation:hover{
     background-color: #1fba95;
     transition: transform 0.2s ease-in-out;
+}
+
+.button-modification-validation {
+    margin-right: 10px;
+}
+
+.button-modification-annulation {
+    text-decoration: none;
+    color: white;
+    font-weight: 400;
+    background-color: #f12d2d;
+    padding: 0.3em 0.8em;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.button-modification-annulation:hover{
+    background-color: #d11818;
+    transition: transform 0.2s ease-in-out;
+}
+
+.buttons {
+    margin-top: 2vh;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Message d'erreur lors de la connexion */
 
 .error-login {
-    color: #ff9393;
-    font-size: 0.9em;
+    background-color: #ffffff;
+    color: #9c0f0f;
+    font-size: 0.85em;
+    font-weight: 400;
+    padding: 2px 5px 2px 5px;
+    border-radius: 2px;
+    margin-bottom: 2vh;
+
 }
 
 
