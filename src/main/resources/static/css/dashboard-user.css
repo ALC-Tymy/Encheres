@@ -5,6 +5,11 @@
 
 /** Navigation interne à la page **/
 
+#encheres-encours,
+#encheres-terminees {
+    scroll-margin-top: 100vh;
+}
+
 div.encheres-user #encheres-encours,
 div.encheres-user #encheres-terminees {
     display: none;
@@ -26,33 +31,40 @@ div.encheres-user #encheres-terminees:target {
     justify-content: center;
 }
 
-/**************************** Target / not target à améliorer **/
-
-.conteneur-nav-encheres-user:not(:target) a,
-.conteneur-nav-ventes-user:not(:target) a{
+.conteneur-nav-encheres-user a,
+.conteneur-nav-ventes-user a {
     text-decoration: none;
     font-weight: 400;
-    color: white;
+    color: #2ECEA4;
     border: solid 1px #2ECEA4;
+    background-color: #05252C;
     border-radius: 15px;
     padding: 10px 20px 10px 20px;
     width: 200px;
-    margin-right: 1%;
-    margin-left: 1%;
+    margin-right: 0.5%;
+    margin-left: 0.5%;
 }
 
-.conteneur-nav-encheres-user:target a {
-    text-decoration: none;
-    font-weight: 400;
-    color: #05252C;
-    border: solid 1px #2ECEA4;
+/** Etat actif boutons enchères **/
+.encheres-user:has(#encheres-encours:target)
+.conteneur-nav-encheres-user a[href="#encheres-encours"],
+.encheres-user:has(#encheres-terminees:target)
+.conteneur-nav-encheres-user a[href="#encheres-terminees"]{
     background-color: #2ECEA4;
-    border-radius: 15px;
-    padding: 10px 20px 10px 20px;
-    width: 200px;
-    margin-right: 1%;
-    margin-left: 1%;
+    color: #05252C;
 }
+
+/** Etat actif boutons ventes **/
+.ventes-user:has(#ventes-crees:target)
+.conteneur-nav-ventes-user a[href="#ventes-crees"],
+.ventes-user:has(#ventes-encours:target)
+.conteneur-nav-ventes-user a[href="#ventes-encours"],
+.ventes-user:has(#ventes-terminees:target)
+.conteneur-nav-ventes-user a[href="#ventes-terminees"]{
+    background-color: #2ECEA4;
+    color: #05252C;
+}
+
 
 
 
@@ -137,6 +149,12 @@ div.ventes-user #ventes-crees:target,
 div.ventes-user #ventes-encours:target,
 div.ventes-user #ventes-terminees:target {
     display: flex;
+}
+
+#ventes-crees,
+#ventes-encours,
+#ventes-terminees {
+    scroll-margin-top: 100vh;
 }
 
 .conteneur-ventes-user {
