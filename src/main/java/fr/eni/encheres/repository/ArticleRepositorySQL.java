@@ -260,4 +260,15 @@ public class ArticleRepositorySQL implements ArticleRepository {
                 """;
         return jdbcTemplate.update(sql);
     }
+
+    @Override
+    public long finalPointInProgress(long id_article){
+        String sql = """
+                SELECT final_point FROM ARTICLE where id_article = :id_article
+                """;
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id_article", id_article);
+        Integer finalPointInProgress = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
+        return finalPointInProgress;
+    }
 }

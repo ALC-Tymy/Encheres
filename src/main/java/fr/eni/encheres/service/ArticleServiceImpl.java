@@ -148,5 +148,9 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.updateECtoVD();
     }
 
+    @Override
+    public long finalPointInProgress(long id_article) {
+        return articleRepository.finalPointInProgress(id_article);
+    }
 
 }

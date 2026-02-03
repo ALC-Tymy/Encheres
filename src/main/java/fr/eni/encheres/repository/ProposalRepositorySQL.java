@@ -95,17 +95,7 @@ public class ProposalRepositorySQL implements ProposalRepository {
     @Override
     public List<Proposal> readProposalECByIdUser(long id) {
 
-        String sql = "SELECT PROPOSAL.id_article, PROPOSAL.id_buyer, " +
-                "       MIN(ranking) AS ranking, MAX(point_proposal) AS point_proposal, " +
-                "       article.name, article.final_point, article.beginning_date, " +
-                "       article.ending_date " +
-                " FROM PROPOSAL " +
-                " LEFT JOIN ARTICLE on PROPOSAL.id_article = ARTICLE.id_article " +
-                " WHERE PROPOSAL.id_buyer=:id AND ARTICLE.status='EC' " +
-                " GROUP BY PROPOSAL.id_article, PROPOSAL.id_buyer, " +
-                "         article.name, article.final_point, article.ending_date, " +
-                "         article.beginning_date " +
-                " ORDER BY article.ending_date ";
+        String sql = "SELECT PROPOSAL.id_article, PROPOSAL.id_buyer, " + "       MIN(ranking) AS ranking, MAX(point_proposal) AS point_proposal, " + "       article.name, article.final_point, article.beginning_date, " + "       article.ending_date " + " FROM PROPOSAL " + " LEFT JOIN ARTICLE on PROPOSAL.id_article = ARTICLE.id_article " + " WHERE PROPOSAL.id_buyer=:id AND ARTICLE.status='EC' " + " GROUP BY PROPOSAL.id_article, PROPOSAL.id_buyer, " + "         article.name, article.final_point, article.ending_date, " + "         article.beginning_date " + " ORDER BY article.ending_date ";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
@@ -118,17 +108,7 @@ public class ProposalRepositorySQL implements ProposalRepository {
     @Override
     public List<Proposal> readProposalVDLVByIdUser(long id) {
 
-        String sql = "SELECT PROPOSAL.id_article, PROPOSAL.id_buyer, " +
-                "       MIN(ranking) AS ranking, MAX(point_proposal) AS point_proposal, " +
-                "       article.name, article.final_point, article.beginning_date, " +
-                "       article.ending_date " +
-                " FROM PROPOSAL " +
-                " LEFT JOIN ARTICLE on PROPOSAL.id_article = ARTICLE.id_article " +
-                " WHERE PROPOSAL.id_buyer=:id AND (ARTICLE.status='VD' OR ARTICLE.status='LV') " +
-                " GROUP BY PROPOSAL.id_article, PROPOSAL.id_buyer, " +
-                "         article.name, article.final_point, article.ending_date, " +
-                "         article.beginning_date " +
-                "         ORDER BY article.ending_date DESC ";
+        String sql = "SELECT PROPOSAL.id_article, PROPOSAL.id_buyer, " + "       MIN(ranking) AS ranking, MAX(point_proposal) AS point_proposal, " + "       article.name, article.final_point, article.beginning_date, " + "       article.ending_date " + " FROM PROPOSAL " + " LEFT JOIN ARTICLE on PROPOSAL.id_article = ARTICLE.id_article " + " WHERE PROPOSAL.id_buyer=:id AND (ARTICLE.status='VD' OR ARTICLE.status='LV') " + " GROUP BY PROPOSAL.id_article, PROPOSAL.id_buyer, " + "         article.name, article.final_point, article.ending_date, " + "         article.beginning_date " + "         ORDER BY article.ending_date DESC ";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
@@ -178,9 +158,48 @@ public class ProposalRepositorySQL implements ProposalRepository {
     }
 
     @Override
-    public void checkWallet() {
+    public boolean checkUserRankOne(long id_article, long id_buyer) {
+        String sql = """
+                  SELECT COUNT(*)
+                        FROM PROPOSAL
+                        WHERE ranking = 1
+                          AND id_article = :id_article
+                          AND id_buyer = :id_buyer
+                """;
 
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id_article", id_article);
+        map.addValue("id_buyer", id_buyer);
+
+        Integer result = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
+        return result != null && result > 0;
     }
 
+    @Override
+    public long checkWalletPointToPointProposal(long id_buyer) {
+        String sql = """
+                SELECT walletPoint FROM [USER] where id_user = :id_user;
+                """;
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id_user", id_buyer);
+        Integer walletPoint = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
+        return walletPoint;
+    }
+
+    @Override
+    public void creditWalPendingAndDebitWalPoint(long id_buyer, int point_proposal) {
+        String sql = """
+                UPDATE u SET u.walletPoint = u.walletPoint - :point_proposal,
+                                  u.walletPending = u.walletPending + :point_proposal
+                         FROM [USER] As u
+                         LEFT JOIN PROPOSAL AS p ON u.id_user = p.id_buyer
+                                WHERE id_user = :id_user
+                """;
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id_user", id_buyer);
+        map.addValue("point_proposal", point_proposal);
+        namedParameterJdbcTemplate.update(sql, map);
+
+    }
 
 }

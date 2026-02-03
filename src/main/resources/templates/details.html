@@ -69,17 +69,17 @@
                         <p class="box-proposition-title">Faire une offre</p>
                         <p>Montant disponible : <span th:text="${userConnected?.walletPoint}"></span> points</p>
                     </div>
-                    <!--                    th:action="@{/article/{id}/addProposal(id=${article.id})}" th:object="${proposal}"      th:field="*{pointProposal}"-->
                     <form method="post" th:action="@{/article/{id}/addProposal(id=${article.idArticle})}"
                           th:object="${newProposal}">
-                        <label for="PointProposal"></label>
                         <input class="input-proposition" id="PointProposal" name="pointProposal"
                                th:field="*{pointProposal}"
                                type="number">
                         <button class="button-proposition-validate" type="submit">Valider</button>
+                        <div class="error-login" th:if="${#fields.hasGlobalErrors()}">
+                            <div th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+                        </div>
                     </form>
                 </div>
-
                 <div class="box-enchere-article" th:classappend="${el.ranking == 1 ? 'ranking1' : ''}"
                      th:each="el : ${listProposal}">
                     <div> <!-- Infos de la proposition -->

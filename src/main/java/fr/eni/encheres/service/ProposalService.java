@@ -1,6 +1,7 @@
 package fr.eni.encheres.service;
 
 import fr.eni.encheres.entity.Proposal;
+import fr.eni.encheres.service.exceptions.ProposalException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public interface ProposalService {
     List<Proposal> readProposalByIdArticle(long id);
 
     @Transactional
-    void createProposal(long id_article, int pointProposal);
+    void createProposal(long id_article, int pointProposal) throws ProposalException;
 
-    void updateRankByArticle(long id);
+
 }
