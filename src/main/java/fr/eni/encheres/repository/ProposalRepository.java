@@ -29,5 +29,9 @@ public interface ProposalRepository {
 
     void createProposal(Proposal proposal);
 
-    void checkWallet();
+    boolean checkUserRankOne(long id_article, long id_buyer);
+
+    long checkWalletPointToPointProposal(long id_buyer);
+
+    void creditWalPendingAndDebitWalPoint(long id_buyer, int point_proposal);
 }

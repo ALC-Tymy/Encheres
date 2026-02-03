@@ -64,3 +64,23 @@ UPDATE PROPOSAL SET ranking = ranking + 1 WHERE id_article = 10 ;
 SELECT id_article,ranking,id_buyer FROM PROPOSAL
 WHERE  id_article = 10;
 SELECT * from PROPOSAL;
+
+
+SELECT walletPoint, walletPending FROM [USER]
+WHERE id_user = 2;
+
+--Request pour vérif si lutilisateur est deja top 1 au ranking
+SELECT COUNT(*)
+FROM PROPOSAL
+WHERE ranking = 1
+  AND id_article = 13
+  AND id_buyer = 3 ;
+
+SELECT walletPoint FROM [USER] where id_user = 3;
+
+UPDATE u SET u.walletPoint = u.walletPoint - :point_proposal,
+                  u.walletPending = u.walletPending + :point_proposal
+         FROM [USER] As u
+         LEFT JOIN PROPOSAL AS p ON u.id_user = p.id_buyer
+                WHERE id_user = 3;
+SELECT final_point FROM ARTICLE where id_article = :id_article;

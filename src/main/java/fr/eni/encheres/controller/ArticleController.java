@@ -5,10 +5,13 @@ import fr.eni.encheres.entity.Proposal;
 import fr.eni.encheres.entity.User;
 import fr.eni.encheres.entity.dto.CreateArticleDTO;
 import fr.eni.encheres.service.*;
+import fr.eni.encheres.service.exceptions.ProposalException;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Null;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,9 +78,28 @@ public class ArticleController {
     }
 
     @PostMapping("/article/{id}/addProposal")
-    public String addProposal(@ModelAttribute("newProposal") Proposal newProposal,
-                              @PathVariable("id") long id) {
-        proposalService.createProposal(id, newProposal.getPointProposal());
-        return "redirect:/mes-encheres";
+    public String addProposal(@PathVariable("id") long id,
+                              @ModelAttribute("newProposal") Proposal newProposal,
+                              BindingResult bindingResult,
+                              Model model) {
+        Article article = articleService.readById(id);
+        List<Proposal> listProposal = proposalService.readProposalByIdArticle(id);
+        model.addAttribute("article", article);
+        model.addAttribute("listProposal", listProposal);
+        model.addAttribute("userConnected", userService.readById(userService.getIdLoggedUser()));
+
+        if (bindingResult.hasErrors()) {
+            return "details";
+        }
+
+        try {
+            proposalService.createProposal(id, newProposal.getPointProposal());
+            return "redirect:/article/" + id;
+        } catch (ProposalException e) {
+            bindingResult.reject("global", e.getMessage());
+            return "details";
+        }
     }
+
+
 }

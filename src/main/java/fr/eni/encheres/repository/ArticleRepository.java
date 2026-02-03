@@ -36,4 +36,6 @@ public interface ArticleRepository {
     int updateCRtoEC();
 
     int updateECtoVD();
+
+    long finalPointInProgress(long id_article);
 }
