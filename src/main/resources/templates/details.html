@@ -11,62 +11,64 @@
 
         <div class="conteneur-details-article"> <!-- Section des infos / 2 colonnes -->
 
-            <div class="details-article-infos"> <!-- 1ère colonne : infos de l'article -->
-
-                <div th:class="'details-article-cate cat-' + ${article.category.idCategory}">
-
-                    <!-- Icône suivant la catégorie de l'article -->
-                    <div th:switch="${article.category?.idCategory}">
-                        <div th:case="1">
-                            <img alt="Icône de tablette" class="icon-cate-detail" th:src="@{/img/icon-info.svg}">
-                        </div>
-                        <div th:case="2">
-                            <img alt="Icône de chaise" class="icon-cate-detail" th:src="@{/img/icon-furniture.svg}">
-                        </div>
-                        <div th:case="3">
-                            <img alt="Icône de chaussettes" class="icon-cate-detail" th:src="@{/img/icon-clothes.svg}">
-                        </div>
-                        <div th:case="4">
-                            <img alt="Icône de ballon" class="icon-cate-detail" th:src="@{/img/icon-sport.svg}">
-                        </div>
-                        <div th:case="5">
-                            <img alt="Icône de livre" class="icon-cate-detail" th:src="@{/img/icon-hobby.svg}">
-                        </div>
-                    </div>
-                    <span th:text="${article.category.name}"></span>
-                </div>
+            <div class="details-article">
 
                 <!-- Image -->
-                <div style="display: flex; justify-content: center; padding: 1rem">
-                    <img style="max-height: 20rem;"
-                         th:if="${article.imagePath != null}"
-                         th:src="${article.imagePath}">
-                    <span th:if="${article.imagePath == null}">Image indisponible</span>
+                <div class="image-article">
+                    <img th:if="${article.imagePath != null}"
+                         th:src="${article.imagePath}" alt="Image de l'article">
                 </div>
 
-                <!-- Dates des enchères -->
-                <p class="details-article-dates">Enchères du
-                    <span th:text="${#temporals.format(article.beginningDate, 'dd/MM/yyyy') }"></span>
-                    au <span th:text="${#temporals.format(article.endingDate, 'dd/MM/yyyy') }"></span>
-                </p>
+                <div class="details-article-infos"> <!-- 1ère colonne : infos de l'article -->
 
-                <hr class="details-article-divider">
+                    <div th:class="'details-article-cate cat-' + ${article.category.idCategory}">
 
-                <!-- Description -->
-                <p class="details-article-description" th:text="${article.description}"></p>
+                        <!-- Icône suivant la catégorie de l'article -->
+                        <div th:switch="${article.category?.idCategory}">
+                            <div th:case="1">
+                                <img alt="Icône de tablette" class="icon-cate-detail" th:src="@{/img/icon-info.svg}">
+                            </div>
+                            <div th:case="2">
+                                <img alt="Icône de chaise" class="icon-cate-detail" th:src="@{/img/icon-furniture.svg}">
+                            </div>
+                            <div th:case="3">
+                                <img alt="Icône de chaussettes" class="icon-cate-detail" th:src="@{/img/icon-clothes.svg}">
+                            </div>
+                            <div th:case="4">
+                                <img alt="Icône de ballon" class="icon-cate-detail" th:src="@{/img/icon-sport.svg}">
+                            </div>
+                            <div th:case="5">
+                                <img alt="Icône de livre" class="icon-cate-detail" th:src="@{/img/icon-hobby.svg}">
+                            </div>
+                        </div>
+                        <span th:text="${article.category.name}"></span>
+                    </div>
 
-                <!-- Infos sur le vendeur -->
-                <div class="article-detail-cartouches">
-                    <p>Vendeur</p>
+                    <!-- Dates des enchères -->
+                    <p class="details-article-dates">Enchères du
+                        <span th:text="${#temporals.format(article.beginningDate, 'dd/MM/yyyy') }"></span>
+                        au <span th:text="${#temporals.format(article.endingDate, 'dd/MM/yyyy') }"></span>
+                    </p>
+
+                    <hr class="details-article-divider">
+
+                    <!-- Description -->
+                    <p class="details-article-description" th:text="${article.description}"></p>
+                    <p>Prix de départ : <span th:text="${article.originalPoint}"></span> points</p>
+
+                    <!-- Infos sur le vendeur -->
+                    <div class="article-detail-cartouches">
+                        <p>Vendeur</p>
+                    </div>
+                    <p th:text="${article.seller.pseudo}"></p>
+
+                    <!-- Infos sur le lieu de retrait -->
+                    <div class="article-detail-cartouches">
+                        <p>Lieu de retrait</p>
+                    </div>
+                    <p th:text="${article.getDeliveryAddress().address} + ', ' + ${article.getDeliveryAddress().zipCode} + ' ' + ${article.getDeliveryAddress().city}"></p>
+
                 </div>
-                <p th:text="${article.seller.pseudo}"></p>
-
-                <!-- Infos sur le lieu de retrait -->
-                <div class="article-detail-cartouches">
-                    <p>Lieu de retrait</p>
-                </div>
-                <p th:text="${article.getDeliveryAddress().address} + ', ' + ${article.getDeliveryAddress().zipCode} + ' ' + ${article.getDeliveryAddress().city}"></p>
-
             </div>
 
             <div class="details-article-propositions">

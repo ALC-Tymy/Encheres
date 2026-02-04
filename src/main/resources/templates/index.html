@@ -12,14 +12,13 @@
                 <form th:action="@{/search}"
                       th:object="${searching}"
                       method="post">
-                    <label for="idSearch">Filtrer par catégorie</label>
+<!--                    <label for="idSearch">Filtrer par catégorie</label>-->
+                    <input type="text" th:field="*{label}" placeholder="Rechercher un article">
                     <select id="idSearch" th:field="*{category}">
-                        <option value="NULL">Toutes</option>
+                        <option value="NULL">Toutes les catégories</option>
                         <option th:each="item : ${listCategory}" th:value="${item.idCategory}"
                                 th:text="${item.name}"></option>
                     </select>
-                    <label for="idSearch"> par label </label>
-                    <input type="text" th:field="*{label}">
 
                     <button class="button-filter-validate" type="submit">Rechercher</button>
                 </form>
