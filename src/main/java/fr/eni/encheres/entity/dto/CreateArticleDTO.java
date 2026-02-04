@@ -18,12 +18,16 @@ public class CreateArticleDTO {
     private String description;
 
     private int originalPoint;
-    @FutureOrPresent (message = "La date et l''heure doivent être dans le futur")
+
+    @FutureOrPresent(message = "La date de début doit être dans le présent ou le futur")
+    @NotNull(message = "La date de début est obligatoire")
     private LocalDateTime beginningDate;
 
-    @Future (message = "La date et l''heure doivent être dans le futur")
+    @Future(message = "La date de fin doit être dans le futur")
+    @NotNull(message = "La date de fin est obligatoire")
     private LocalDateTime endingDate;
 
+    @NotNull(message = "Veuillez sélectionner une catégorie")
     private Category category;
 
     private User seller;

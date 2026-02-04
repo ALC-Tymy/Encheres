@@ -102,7 +102,7 @@ VALUES ('Bibliothèque IKEA Billy', 'Bibliothèque IKEA modèle Billy, coloris b
 
 -- Article 13
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
-VALUES ('Basket Nike Air Max', 'Paire de baskets Nike Air Max 90, pointure 42, coloris blanc/gris/rouge. État quasi neuf, portées 3-4 fois seulement. Boîte d''origine incluse. Semelle intermédiaire en mousse et amorti Air visible au talon. Très confortables et iconiques. Aucune tâche ni défaut. Lacets de rechange fournis.', 110, 145, '2026-01-18 09:00:00', '2026-02-03 21:00:00', 'EC', 3, 5, 5, 2, '/uploads/article/brian-hall-OShzOkbodd-unplash.jpg');
+VALUES ('Basket Nike Air Max', 'Paire de baskets Nike Air Max 90, pointure 42, coloris blanc/gris/rouge. État quasi neuf, portées 3-4 fois seulement. Boîte d''origine incluse. Semelle intermédiaire en mousse et amorti Air visible au talon. Très confortables et iconiques. Aucune tâche ni défaut. Lacets de rechange fournis.', 110, 145, '2026-01-18 09:00:00', '2026-02-03 21:00:00', 'EC', 3, 5, 5, 2, '../uploads/article/brian-hall-OShzOkbodd-unplash.jpg');
 
 -- Article 14
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
