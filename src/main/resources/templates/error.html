@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<div th:replace="~{fragments/layout :: layout(content= ~{::main}) }" xmlns:margin="http://www.w3.org/1999/xhtml">
+    <main>
+
+        <h2>Oups ! il y un problème</h2>
+
+        <ul>
+            <li th:switch="${status}">
+                <label th:case="401">Vous n'avez pas le droit d'aller ici</label>
+                <label th:case="403">Accès refusé</label>
+                <label th:case="404">Ressource introuvable</label>
+
+                <label th:case="500">Erreur serveur</label>
+                <label th:case="502">Erreur serveur</label>
+                <label th:case="503">Erreur serveur</label>
+                <label th:case="504">Serveur ne répond pas</label>
+            </li>
+        </ul>
+    </main>
+</div>

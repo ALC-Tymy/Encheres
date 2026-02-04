@@ -34,27 +34,32 @@ public class SecurityConfiguration {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
-    ;
-
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> {
-//            auth.requestMatchers(HttpMethod.GET, "/mes-encheres").hasRole("USER")
-//                    .requestMatchers(HttpMethod.GET, "/mes-ventes").hasRole("USER")
-//                    .requestMatchers(HttpMethod.GET, "/mon-compte").hasRole("USER")
-//                    .requestMatchers(HttpMethod.GET, "/mon-compte/update").hasRole("USER")
-//                    .requestMatchers(HttpMethod.POST, "/mon-compte/update-post").hasRole("USER")
-//                    .requestMatchers(HttpMethod.GET, "/mon-compte/desactivate").hasRole("USER")
-//                    .requestMatchers(HttpMethod.GET, "/vendre").hasRole("USER")
-//                    .requestMatchers(HttpMethod.GET, "/details").hasRole("USER")
-//                    .requestMatchers(HttpMethod.GET, "/article/*").hasRole("USER")
-//                    .requestMatchers(HttpMethod.GET, "/inscription").permitAll()
-//                    .requestMatchers(HttpMethod.POST, "/inscription/new").permitAll()
-//                    .requestMatchers("/*").permitAll()
-//                    .requestMatchers("/css/**").permitAll()
-//                    .requestMatchers("/img/**").permitAll()
-//                    .anyRequest().denyAll();
-            auth.anyRequest().permitAll();
+            auth.requestMatchers(HttpMethod.GET, "/mes-encheres").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/mes-ventes").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/mon-compte").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/mon-compte/update").hasRole("USER")
+                    .requestMatchers(HttpMethod.POST, "/mon-compte/update-post").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/mon-compte/desactivate").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/vendre").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/vendre/add").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/details").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/article/{id}").hasRole("USER")
+                    .requestMatchers(HttpMethod.POST, "/article/{id}/addProposal").hasRole("USER")
+                    .requestMatchers(HttpMethod.GET, "/inscription").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/inscription/new").permitAll()
+                    .requestMatchers(HttpMethod.POST, "/search").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/connexion").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/display-user").hasRole("USER")
+                    .requestMatchers("/*").permitAll()
+                    .requestMatchers("/css/**").permitAll()
+                    .requestMatchers("/js/*").permitAll()
+                    .requestMatchers("/img/**").permitAll()
+                    .requestMatchers("/uploads/**").permitAll()
+                    .anyRequest().denyAll();
+//            auth.anyRequest().permitAll();
         });
 
         http.formLogin(form -> form
@@ -85,12 +90,6 @@ public class SecurityConfiguration {
         http.logout(logout -> {
             logout.logoutUrl("/logout").logoutSuccessUrl("/");
         });
-
         return http.build();
-
     }
-
-    ;
-
-
 }

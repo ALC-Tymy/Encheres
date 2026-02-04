@@ -1,7 +1,7 @@
 ---------------------------------------------------------------------------
 -- DROP POUR CLEAR BDD
 ---------------------------------------------------------------------------
-
+-- --
 -- ALTER TABLE PROPOSAL
 --     DROP CONSTRAINT fk_buyer,fk_article;
 -- ALTER TABLE ARTICLE

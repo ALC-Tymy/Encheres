@@ -94,7 +94,7 @@ VALUES ('Collection BD Tintin', 'Collection complète des aventures de Tintin, 2
 --------------------------------------------------------------------------
 -- Article 11
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
-VALUES ('MacBook Air M1', 'Apple MacBook Air 2020 avec puce M1, 8Go RAM, SSD 256Go, écran Retina 13 pouces. Couleur gris sidéral, clavier AZERTY français. Acheté en 2021, excellent état cosmétique et fonctionnel. Batterie en parfait état avec environ 150 cycles seulement. Vendu avec chargeur MagSafe d''origine et boîte. Rapide et silencieux.', 680, 780, '2026-01-20 10:00:00', '2026-02-05 20:00:00', 'EC', 1, 2, 2, 3, '/uploads/article/fabio-alves-eOU0PhQwBKA-unsplash.jpg');
+VALUES ('MacBook Air M1', 'Apple MacBook Air 2020 avec puce M1, 8Go RAM, SSD 256Go, écran Retina 13 pouces. Couleur gris sidéral, clavier AZERTY français. Acheté en 2021, excellent état cosmétique et fonctionnel. Batterie en parfait état avec environ 150 cycles seulement. Vendu avec chargeur MagSafe d''origine et boîte. Rapide et silencieux.', 680, 780, '2026-01-20 10:00:00', '2026-02-05 20:00:00', 'EC', 1, 2, 2, 3, '/uploads/article/dmitry-chernyshov-mP7aPSUm7aE-unsplash.jpg');
 
 -- Article 12
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
@@ -134,7 +134,7 @@ VALUES ('Appareil photo Nikon D3500', 'Reflex numérique Nikon D3500, capteur AP
 
 -- Article 21
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
-VALUES ('Clavier mécanique Logitech', 'Clavier mécanique gaming Logitech G Pro X, switches GX Blue tactiles et clicky. Rétroéclairage RGB personnalisable, format TKL compact sans pavé numérique. Câble détachable. Utilisé 1 an, fonctionne parfaitement. Toutes les touches répondent bien. Nettoyé récemment. Idéal pour gaming et frappe intensive.', 95, 128, '2026-01-28 10:00:00', '2026-02-13 18:00:00', 'EC', 1, 2, 2, 5, '/uploads/article/aditya-shukla-cd8fqHPlrM4-unsplash.jpg');
+VALUES ('Clavier mécanique Logitech', 'Clavier mécanique gaming Logitech G Pro X, switches GX Blue tactiles et clicky. Rétroéclairage RGB personnalisable, format TKL compact sans pavé numérique. Câble détachable. Utilisé 1 an, fonctionne parfaitement. Toutes les touches répondent bien. Nettoyé récemment. Idéal pour gaming et frappe intensive.', 95, 128, '2026-01-28 10:00:00', '2026-02-13 18:00:00', 'EC', 1, 2, 2, 5, NULL);
 
 -- Article 22
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
@@ -149,12 +149,12 @@ INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_d
 VALUES ('Ballon basket Wilson', 'Ballon de basket Wilson Evolution, taille 7 (officielle), cuir composite. Utilisé en salle uniquement, très bon grip. Surface légèrement usée mais parfaitement fonctionnel. Bien gonflé, garde la pression. Idéal pour matchs ou entraînements. Un des meilleurs ballons indoor du marché.', 48, 62, '2026-01-16 14:30:00', '2026-02-01 20:00:00', 'EC', 4, 5, 5, 2, '/uploads/article/images.jpg');
 
 -- Article 25
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Jeu de société Catan', 'Jeu de société Les Colons de Catane, édition standard en français. Complet avec tous les pions, cartes et plateaux. Boîte en bon état, règles du jeu incluses. Joué une dizaine de fois en famille. Pour 3-4 joueurs, durée partie environ 75min. Excellent jeu de stratégie et négociation.', 32, 45, '2026-01-15 11:00:00', '2026-01-31 19:00:00', 'EC', 5, 2, 2, 3);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Jeu de société Catan', 'Jeu de société Les Colons de Catane, édition standard en français. Complet avec tous les pions, cartes et plateaux. Boîte en bon état, règles du jeu incluses. Joué une dizaine de fois en famille. Pour 3-4 joueurs, durée partie environ 75min. Excellent jeu de stratégie et négociation.', 32, 45, '2026-01-15 11:00:00', '2026-01-31 19:00:00', 'EC', 5, 2, 2, 3, '/uploads/article/jacques-dillies-5ao1SPVofnE-unsplash.jpg');
 
 -- Article 26
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Disque dur externe 2To', 'Disque dur externe Seagate 2To, USB 3.0, format 2.5 pouces portable. Compatible PC et Mac. Vitesse transfert rapide. Aucun secteur défectueux, vérifié récemment. Boîtier en plastique noir, quelques rayures superficielles. Vendu avec câble USB. Idéal pour sauvegardes ou stockage multimédia.', 58, 75, '2026-01-14 12:00:00', '2026-01-30 16:00:00', 'EC', 1, 1, 1, 3);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Disque dur externe 2To', 'Disque dur externe Seagate 2To, USB 3.0, format 2.5 pouces portable. Compatible PC et Mac. Vitesse transfert rapide. Aucun secteur défectueux, vérifié récemment. Boîtier en plastique noir, quelques rayures superficielles. Vendu avec câble USB. Idéal pour sauvegardes ou stockage multimédia.', 58, 75, '2026-01-14 12:00:00', '2026-01-30 16:00:00', 'EC', 1, 1, 1, 3, '/uploads/article/vincent-botta-wYD_wfifJVs-unsplash.jpg');
 
 -- Article 27
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
