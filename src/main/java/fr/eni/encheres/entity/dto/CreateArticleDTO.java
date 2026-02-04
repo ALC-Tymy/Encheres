@@ -1,5 +1,6 @@
 package fr.eni.encheres.entity.dto;
 
+import fr.eni.encheres.entity.Article;
 import fr.eni.encheres.entity.Category;
 import fr.eni.encheres.entity.User;
 import jakarta.validation.constraints.*;
@@ -18,6 +19,7 @@ public class CreateArticleDTO {
     private String description;
 
     private int originalPoint;
+    private int finalPoint;
 
     @FutureOrPresent(message = "La date de début doit être dans le présent ou le futur")
     @NotNull(message = "La date de début est obligatoire")
@@ -46,10 +48,12 @@ public class CreateArticleDTO {
     public CreateArticleDTO() {
     }
 
-    public CreateArticleDTO(String name, String description, int originalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, Category category, User seller, String address, String zipCode, String city) {
+
+    public CreateArticleDTO(String name, String description, int originalPoint, int finalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, Category category, User seller, String address, String zipCode, String city) {
         this.name = name;
         this.description = description;
         this.originalPoint = originalPoint;
+        this.finalPoint = finalPoint;
         this.beginningDate = beginningDate;
         this.endingDate = endingDate;
         this.category = category;
@@ -57,6 +61,14 @@ public class CreateArticleDTO {
         this.address = address;
         this.zipCode = zipCode;
         this.city = city;
+    }
+
+    public int getFinalPoint() {
+        return finalPoint;
+    }
+
+    public void setFinalPoint(int finalPoint) {
+        this.finalPoint = finalPoint;
     }
 
     public String getName() {
@@ -81,6 +93,7 @@ public class CreateArticleDTO {
 
     public void setOriginalPoint(int originalPoint) {
         this.originalPoint = originalPoint;
+        this.finalPoint = originalPoint;
     }
 
     public LocalDateTime getBeginningDate() {
@@ -145,6 +158,7 @@ public class CreateArticleDTO {
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", originalPoint=" + originalPoint +
+                ", finalPoint=" + finalPoint +
                 ", beginningDate=" + beginningDate +
                 ", endingDate=" + endingDate +
                 ", category=" + category +

@@ -228,25 +228,29 @@ public class ProposalRepositorySQL implements ProposalRepository {
     @Override
     public Long getUserIdByRankOne(long id_article) {
         String sql = """
-                    SELECT id_buyer
-                    FROM PROPOSAL
-                    WHERE id_article = :id_article
-                      AND ranking = 1
-                """;
+        SELECT TOP 1 id_buyer
+        FROM PROPOSAL
+        WHERE id_article = :id_article
+        ORDER BY ranking DESC, date_proposal DESC
+    """;
 
-        MapSqlParameterSource map = new MapSqlParameterSource();
-        map.addValue("id_article", id_article);
+        MapSqlParameterSource map = new MapSqlParameterSource()
+                .addValue("id_article", id_article);
 
-        return namedParameterJdbcTemplate.queryForObject(sql, map, Long.class);
+        return namedParameterJdbcTemplate
+                .query(sql, map, (rs, rowNum) -> rs.getLong("id_buyer"))
+                .stream()
+                .findFirst()
+                .orElse(null);
     }
 
     @Override
-    public void updatePointProposalToFinalPoint(long id_article, int point_proposal){
+    public void updatePointProposalToFinalPoint(long id_article, int point_proposal) {
         String sql = """
-                   UPDATE ARTICLE
-                           SET final_point = :point_proposal
-                           WHERE id_article = :id_article;
-        """;
+                           UPDATE ARTICLE
+                                   SET final_point = :point_proposal
+                                   WHERE id_article = :id_article;
+                """;
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id_article", id_article);
         map.addValue("point_proposal", point_proposal);

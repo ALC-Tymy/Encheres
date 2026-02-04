@@ -6,15 +6,16 @@
 .form-login,
 .form-signin {
     display: flex;
-    background-color: #2B6068;
+    /*background-color: #2B6068;*/
+    background-color: #05252C;
     border-radius: 20px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 5vh;
     padding: 30px;
     /*color: white;*/
-    color: #011215;
-    font-weight: 500;
+    color: #2ECEA4;
+    font-weight: 400;
 }
 
 .form-signin {
@@ -61,8 +62,8 @@
 }
 
 .form-col2 p {
-    color: #2ECEA4;
-    font-weight: bold;
+    color: #ffffff;
+    font-weight: 400;
     font-size: 1.2em;
     text-align: center;
     margin-top: 0;
@@ -71,10 +72,17 @@
 .form-login input,
 .form-signin input {
     width: 100%;
-    border: none;
-    color: #05252C;
+    border: solid 1px #2ECEA4;
+    color: white;
+    background-color: transparent;
     box-sizing: border-box;
 }
+
+.form-login input::placeholder,
+.form-signin input::placeholder{
+    color: #518c80;
+}
+
 
 .form-login input {
     padding: 10px;
@@ -90,10 +98,15 @@
     border-radius: 3px;
 }
 
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
 .form-signin textarea {
     width: 100%;
-    border: none;
-    color: #05252C;
+    border: solid 1px #2ECEA4;
+    color: white;
+    background-color: transparent;
     box-sizing: border-box;
     padding: 10px;
     margin-bottom: 2vh;
@@ -111,6 +124,34 @@
     margin-top: 1.1vh;
     border-radius: 3px;
 }
+
+.vendre-cate {
+    color: #2ECEA4;
+}
+.vendre-cate select{
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+}
+
+.vendre-cate select,
+.vendre-cate select::picker(select){
+    appearance: base-select;
+    border: 1px solid #2ECEA4;
+    background-color: #05252C;
+    color: #fff;
+    font-size: 0.95em;
+}
+
+.vendre-cate select::picker(select){
+    padding: 10px 0 10px 0;
+    border: none;
+}
+
+option::checkmark {
+    color: #2ECEA4;
+}
+
 
 .form-legend {
     font-size: 0.8em;

@@ -13,7 +13,7 @@
 }
 
 .conteneur-compte-user {
-    background-color: #2B6068;
+    background-color: #05252C;
     width: 90%;
     max-width: 600px;
     margin-right: auto;
@@ -23,7 +23,7 @@
 }
 
 .wallet {
-    background-color: #083139;
+    background-color: #0e414c;
     display: flex;
     justify-content: space-around;
     text-align: center;
@@ -60,12 +60,9 @@
     margin-bottom: 1vh;
 }
 
-/*.conteneur-infos-user {*/
-/*    display: flex;*/
-/*}*/
 
 .sous-titre-infos {
-    background-color: #05252C;
+    background-color: #0e414c;
     color: white;
     padding: 0.2em 0.5em 0.2em 0.5em;
     border-radius: 20px;
