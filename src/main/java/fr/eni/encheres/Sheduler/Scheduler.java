@@ -4,8 +4,10 @@ import fr.eni.encheres.entity.dto.ArticleLog;
 import fr.eni.encheres.service.ArticleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,13 +19,15 @@ public class Scheduler {
      */
     private static final Logger logger =
             LoggerFactory.getLogger(Scheduler.class);
+    private final JdbcTemplate jdbcTemplate;
 
 
     ArticleService articleService;
 
 
-    public Scheduler(ArticleService articleService) {
+    public Scheduler(ArticleService articleService, JdbcTemplate jdbcTemplate) {
         this.articleService = articleService;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     /**
@@ -62,7 +66,7 @@ public class Scheduler {
      * </p>
      */
     // Cron Spring : seconde minute heure jour mois jourSemaine
-    @Scheduled(cron = "*/10 * * * * *")
+    @Scheduled(cron = "*/30 * * * * *")
     public void updateStatusEncheres() {
 
         List<ArticleLog> crToEc = articleService.updateCRtoECWithLogs();
@@ -71,4 +75,10 @@ public class Scheduler {
         List<ArticleLog> ecToVd = articleService.updateECtoVDWithLogs();
         logChanges("EC → VD", "EC->VD", ecToVd);
     }
+
+//    @Transactional
+//    @Scheduled (cron = "0 * * * * * ")
+//    public void UpdateWinnerEnchere(){
+//        jdbcTemplate.update(UpdateWinnerEnchere);
+//    }
 }

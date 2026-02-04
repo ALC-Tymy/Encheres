@@ -68,13 +68,10 @@ public class ProposalServiceImpl implements ProposalService {
         // Je récupérer l'ancien n°1 (s'il existe) AVANT de modifier les ranks
         Long rankOneUserId = this.proposalRepository.getUserIdByRankOne(id_article);
 
-
         //0)
         if (finalPoint == null) {
             finalPoint = articleService.getOriginalPoint((int) id_article);
         }
-        //TODO gérer quand y a pas d'enchère problème sur rankOneUserId
-        // TODO quand il gagne, logiquement on doit faire finalpoint au vendeur et vider le pendingPoint de l'acheteur je pense a crée dans une nouvelle méthode
 
         // 1) Vérifier que l'utilisateur a suffisamment de crédit
         if (walletUser < pointProposal) {
@@ -115,22 +112,6 @@ public class ProposalServiceImpl implements ProposalService {
         proposalRepository.createProposal(newProposal);
     }
 
-//    @Override
-//    public void encheresEndValid() {
-////        //1) Je récupère l'acheteur et son walletPending.
-////        int idbuyer =
-////        int walletPendingBuyer =
-////        //2) Je récupère le vendeur et son walletpoint.
-////        int idSeller =
-////        int walletPointSellet =
-////
-////        //3) Je récupère les article avec le status VD
-////
-////
-////        //4) La logique qui crédit le vendeur et débit l'acheteur pour chaque article VD et passe son status en LV
-//
-//
-//    }
     }
 
 

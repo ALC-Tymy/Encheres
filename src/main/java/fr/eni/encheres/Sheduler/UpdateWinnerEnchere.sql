@@ -1,0 +1,31 @@
+-- USE db_encheres;
+-- GO;
+--
+-- -- BEGIN TRAN UpdateWinnerEnchere;
+--
+-- -- Je crédite le protefeuil "walletPoint" du vendeur par rapport au prix final de l'article "final_point"
+--
+-- UPDATE u
+-- SET u.walletPoint = u.walletPoint + p.point_proposal
+-- FROM [USER] AS u
+-- LEFT JOIN PROPOSAL AS p On u.id_user = p.id_buyer
+-- LEFT JOIN ARTICLE AS a ON p.id_article = a.id_article
+-- WHERE id_user AND p.status = 'VD';
+--
+-- -- Je débite les protefeuil provisoir "WalletPending" par rapport au prix final de l'article "final_point"
+-- -- et que l'article soit bien en status 'VD' vendu.
+-- UPDATE u
+-- SET u.walletPending = u.walletPending - p.point_proposal
+-- FROM [USER] AS u
+-- LEFT JOIN PROPOSAL AS p ON u.id_user = p.id_buyer
+-- LEFT JOIN ARTICLE AS a ON p.id_article = a.id_article
+-- WHERE id_seller AND p.status = 'VD';
+--
+-- -- Je change les status de 'VD' vendu à 'LV' en cours de livraison pour ne plus avoir évité de faire des doublons.
+-- UPDATE a SET a.status = 'LV'
+-- FROM ARTICLE AS a
+-- WHERE status = 'VD';
+--
+--
+-- -- ROLLBACK TRAN UpdateWinnerEnchere;
+-- -- COMMIT TRAN UpdateWinnerEnchere;

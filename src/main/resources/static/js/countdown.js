@@ -23,7 +23,7 @@ function formatNumber(ms) {
 
     // Si terminé
     if (ms <= 0) {
-        return "Terminé";
+        return "Terminée";
     }
 
     // Affichage avec jours si nécessaire
