@@ -122,6 +122,8 @@ public class ArticleController {
 
         Article article = articleService.readById(id);
         List<Proposal> listProposal = proposalService.readProposalByIdArticle(id);
+        //Recup de la date du jour pour afficher ou non la box d'enchères
+        model.addAttribute("localDateTime", LocalDateTime.now());
         model.addAttribute("article", article);
         model.addAttribute("localDateTime", LocalDateTime.now());
         model.addAttribute("listProposal", listProposal);

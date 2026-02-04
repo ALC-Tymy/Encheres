@@ -6,29 +6,44 @@
 
         <div th:object="${userConnected}">
 
-            <h2>Gérer mon compte</h2>
+            <h2>Mon compte</h2>
+            <p class="message-bonjour">Bonjour <span th:text="*{firstName}"></span></p>
 
-            <h3>Mon portefeuille</h3>
+            <div class="conteneur-compte-user">
 
-            <p>Portefeuille actuel : <span th:text="*{walletPoint}"></span></p>
-            <p>Portefeuille en attente : <span th:text="*{walletPending}"></span></p>
+                <div class="wallet">
+                    <div class="wallet-col">
+                        <p class="titre-portefeuille">Portefeuille disponible</p>
+                        <p class="montant-portefeuille"> <span th:text="*{walletPoint}"></span> points</p>
+                    </div>
+                    <div class="wallet-col">
+                        <p class="titre-portefeuille">Portefeuille en attente</p>
+                        <p class="montant-portefeuille"> <span th:text="*{walletPending}"></span> points</p>
+                    </div>
+                </div>
 
-            <h3>Mes informations</h3>
+                <div class="conteneur-infos-user">
 
-            <p>Pseudo : <span th:text="*{pseudo}"></span></p>
-            <p>Email : <span th:text="*{email}"></span></p>
+                    <div class="info-connexion">
+                        <h3>Informations de connexion</h3>
+                        <p class="space-info"><span class="sous-titre-infos">Pseudo</span><span th:text="*{pseudo}"></span></p>
+                        <p><span class="sous-titre-infos">Email</span><span th:text="*{email}"></span></p>
+                    </div>
 
-            <p>Prénom : <span th:text="*{firstName}"></span></p>
-            <p>Nom : <span th:text="*{lastName}"></span></p>
+                    <div class="info-contact">
+                        <h3>Informations de contact</h3>
+                        <p><span th:text="*{firstName}"></span> <span th:text="*{lastName}"></span></p>
+                        <p><span th:text="*{address}"></span>, <span th:text="*{zipCode}"></span> <span th:text="*{city}"></span></p>
+                        <p><span th:text="*{phone}"></span></p>
+                    </div>
+                </div>
 
-            <p>Adresse : <span th:text="*{address}"></span></p>
-            <p>Code Postal : <span th:text="*{zipCode}"></span></p>
-            <p>Ville : <span th:text="*{city}"></span></p>
+                <span class="buttons-compte">
+                    <a class="button-modification-compte" href="/mon-compte/update">Modifier mes informations</a>
+                    <a class="button-suppression-compte" href="#modaleConfirmationDesactivate">Désactiver mon compte</a>
+                </span>
 
-            <p>Téléphone : <span th:text="*{phone}"></span></p>
-
-            <a href="/mon-compte/update">Modifier mes informations</a>
-            <a href="#modaleConfirmationDesactivate">Désactiver mon compte</a>
+            </div>
 
         </div>
 
@@ -36,10 +51,11 @@
         <div id="modaleConfirmationDesactivate" class="modal">
             <a href="#" class="overlay"></a>
             <div class="modal_content">
-                <p>Êtes-vous sûr de vouloir désactiver votre compte ?
+                <p class="titre-attention">Attention !</p>
+                <p class="texte-attention">Êtes-vous sûr de vouloir désactiver votre compte ?<br>
                     Vous ne pourrez plus vous connecter</p>
-                <a href="/mon-compte/desactivate">Désactiver</a>
-                <a href="#">Annuler</a>
+                <a class="bouton-suppression-validation" href="/mon-compte/desactivate">Oui je comprends et je veux désactiver</a>
+                <a class="bouton-suppression-annulation" href="#">Non, annuler</a>
             </div>
 
         </div>
