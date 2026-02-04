@@ -80,7 +80,9 @@ public class ProposalServiceImpl implements ProposalService {
         if (walletUser < pointProposal) {
             throw new ProposalException("Vous n'avez pas assez de crédit");
         }
-
+        System.out.println(id_article);
+        System.out.println(pointProposal);
+        System.out.println(finalPoint);
         // 2) Vérifier que la nouvelle proposition est supérieure à l'actuelle
         if (pointProposal <= finalPoint) {
             throw new ProposalException("Votre proposition doit être supérieure à l'offre actuelle");
@@ -113,6 +115,23 @@ public class ProposalServiceImpl implements ProposalService {
         proposalRepository.createProposal(newProposal);
     }
 
+//    @Override
+//    public void encheresEndValid() {
+////        //1) Je récupère l'acheteur et son walletPending.
+////        int idbuyer =
+////        int walletPendingBuyer =
+////        //2) Je récupère le vendeur et son walletpoint.
+////        int idSeller =
+////        int walletPointSellet =
+////
+////        //3) Je récupère les article avec le status VD
+////
+////
+////        //4) La logique qui crédit le vendeur et débit l'acheteur pour chaque article VD et passe son status en LV
+//
+//
+//    }
+    }
 
-}
+
 
