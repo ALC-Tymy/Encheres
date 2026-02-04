@@ -36,10 +36,10 @@
                     <input id="idOriginalPoint" th:field="*{originalPoint}" type="number">
                 </div>
 
-                <div >
+                <div class="vendre-cate">
                     <label for="idCategory">Catégorie*</label>
                         <select id="idCategory" name="" th:field="*{category}" >
-                            <option value=""> -- Choisir une catégorie</option>
+<!--                            <option selected disabled value=""> &#45;&#45; Choisir une catégorie</option>-->
                             <option th:each="c : ${categoryList}" th:text="${c.name}" th:value="${c.idCategory}"></option>
                         </select>
                 </div>
