@@ -35,7 +35,6 @@ public class HomeController {
         List<Article> allArticlesCR = articleService.readFullCR();
         model.addAttribute("listArticleCR", allArticlesCR);
         List<Article> allArticles = articleService.readFullEC();
-        //
         //Liste des article envoyée à la page html, eventuellement filtrée dans la fonction articleFiltering
         model.addAttribute("listArticle", articleFiltering(allArticles));
         //Envoi la list des catégories pour le formulaire de recherche

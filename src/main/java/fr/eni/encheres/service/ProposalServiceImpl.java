@@ -64,13 +64,16 @@ public class ProposalServiceImpl implements ProposalService {
         // Je récupère le solde (wallet) de l'utilisateur pour vérifier s'il peut faire une proposition.
         long walletUser = this.proposalRepository.checkWalletPointToPointProposal(idBuyer);
         // Je récupère le prix de l'enchère en cours de l'article et le stocke dans une variable finalPoint
-        int finalPoint = this.articleService.finalPointInProgress((int) id_article);
+        Integer finalPoint = this.articleService.finalPointInProgress((int) id_article);
         // Je récupérer l'ancien n°1 (s'il existe) AVANT de modifier les ranks
         Long rankOneUserId = this.proposalRepository.getUserIdByRankOne(id_article);
 
-        //Todo : pour le problème ou on peut pas enchérir e sur un article qui a pas de final_point vue qu'il est null
-        //todo suite je pense que l'on peut faire un truc du genre
-        //todo if (finalPoint == null) finalPoint = articleRepo.getOriginalPoint(id_article); methode sql a créee pour récupérer original_point
+
+        //0)
+        if (finalPoint == null) {
+            finalPoint = articleService.getOriginalPoint((int) id_article);
+        }
+        //TODO gérer quand y a pas d'enchère problème sur rankOneUserId
         // TODO quand il gagne, logiquement on doit faire finalpoint au vendeur et vider le pendingPoint de l'acheteur je pense a crée dans une nouvelle méthode
 
         // 1) Vérifier que l'utilisateur a suffisamment de crédit
@@ -98,7 +101,9 @@ public class ProposalServiceImpl implements ProposalService {
         // 6) Mettre à jour les ranks (l'ancien n°1 passe en n°2 ect...)
         this.proposalRepository.updateRankByArticle(id_article);
 
-        // 7) Créer la nouvelle proposition
+        //8) Mettre à jour le final_point dans [USER] au prix du point_proposal
+        this.proposalRepository.updatePointProposalToFinalPoint(id_article, pointProposal);
+        // 9) Créer la nouvelle proposition
         Proposal newProposal = new Proposal();
         newProposal.setPointProposal(pointProposal);
         newProposal.setDateProposal(LocalDateTime.now());

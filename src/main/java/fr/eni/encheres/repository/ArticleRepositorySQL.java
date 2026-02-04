@@ -95,8 +95,12 @@ public class ArticleRepositorySQL implements ArticleRepository {
     public List<Article> readFullEC() {
         String sql = """
                 SELECT a.id_article, a.name, a.description, a.original_point, a.final_point, a.beginning_date, a.ending_date, a.status, a.image_path,
-                       ub.id_user AS id_user_buyer, ub.pseudo AS pseudo_buyer, ub.email AS email_buyer, ub.password AS password_buyer, ub.first_name AS first_name_buyer, ub.last_name AS last_name_buyer, ub.address AS address_buyer, ub.zipcode AS zipcode_buyer, ub.city AS city_buyer, ub.phone AS phone_buyer, ub.walletPoint AS walletPoint_buyer, ub.walletPending AS walletPending_buyer, ub.actif AS actif_buyer,
-                       us.id_user AS id_user_seller, us.pseudo AS pseudo_seller, us.email AS email_seller, us.password AS password_seller, us.first_name AS first_name_seller, us.last_name AS last_name_seller, us.address AS address_seller, us.zipcode AS zipcode_seller, us.city AS city_seller, us.phone AS phone_seller, us.walletPoint AS walletPoint_seller, us.walletPending AS walletPending_seller, us.actif AS actif_seller,
+                       ub.id_user AS id_user_buyer, ub.pseudo AS pseudo_buyer, ub.email AS email_buyer, ub.password AS password_buyer, ub.first_name AS first_name_buyer,
+                       ub.last_name AS last_name_buyer, ub.address AS address_buyer, ub.zipcode AS zipcode_buyer, ub.city AS city_buyer, ub.phone AS phone_buyer,
+                       ub.walletPoint AS walletPoint_buyer, ub.walletPending AS walletPending_buyer, ub.actif AS actif_buyer,
+                       us.id_user AS id_user_seller, us.pseudo AS pseudo_seller, us.email AS email_seller, us.password AS password_seller, 
+                       us.first_name AS first_name_seller, us.last_name AS last_name_seller, us.address AS address_seller, us.zipcode AS zipcode_seller, 
+                       us.city AS city_seller, us.phone AS phone_seller, us.walletPoint AS walletPoint_seller, us.walletPending AS walletPending_seller, us.actif AS actif_seller,
                        c.id_category, c.name AS name_category,
                        da.id_delivery_address, da.address AS address_delivery_address, da.zipcode AS zipCode_delivery_address, da.city AS city_delivery_address
                 FROM ARTICLE a
@@ -280,13 +284,24 @@ public class ArticleRepositorySQL implements ArticleRepository {
     }
 
     @Override
-    public int finalPointInProgress(int id_article){
+    public Integer finalPointInProgress(int id_article){
         String sql = """
                 SELECT final_point FROM ARTICLE where id_article = :id_article
                 """;
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id_article", id_article);
-        Integer finalPointInProgress = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
-        return finalPointInProgress != null ? finalPointInProgress : 0;
+        return namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
+
+    }
+
+    @Override
+    public int getOriginalPoint(int id_article){
+        String sql = """
+            SELECT original_point FROM ARTICLE where id_article = :id_article
+                """;
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id_article", id_article);
+        Integer originalPoint = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
+        return originalPoint;
     }
 }

@@ -78,14 +78,21 @@ WHERE ranking = 1
 
 SELECT walletPoint FROM [USER] where id_user = 3;
 
-UPDATE u SET u.walletPoint = u.walletPoint - :point_proposal,
-                  u.walletPending = u.walletPending + :point_proposal
-         FROM [USER] As u
-         LEFT JOIN PROPOSAL AS p ON u.id_user = p.id_buyer
-                WHERE id_user = 3;
+UPDATE [USER]
+SET walletPoint = walletPoint - :point_proposal,
+    walletPending = walletPending + :point_proposal
+WHERE id_user = :id_user
+
 SELECT final_point FROM ARTICLE where id_article = :id_article;
 
 UPDATE [USER] SET walletPending = walletPending - :point_proposal,
                   walletPoint = walletPoint + :point_proposal
             WHERE id_user = :id_user
 AND walletPending >= :point_proposal;
+
+
+UPDATE ARTICLE
+SET final_point = :point_proposal
+WHERE id_article = 11;
+
+Select final_point FROM ARTICLE where id_article = 11

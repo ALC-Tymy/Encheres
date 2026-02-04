@@ -37,6 +37,7 @@ public interface ProposalRepository {
 
     void creditWalPointAndDebitWalPending(long id_buyer, int point_proposal);
 
-    // NOUVELLE MÉTHODE : Récupérer l'ID de l'utilisateur classé n°1
     Long getUserIdByRankOne(long id_article);
+
+    void updatePointProposalToFinalPoint(long id_article, int point_proposal);
 }

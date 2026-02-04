@@ -240,5 +240,20 @@ public class ProposalRepositorySQL implements ProposalRepository {
         return namedParameterJdbcTemplate.queryForObject(sql, map, Long.class);
     }
 
+    @Override
+    public void updatePointProposalToFinalPoint(long id_article, int point_proposal){
+        String sql = """
+                   UPDATE ARTICLE
+                           SET final_point = :point_proposal
+                           WHERE id_article = :id_article;
+        """;
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id_article", id_article);
+        map.addValue("point_proposal", point_proposal);
+
+        namedParameterJdbcTemplate.update(sql, map);
+
+    }
+
 
 }

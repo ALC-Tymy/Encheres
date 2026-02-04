@@ -37,5 +37,8 @@ public interface ArticleRepository {
 
     int updateECtoVD();
 
-    int finalPointInProgress(int id_article);
+
+    Integer finalPointInProgress(int id_article);
+
+    int getOriginalPoint(int id_article);
 }
