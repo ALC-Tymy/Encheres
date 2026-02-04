@@ -143,15 +143,17 @@ public class ProposalRepositorySQL implements ProposalRepository {
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
         String sql = """
-                         INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
-                         VALUES (:point_proposal, :date_proposal, :ranking, :id_buyer, :id_article)
+                    INSERT INTO PROPOSAL (point_proposal, date_proposal, ranking, id_buyer, id_article)
+                    VALUES (:point_proposal, :date_proposal, :ranking, :id_buyer, :id_article)
                 """;
+
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("point_proposal", proposal.getPointProposal());
         map.addValue("date_proposal", proposal.getDateProposal());
-        map.addValue("ranking", "1");
+        map.addValue("ranking", 1);
         map.addValue("id_buyer", proposal.getBuyer().getIdUser());
         map.addValue("id_article", proposal.getArticle().getIdArticle());
+
         namedParameterJdbcTemplate.update(sql, map, keyHolder);
         long id = keyHolder.getKey().longValue();
         proposal.setIdProposal(id);
@@ -160,11 +162,11 @@ public class ProposalRepositorySQL implements ProposalRepository {
     @Override
     public boolean checkUserRankOne(long id_article, long id_buyer) {
         String sql = """
-                  SELECT COUNT(*)
-                        FROM PROPOSAL
-                        WHERE ranking = 1
-                          AND id_article = :id_article
-                          AND id_buyer = :id_buyer
+                    SELECT COUNT(*)
+                    FROM PROPOSAL
+                    WHERE ranking = 1
+                      AND id_article = :id_article
+                      AND id_buyer = :id_buyer
                 """;
 
         MapSqlParameterSource map = new MapSqlParameterSource();
@@ -178,28 +180,65 @@ public class ProposalRepositorySQL implements ProposalRepository {
     @Override
     public long checkWalletPointToPointProposal(long id_buyer) {
         String sql = """
-                SELECT walletPoint FROM [USER] where id_user = :id_user;
+                    SELECT walletPoint 
+                    FROM [USER] 
+                    WHERE id_user = :id_user
                 """;
+
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id_user", id_buyer);
-        Integer walletPoint = namedParameterJdbcTemplate.queryForObject(sql, map, Integer.class);
-        return walletPoint;
+
+        Long walletPoint = namedParameterJdbcTemplate.queryForObject(sql, map, Long.class);
+        return walletPoint != null ? walletPoint : 0;
     }
 
     @Override
     public void creditWalPendingAndDebitWalPoint(long id_buyer, int point_proposal) {
         String sql = """
-                UPDATE u SET u.walletPoint = u.walletPoint - :point_proposal,
-                                  u.walletPending = u.walletPending + :point_proposal
-                         FROM [USER] As u
-                         LEFT JOIN PROPOSAL AS p ON u.id_user = p.id_buyer
-                                WHERE id_user = :id_user
+                    UPDATE [USER] 
+                    SET walletPoint = walletPoint - :point_proposal,
+                        walletPending = walletPending + :point_proposal
+                    WHERE id_user = :id_user
+                """;
+
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id_user", id_buyer);
+        map.addValue("point_proposal", point_proposal);
+
+        namedParameterJdbcTemplate.update(sql, map);
+
+    }
+
+    @Override
+    public void creditWalPointAndDebitWalPending(long id_buyer, int point_proposal) {
+        String sql = """
+                    UPDATE [USER] 
+                    SET walletPending = walletPending - :point_proposal,
+                        walletPoint = walletPoint + :point_proposal
+                    WHERE id_user = :id_user
                 """;
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id_user", id_buyer);
         map.addValue("point_proposal", point_proposal);
+
         namedParameterJdbcTemplate.update(sql, map);
 
     }
+
+    @Override
+    public Long getUserIdByRankOne(long id_article) {
+        String sql = """
+                    SELECT id_buyer
+                    FROM PROPOSAL
+                    WHERE id_article = :id_article
+                      AND ranking = 1
+                """;
+
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("id_article", id_article);
+
+        return namedParameterJdbcTemplate.queryForObject(sql, map, Long.class);
+    }
+
 
 }

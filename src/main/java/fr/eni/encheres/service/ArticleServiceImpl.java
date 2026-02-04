@@ -149,7 +149,7 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public long finalPointInProgress(long id_article) {
+    public int finalPointInProgress(int id_article) {
         return articleRepository.finalPointInProgress(id_article);
     }
 

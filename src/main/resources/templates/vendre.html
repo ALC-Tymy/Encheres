@@ -6,6 +6,16 @@
 
         <h2>Vendre un objet</h2>
 
+        <!-- Message d'erreur général -->
+        <div class="error-login" th:if="${errorMessage}">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
+        <!-- Message de succès -->
+        <div class="success-message" th:if="${successMessage}">
+            <p th:text="${successMessage}"></p>
+        </div>
+
         <form method="post" th:action="@{/vendre/add}" th:object="${articleDTO}" class="form-signin">
 
             <div class="form-col2">
@@ -44,6 +54,8 @@
                 <div>
                     <label for="idEndingDate">Date de fin des enchères*</label>
                     <input id="idEndingDate" th:field="*{endingDate}" type="datetime-local">
+                    <div class="error-login" th:if="${#fields.hasErrors('endingDate')}" th:errors="*{endingDate}"></div>
+
                 </div>
 
                 <div>
