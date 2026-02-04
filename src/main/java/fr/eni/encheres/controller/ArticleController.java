@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -84,7 +85,7 @@ public class ArticleController {
             articleService.createArticleDTO(articleDTO);
             redirectAttributes.addFlashAttribute("successMessage",
                     "Votre article a été mis en vente avec succès !");
-            return "redirect:/";
+            return "redirect:/mes-ventes#ventes-crees";
 
         } catch (Exception e) {
             model.addAttribute("errorMessage", "Une erreur est survenue : " + e.getMessage());
@@ -103,8 +104,11 @@ public class ArticleController {
         model.addAttribute("article", article);
         model.addAttribute("listProposal", listProposal);
         model.addAttribute("newProposal", new Proposal());
+        //Recup de la date du jour pour afficher ou non la box d'enchères
+        model.addAttribute("localDateTime", LocalDateTime.now());
         //Recup de l'id utilisateur connecté pour afficher son portefeuille
         model.addAttribute("userConnected", this.userService.readById(userService.getIdLoggedUser()));
+        model.addAttribute("idUserConnected", userService.getIdLoggedUser());
         //Affichage de la page détails d'un article
         return "details";
     }

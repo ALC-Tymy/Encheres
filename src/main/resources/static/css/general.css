@@ -7,10 +7,40 @@
 /** GENERAL **/
 /********************************************************/
 
+html, body {
+    height: 100%;
+    scrollbar-color: #05252C #51949E;
+}
+
+html::-webkit-scrollbar {
+    width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+    background: #51949E;
+}
+
+html::-webkit-scrollbar-thumb {
+    background-color: #05252C;
+    border-radius: 10px;
+    border: 3px solid #51949E;
+}
+
+html {
+    scrollbar-gutter: stable;
+}
+
 body {
     background: #05252C;
     background: linear-gradient(180deg, rgba(5, 37, 44, 1) 0%, rgb(15, 75, 85) 100%);
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    margin-bottom: 3vh;
 }
 
 h2 {
@@ -21,6 +51,7 @@ h2 {
     line-height: 1.2em;
     text-align: center;
 }
+
 
 footer {
     /*position: absolute;*/

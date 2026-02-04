@@ -72,7 +72,13 @@
             <div class="details-article-propositions">
                 <!-- Deuxième colonne : les propositions (enchères) pour cet article -->
 
-                <div class="box-create-proposition">
+                <div class="box-create-proposition" th:if="${article.beginningDate} > ${localDateTime}">
+                    <div>
+                        <p>Les enchères seront bientôt ouvertes</p>
+                    </div>
+                </div>
+
+                <div class="box-create-proposition" th:if="( ${article.beginningDate}  < ${localDateTime} ) and ( ${article.endingDate} > ${localDateTime} ) and ${idUserConnected != article.seller.idUser}">
                     <div>
                         <p class="box-proposition-title">Faire une offre</p>
                         <p>Montant disponible : <span th:text="${userConnected?.walletPoint}"></span> points</p>

@@ -28,10 +28,10 @@
                 <a href="/vendre">Vendre</a>
             </div>
             <div th:if="${#authorization.expression('hasRole(''USER'')')}">
-                <a href="/mes-ventes">Mes ventes</a>
+                <a href="/mes-ventes#ventes-encours">Mes ventes</a>
             </div>
             <div th:if="${#authorization.expression('hasRole(''USER'')')}">
-                <a href="/mes-encheres">Mes enchères</a>
+                <a href="/mes-encheres#encheres-encours">Mes enchères</a>
             </div>
             <div th:if="${#authorization.expression('hasRole(''USER'')')}">
                 <a href="/mon-compte">Mon compte</a>
