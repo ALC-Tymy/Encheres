@@ -5,7 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <title>AMA</title>
+    <link href="/css/dashboard-user.css" rel="stylesheet">
+    <link href="/css/forms.css" rel="stylesheet">
     <link href="/css/general.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+    <link href="/css/page-details.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
@@ -24,10 +28,10 @@
                 <a href="/vendre">Vendre</a>
             </div>
             <div th:if="${#authorization.expression('hasRole(''USER'')')}">
-                <a href="/mes-ventes">Mes ventes</a>
+                <a href="/mes-ventes#ventes-encours">Mes ventes</a>
             </div>
             <div th:if="${#authorization.expression('hasRole(''USER'')')}">
-                <a href="/mes-encheres">Mes enchères</a>
+                <a href="/mes-encheres#encheres-encours">Mes enchères</a>
             </div>
             <div th:if="${#authorization.expression('hasRole(''USER'')')}">
                 <a href="/mon-compte">Mon compte</a>

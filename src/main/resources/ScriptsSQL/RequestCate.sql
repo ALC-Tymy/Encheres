@@ -70,7 +70,7 @@ SELECT walletPoint, walletPending FROM [USER]
 WHERE id_user = 2;
 
 --Request pour vérif si lutilisateur est deja top 1 au ranking
-SELECT COUNT(*)
+SELECT TOP 1 id_buyer,point_proposal
 FROM PROPOSAL
 WHERE ranking = 1
   AND id_article = 13
@@ -84,3 +84,8 @@ UPDATE u SET u.walletPoint = u.walletPoint - :point_proposal,
          LEFT JOIN PROPOSAL AS p ON u.id_user = p.id_buyer
                 WHERE id_user = 3;
 SELECT final_point FROM ARTICLE where id_article = :id_article;
+
+UPDATE [USER] SET walletPending = walletPending - :point_proposal,
+                  walletPoint = walletPoint + :point_proposal
+            WHERE id_user = :id_user
+AND walletPending >= :point_proposal;

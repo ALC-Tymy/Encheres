@@ -34,4 +34,9 @@ public interface ProposalRepository {
     long checkWalletPointToPointProposal(long id_buyer);
 
     void creditWalPendingAndDebitWalPoint(long id_buyer, int point_proposal);
+
+    void creditWalPointAndDebitWalPending(long id_buyer, int point_proposal);
+
+    // NOUVELLE MÉTHODE : Récupérer l'ID de l'utilisateur classé n°1
+    Long getUserIdByRankOne(long id_article);
 }

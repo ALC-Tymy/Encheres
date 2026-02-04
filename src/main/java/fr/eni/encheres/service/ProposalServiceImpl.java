@@ -1,10 +1,8 @@
 package fr.eni.encheres.service;
 
 import fr.eni.encheres.entity.Proposal;
-import fr.eni.encheres.entity.User;
 import fr.eni.encheres.repository.ProposalRepository;
 import fr.eni.encheres.service.exceptions.ProposalException;
-import fr.eni.encheres.service.exceptions.SignUpException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,50 +56,56 @@ public class ProposalServiceImpl implements ProposalService {
         return proposalRepository.readProposalByIdArticle(id);
     }
 
-    //TODO : Pense a faire la mise a jour avant la création de la proposition car sinon y aura un soucis
-    //TODO suite : sur le ranking, vue que l'on fait un +1 sur le rank.
-
     @Transactional
     @Override
     public void createProposal(long id_article, int pointProposal) throws ProposalException {
-
         // Je récupère l'id de l'utilisateur connecté et je le stocke dans la variable idBuyer.
-        long idBuyer = userService.getIdLoggedUser();
-
+        long idBuyer = this.userService.getIdLoggedUser();
         // Je récupère le solde (wallet) de l'utilisateur pour vérifier s'il peut faire une proposition.
-        long walletUser = proposalRepository.checkWalletPointToPointProposal(idBuyer);
+        long walletUser = this.proposalRepository.checkWalletPointToPointProposal(idBuyer);
+        // Je récupère le prix de l'enchère en cours de l'article et le stocke dans une variable finalPoint
+        int finalPoint = this.articleService.finalPointInProgress((int) id_article);
+        // Je récupérer l'ancien n°1 (s'il existe) AVANT de modifier les ranks
+        Long rankOneUserId = this.proposalRepository.getUserIdByRankOne(id_article);
 
-        // Je récupère le prix / nombre de points requis pour l'article en cours et je le stocke dans finalPointInProgress.
-        long finalPointInProgress = articleService.finalPointInProgress(id_article);
+        //Todo : pour le problème ou on peut pas enchérir e sur un article qui a pas de final_point vue qu'il est null
+        //todo suite je pense que l'on peut faire un truc du genre
+        //todo if (finalPoint == null) finalPoint = articleRepo.getOriginalPoint(id_article); methode sql a créee pour récupérer original_point
+        // TODO quand il gagne, logiquement on doit faire finalpoint au vendeur et vider le pendingPoint de l'acheteur je pense a crée dans une nouvelle méthode
 
-        // Je vérifie si l'utilisateur est déjà classé n°1 sur cet article, et je renvoie un message d'erreur si c'est le cas.
-        if (proposalRepository.checkUserRankOne(id_article, idBuyer)) {
-            throw new ProposalException("Vous avez déjà la meilleure proposition");
-        }
-
-        // Je vérifie que l'utilisateur a suffisamment de crédit pour faire la proposition.
-        if (walletUser >= finalPointInProgress) {
-
-            // Je mets à jour les ranks des propositions pour cet article (l'ancienne meilleure proposition descend).
-            this.proposalRepository.updateRankByArticle(id_article);
-
-            // Je débite le walletPoint et je crédite le walletPending avec le montant de la proposition.
-            this.proposalRepository.creditWalPendingAndDebitWalPoint(idBuyer, pointProposal);
-
-        } else {
+        // 1) Vérifier que l'utilisateur a suffisamment de crédit
+        if (walletUser < pointProposal) {
             throw new ProposalException("Vous n'avez pas assez de crédit");
         }
 
-        // Puis je crée la nouvelle enchère / proposition.
+        // 2) Vérifier que la nouvelle proposition est supérieure à l'actuelle
+        if (pointProposal <= finalPoint) {
+            throw new ProposalException("Votre proposition doit être supérieure à l'offre actuelle");
+        }
+
+        // 3) Vérifier si l'utilisateur est déjà classé n°1
+        if (this.proposalRepository.checkUserRankOne(id_article, idBuyer)) {
+            throw new ProposalException("Vous avez déjà la meilleure proposition");
+        }
+
+        // 4) Rembourser l'ancien n°1 s'il existait
+        if (rankOneUserId != null) {
+            this.proposalRepository.creditWalPointAndDebitWalPending(rankOneUserId, finalPoint);
+        }
+        // 5) Débiter le nouveau proposant
+        this.proposalRepository.creditWalPendingAndDebitWalPoint(idBuyer, pointProposal);
+
+        // 6) Mettre à jour les ranks (l'ancien n°1 passe en n°2 ect...)
+        this.proposalRepository.updateRankByArticle(id_article);
+
+        // 7) Créer la nouvelle proposition
         Proposal newProposal = new Proposal();
         newProposal.setPointProposal(pointProposal);
         newProposal.setDateProposal(LocalDateTime.now());
         newProposal.setRanking(1);
-        newProposal.setBuyer(this.userService.readById(userService.getIdLoggedUser()));
-        newProposal.setArticle(articleService.readById(id_article));
+        newProposal.setBuyer(this.userService.readById(idBuyer));
+        newProposal.setArticle(this.articleService.readById(id_article));
         proposalRepository.createProposal(newProposal);
     }
-
-
 }
 

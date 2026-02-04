@@ -6,47 +6,80 @@
 
     <h2>Mes enchères</h2>
 
-    <h3>En cours</h3>
+<!--    <h3 class="conteneur-nav-encheres-user">-->
+<!--      <a href="#encheres-encours">En cours</a>-->
+<!--      <a href="#encheres-terminees">Terminées</a>-->
+<!--    </h3>-->
 
-    <div th:each="el : ${proposalECList}">
+    <div class="encheres-user">
 
-      <div class="box-enchere" th:classappend="${el.ranking == 1 ? 'ranking1' : ''}" >
+        <h3 class="conteneur-nav-encheres-user">
+            <a href="#encheres-encours">En cours</a>
+            <a href="#encheres-terminees">Terminées</a>
+        </h3>
 
-        <a th:href="@{/article/{id}(id=${el.article.idArticle})}">
+        <div class="conteneur-encheres-user" id="encheres-encours">
 
-          <p th:text="${el.article.getName()}"></p>
-          <p>Prix proposé : <span th:text="${el.pointProposal}"></span> point(s)</p>
-          <p>Classement : <span th:text="${el.ranking}"></span></p>
-          <p>Fin de la vente le
-            <span th:text="${#temporals.format(el.article.endingDate, 'dd/MM/yyyy')}"></span>
-            à <span th:text="${#temporals.format(el.article.endingDate, 'HH:mm') }"></span>
-          </p>
+          <div th:each="el : ${proposalECList}" class="conteneur-encheres-user-col2">
 
-        </a>
+            <a th:href="@{/article/{id}(id=${el.article.idArticle})}">
 
-      </div>
-    </div><br>
+            <div class="box-enchere-user" th:classappend="${el.ranking == 1 ? 'ranking1' : ''}" >
 
-    <h3>Terminées</h3>
+                <div>
+                  <h4 th:text="${el.article.getName()}"></h4>
+                  <p><span class="gras">Prix proposé :</span> <span th:text="${el.pointProposal}"></span> points</p>
+                  <p><span class="gras">Fin de la vente</span> le
+                    <span th:text="${#temporals.format(el.article.endingDate, 'dd/MM/yyyy')}"></span>
+                    à <span th:text="${#temporals.format(el.article.endingDate, 'HH:mm') }"></span>
+                  </p>
+                </div>
 
-    <div th:each="el : ${proposalVDLVList}">
+                <div> <!-- ranking -->
+                  <p class="details-encheres-user-ranking" th:text="${el.ranking}"></p>
+                </div>
 
-      <div class="box-enchere" th:classappend="${el.ranking == 1 ? 'ranking1' : ''}">
+            </div>
+            </a>
+          </div>
+        </div>
 
-        <a th:href="@{/article/{id}(id=${el.article.idArticle})}">
+        <div class="conteneur-encheres-user" id="encheres-terminees" >
 
-          <p th:text="${el.article.getName()}"></p>
-          <p>Prix proposé : <span th:text="${el.pointProposal}"></span> point(s)</p>
-          <p>Prix gagnant : <span th:text="${el.article.getFinalPoint()}"></span> point(s)</p>
-          <p>Classement final : <span th:text="${el.ranking}"></span></p>
-          <p>Vente terminée depuis le
-            <span th:text="${#temporals.format(el.article.endingDate, 'dd/MM/yyyy')}"></span>
-            à <span th:text="${#temporals.format(el.article.endingDate, 'HH:mm') }"></span>
-          </p>
+          <div th:each="el : ${proposalVDLVList}" class="conteneur-encheres-user-col2">
 
-        </a>
+              <a th:href="@{/article/{id}(id=${el.article.idArticle})}">
 
-      </div>
+                <div class="box-enchere-user" th:classappend="${el.ranking == 1 ? 'ranking1' : ''}">
+
+                    <div>
+                        <h4 th:text="${el.article.getName()}"></h4>
+                        <p><span class="gras">Prix proposé :</span> <span th:text="${el.pointProposal}"></span> points</p>
+                        <p><span class="gras">Prix gagnant :</span> <span th:text="${el.article.getFinalPoint()}"></span> points</p>
+                        <p><span class="gras">Vente terminée</span> le
+                            <span th:text="${#temporals.format(el.article.endingDate, 'dd/MM/yyyy')}"></span>
+                            à <span th:text="${#temporals.format(el.article.endingDate, 'HH:mm') }"></span>
+                        </p>
+                    </div>
+
+                    <div> <!-- ranking -->
+                        <p class="details-encheres-user-ranking" th:text="${el.ranking}"></p>
+                    </div>
+
+<!--                    -->
+<!--                    <p th:text="${el.article.getName()}"></p>-->
+<!--                    <p>Prix proposé : <span th:text="${el.pointProposal}"></span> point(s)</p>-->
+<!--                    <p>Prix gagnant : <span th:text="${el.article.getFinalPoint()}"></span> point(s)</p>-->
+<!--                    <p>Classement final : <span th:text="${el.ranking}"></span></p>-->
+<!--                    <p>Vente terminée depuis le-->
+<!--                      <span th:text="${#temporals.format(el.article.endingDate, 'dd/MM/yyyy')}"></span>-->
+<!--                      à <span th:text="${#temporals.format(el.article.endingDate, 'HH:mm') }"></span>-->
+<!--                    </p>-->
+
+                </div>
+              </a>
+          </div>
+        </div>
 
     </div>
 

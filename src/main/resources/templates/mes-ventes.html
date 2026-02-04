@@ -4,67 +4,149 @@
 
     <main>
 
-        <h2>Mes ventes (en cours et terminées)</h2><br>
+        <h2>Mes ventes</h2>
 
-        <h3>Ventes en attente de démarrage</h3>
+        <div class="ventes-user">
 
-        <div class="box-enchere" th:each="el : ${articleCRList}">
+            <h3 class="conteneur-nav-ventes-user">
+                <a href="#ventes-crees">Créées</a>
+                <a href="#ventes-encours">En cours</a>
+                <a href="#ventes-terminees">Terminées</a>
+            </h3>
 
-<!--            th:classapend="'category' + ${el.category.name.toLowerCase()}"-->
+            <div class="conteneur-ventes-user" id="ventes-crees">
 
-            <a th:href="@{/article/{id}(id=${el.idArticle})}">
+                <div th:each="el : ${articleCRList}" class="conteneur-ventes-user-col2">
 
-                <p th:text="${el.getName()}"></p>
-                <p>Début de la vente le
-                    <span th:text="${#temporals.format(el.beginningDate, 'dd/MM/yyyy')}"></span>
-                    à <span th:text="${#temporals.format(el.beginningDate, 'HH:mm') }"></span>
-                <p>Mise à prix : <span th:text="${el.originalPoint}"></span> points</p>
+                    <a th:href="@{/article/{id}(id=${el.idArticle})}">
 
-            </a>
+                        <div th:class="'box-vente-user cat-' + ${el.category?.idCategory}">
 
-        </div><br>
+                            <div th:switch="${el.category?.idCategory}">
+                                <div th:case="1">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-info.svg}" alt="Icône de tablette">
+                                </div>
+                                <div th:case="2">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-furniture.svg}" alt="Icône de chaise">
+                                </div>
+                                <div th:case="3">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-clothes.svg}" alt="Icône de chaussettes">
+                                </div>
+                                <div th:case="4">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-sport.svg}" alt="Icône de ballon">
+                                </div>
+                                <div th:case="5">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-hobby.svg}" alt="Icône de livre">
+                                </div>
+                            </div>
 
-        <h3>Ventes en cours</h3><br>
+                            <div>
+                                <h4 th:text="${el.getName()}"></h4>
+                                <p><span class="gras">Début de la vente</span> le
+                                <span th:text="${#temporals.format(el.beginningDate, 'dd/MM/yyyy')}"></span>
+                                à <span th:text="${#temporals.format(el.beginningDate, 'HH:mm') }"></span>
+                                <p><span class="gras">Mise à prix :</span> <span th:text="${el.originalPoint}"></span> points</p>
+                            </div>
+                        </div>
+                    </a>
 
-        <div class="box-enchere" th:each="el : ${articleECList}">
+                </div>
 
-            <a th:href="@{/article/{id}(id=${el.idArticle})}">
+            </div>
 
-                <p th:text="${el.getName()}"></p>
-                <p>Enchère en cours depuis le
-                    <span th:text="${#temporals.format(el.beginningDate, 'dd/MM/yyyy')}"></span>
-                    à <span th:text="${#temporals.format(el.beginningDate, 'HH:mm') }"></span>
-                </p>
-                <p>Fin de l'enchère prévue le
-                    <span th:text="${#temporals.format(el.endingDate, 'dd/MM/yyyy')}"></span>
-                    à <span th:text="${#temporals.format(el.endingDate, 'HH:mm') }"></span>
-                </p>
-                <p>Mise à prix : <span th:text="${el.getOriginalPoint()}"></span> points</p>
-                <p th:if="${el.finalPoint > 0}">
-                    Plus haute enchère actuelle : <span th:text="${el.finalPoint}"></span> points
-                </p>
-                <p th:if="${el.finalPoint == 0}">Désolé, il n'y a aucune enchère sur votre article pour le moment</p>
+            <div class="conteneur-ventes-user" id="ventes-encours">
 
-            </a>
+                <div th:each="el : ${articleECList}" class="conteneur-ventes-user-col2">
 
-        </div><br>
+                    <a th:href="@{/article/{id}(id=${el.idArticle})}">
 
-        <h3>Ventes terminées</h3><br>
+                        <div th:class="'box-vente-user cat-' + ${el.category?.idCategory}">
 
-        <div class="box-enchere" th:each="el : ${articleVDLVList}">
+                            <div th:switch="${el.category?.idCategory}">
+                                <div th:case="1">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-info.svg}" alt="Icône de tablette">
+                                </div>
+                                <div th:case="2">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-furniture.svg}" alt="Icône de chaise">
+                                </div>
+                                <div th:case="3">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-clothes.svg}" alt="Icône de chaussettes">
+                                </div>
+                                <div th:case="4">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-sport.svg}" alt="Icône de ballon">
+                                </div>
+                                <div th:case="5">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-hobby.svg}" alt="Icône de livre">
+                                </div>
+                            </div>
 
-            <a th:href="@{/article/{id}(id=${el.idArticle})}">
-                <p th:text="${el.getName()}"></p>
-                <p>Vente terminée le
-                    <span th:text="${#temporals.format(el.endingDate, 'dd/MM/yyyy')}"></span>
-                    à <span th:text="${#temporals.format(el.endingDate, 'HH:mm') }"></span>
-                <p>Mise à prix : <span th:text="${el.originalPoint}"></span> points</p>
-                <p>Prix final : <span th:text="${el.finalPoint}"></span> points</p>
-                <p th:if="${el.buyer != null}">Acheté par : <span th:text="${el.buyer.pseudo}"></span></p>
-                <p th:if="${el.buyer == null}">Désolé, votre article ne s'est pas vendu. Retentez plus tard !</p>
-            </a>
+                            <div>
+                                <h4 th:text="${el.getName()}"></h4>
+                                <p><span class="gras">Enchère en cours depuis </span>le
+                                    <span th:text="${#temporals.format(el.beginningDate, 'dd/MM/yyyy')}"></span>
+                                    à <span th:text="${#temporals.format(el.beginningDate, 'HH:mm') }"></span>
+                                </p>
+                                <p><span class="gras">Fin de l'enchère prévue</span> le
+                                    <span th:text="${#temporals.format(el.endingDate, 'dd/MM/yyyy')}"></span>
+                                    à <span th:text="${#temporals.format(el.endingDate, 'HH:mm') }"></span>
+                                </p>
+                                <p><span class="gras">Mise à prix :</span> <span th:text="${el.getOriginalPoint()}"></span> points</p>
+                                <p th:if="${el.finalPoint > 0}">
+                                    <span class="gras">Plus haute enchère actuelle :</span> <span th:text="${el.finalPoint}"></span> points
+                                </p>
+                                <p th:if="${el.finalPoint == 0}">Désolé, il n'y a aucune enchère sur votre article pour le moment</p>
+                            </div>
+                        </div>
+                    </a>
 
-        </div><br>
+                </div>
+
+            </div>
+
+            <div class="conteneur-ventes-user" id="ventes-terminees">
+
+                <div th:each="el : ${articleVDLVList}" class="conteneur-ventes-user-col2">
+
+                    <a th:href="@{/article/{id}(id=${el.idArticle})}">
+
+                        <div th:class="'box-vente-user cat-' + ${el.category?.idCategory}">
+
+                            <div th:switch="${el.category?.idCategory}">
+                                <div th:case="1">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-info.svg}" alt="Icône de tablette">
+                                </div>
+                                <div th:case="2">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-furniture.svg}" alt="Icône de chaise">
+                                </div>
+                                <div th:case="3">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-clothes.svg}" alt="Icône de chaussettes">
+                                </div>
+                                <div th:case="4">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-sport.svg}" alt="Icône de ballon">
+                                </div>
+                                <div th:case="5">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-hobby.svg}" alt="Icône de livre">
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 th:text="${el.getName()}"></h4>
+                                <p><span class="gras">Vente terminée</span> le
+                                    <span th:text="${#temporals.format(el.endingDate, 'dd/MM/yyyy')}"></span>
+                                    à <span th:text="${#temporals.format(el.endingDate, 'HH:mm') }"></span>
+                                <p><span class="gras">Mise à prix : </span><span th:text="${el.originalPoint}"></span> points</p>
+                                <p><span class="gras">Prix final : </span><span th:text="${el.finalPoint}"></span> points</p>
+                                <p th:if="${el.buyer != null}"><span class="gras">Acheté par :</span> <span th:text="${el.buyer.pseudo}"></span></p>
+                                <p th:if="${el.buyer == null}">Désolé, votre article ne s'est pas vendu.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </main>
 

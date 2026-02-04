@@ -20,19 +20,21 @@
       <div class="form-col2">
           <p>Informations de connexion :</p><br>
 
+        <div class="error-login" th:each="err : ${#fields.errors('global')}" th:text="${err}"></div>
+
           <div>
             <label for="email">Email</label>
             <input type="text" id="email" name="email" th:field="*{email}">
           </div>
-          <div class="error" th:errors="*{email}"></div>
+          <div class="error-login" th:errors="*{email}"></div>
 
-          <div class="error" th:each="err : ${#fields.errors('global')}" th:text="${err}"></div>
+          <div class="error-login" th:each="err : ${#fields.errors('global')}" th:text="${err}"></div>
 
           <div>
             <label for="password">Mot de passe</label>
             <input type="password" id="password" name="password" th:field="*{password}" placeholder="Merci de saisir votre ancien mot de passe ou de le changer">
           </div>
-          <div class="error" th:errors="*{password}"></div>
+          <div class="error-login" th:errors="*{password}"></div>
       </div>
 
       <div class="form-col2">
@@ -43,37 +45,37 @@
             <label for="lastName">Nom</label>
             <input type="text" id="lastName" name="lastName" th:field="*{lastName}">
           </div>
-          <div class="error" th:errors="*{lastName}"></div>
+          <div class="error-login" th:errors="*{lastName}"></div>
 
           <div>
             <label for="firstName">Prénom</label>
             <input type="text" id="firstName" name="firstName" th:field="*{firstName}">
           </div>
-          <div class="error" th:errors="*{firstName}"></div>
+          <div class="error-login" th:errors="*{firstName}"></div>
 
           <div>
             <label for="address">Adresse</label>
             <input type="text" id="address" name="address" th:field="*{address}">
           </div>
-          <div class="error" th:errors="*{address}"></div>
+          <div class="error-login" th:errors="*{address}"></div>
 
           <div>
             <label for="zipCode">Code Postal</label>
             <input type="text" id="zipCode" name="zipCode" th:field="*{zipCode}">
           </div>
-          <div class="error" th:errors="*{zipCode}"></div>
+          <div class="error-login" th:errors="*{zipCode}"></div>
 
           <div>
             <label for="city">Ville</label>
             <input type="text" id="city" name="city" th:field="*{city}">
           </div>
-          <div class="error" th:errors="*{city}"></div>
+          <div class="error-login" th:errors="*{city}"></div>
 
           <div>
             <label for="phone">Numéro de téléphone</label>
             <input type="text" id="phone" name="phone" th:field="*{phone}">
           </div>
-          <div class="error" th:errors="*{phone}"></div>
+          <div class="error-login" th:errors="*{phone}"></div>
 
       </div>
 

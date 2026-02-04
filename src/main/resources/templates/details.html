@@ -38,9 +38,9 @@
 
                 <!-- Image -->
                 <div style="display: flex; justify-content: center; padding: 1rem">
-                    <img th:if="${article.imagePath != null}"
-                         th:src="${article.imagePath}"
-                         style="max-height: 20rem;">
+                    <img style="max-height: 20rem;"
+                         th:if="${article.imagePath != null}"
+                         th:src="${article.imagePath}">
                     <span th:if="${article.imagePath == null}">Image indisponible</span>
                 </div>
 
@@ -72,7 +72,13 @@
             <div class="details-article-propositions">
                 <!-- Deuxième colonne : les propositions (enchères) pour cet article -->
 
-                <div class="box-create-proposition">
+                <div class="box-create-proposition" th:if="${article.beginningDate} > ${localDateTime}">
+                    <div>
+                        <p>Les enchères seront bientôt ouvertes</p>
+                    </div>
+                </div>
+
+                <div class="box-create-proposition" th:if="( ${article.beginningDate}  < ${localDateTime} ) and ( ${article.endingDate} > ${localDateTime} ) and ${idUserConnected != article.seller.idUser}">
                     <div>
                         <p class="box-proposition-title">Faire une offre</p>
                         <p>Montant disponible : <span th:text="${userConnected?.walletPoint}"></span> points</p>
@@ -83,8 +89,11 @@
                                th:field="*{pointProposal}"
                                type="number">
                         <button class="button-proposition-validate" type="submit">Valider</button>
-                        <div class="error-login" th:if="${#fields.hasGlobalErrors()}">
-                            <div th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+                        <div class="error-login" th:if="${errorMessage}">
+                            <p th:text="${errorMessage}"></p>
+                        </div>
+                        <div class="success-message" th:if="${successMessage != null}">
+                            <p th:text="${successMessage}"></p>
                         </div>
                     </form>
                 </div>

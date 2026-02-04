@@ -1,0 +1,211 @@
+
+/********************************************************/
+/** INDEX **/
+/********************************************************/
+
+.baseline-index{
+    background-image: url("../img/underline-icon.svg");
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-position-y: 105px ;
+    padding-bottom: 80px;
+    background-size: 40% ;
+}
+
+/* Filtre de recherche */
+
+.filter-cate {
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    max-width: 1110px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.filter-cate select{
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+}
+
+
+.filter-cate select,
+.filter-cate select::picker(select){
+    appearance: base-select;
+    width: 150px;
+    border: 1px solid #2ECEA4;
+    background-color: #05252C;
+    color: #fff;
+    font-size: 0.95em;
+}
+
+.filter-cate select::picker(select){
+    padding: 10px 0 10px 0;
+    border: none;
+}
+
+option::checkmark {
+    color: #2ECEA4;
+}
+
+.button-filter-validate {
+    background-color: #05252C;
+    padding: 0.4em 0.7em 0.3em 0.7em;
+    border: 1px solid #2ECEA4;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+
+/*
+LISTE DES ARTICLES DONT LA VENTE EST EN COURS
+COULEURS DIFFÉRENTES SELON CATÉGORIE
+ */
+
+.box-article {
+    width: 90%;
+    max-width: 1110px;
+    height: 130px;
+    border-radius: 16px;
+    margin: auto auto 20px auto;
+    display: flex;
+    align-items: center;
+}
+
+
+.box-article h3 {
+    font-size: 2em;
+}
+
+.icon-cate {
+    margin-right: 1.5em;
+    margin-left: 1.5em;
+}
+
+.article-endingDate {
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-top: 1.2em;
+    margin-right: 1.2em;
+    padding: 0.2em 1em 0.2em 1em;
+    border-radius: 50px;
+}
+
+/*
+    CATÉGORIES =>
+    1 = Informatique
+    2 = Ameublement
+    3 = Vêtements
+    4 = Sport
+    5 = Loisirs
+ */
+.box-article.cat-1 {
+    background-color: #B8EAD7;
+}
+
+.box-article.cat-1 h3 {
+    color: #3E6A59;
+    text-decoration: none;
+}
+
+.box-article.cat-1 .article-endingDate {
+    background-color: #7BB8A1;
+}
+
+.box-article.cat-2 {
+    background-color: #7FE3CC;
+}
+
+.box-article.cat-2 h3 {
+    color: #105344;
+}
+
+.box-article.cat-2 .article-endingDate {
+    background-color: #2CA88C;
+}
+
+.box-article.cat-3 {
+    background-color: #59D2E5;
+}
+
+.box-article.cat-3 h3 {
+    color: #115762;
+}
+
+.box-article.cat-3 .article-endingDate {
+    background-color: #2FA4B7;
+}
+
+.box-article.cat-4 {
+    background-color: #ECF7CF;
+}
+
+.box-article.cat-4 h3 {
+    color: #616C43;
+}
+
+.box-article.cat-4 .article-endingDate {
+    background-color: #B5C78C;
+}
+
+.box-article.cat-5 {
+    background-color: #6BDAD8;
+}
+
+.box-article.cat-5 h3 {
+    color: #1A605E;
+}
+
+.box-article.cat-5 .article-endingDate {
+    background-color: #3DACAA;
+}
+
+.lien-box-article {
+    text-decoration: none;
+    color: #05252C;
+}
+
+/*
+LISTE DES ARTICLES CRÉÉS MAIS PAS ENCORE EN VENTE
+ */
+
+.soon-title {
+    font-weight: bold;
+    font-size: 1.8em;
+    color: #2ECEA4;
+    margin-top: 8vh;
+    margin-bottom: 5vh;
+    text-align: center;
+}
+
+.box-article-CR {
+    width: 90%;
+    max-width: 1110px;
+    height: 130px;
+    border-radius: 16px;
+    margin: auto auto 20px auto;
+    display: flex;
+    align-items: center;
+    background-color: #2B6068;
+    color: white;
+}
+
+.box-article-CR h3 {
+    font-size: 2em;
+    color: #2ECEA4;
+}
+
+.article-beginningdate {
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-top: 1.2em;
+    margin-right: 1.2em;
+    padding: 0.2em 1em 0.2em 1em;
+    border-radius: 50px;
+    background-color: #2ECEA4;
+    color: #05252C;
+}
