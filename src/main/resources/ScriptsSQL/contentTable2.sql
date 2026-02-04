@@ -93,16 +93,16 @@ VALUES ('Collection BD Tintin', 'Collection complète des aventures de Tintin, 2
 -- ARTICLES - EN COURS DE VENTE (status 'EC')
 --------------------------------------------------------------------------
 -- Article 11
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('MacBook Air M1', 'Apple MacBook Air 2020 avec puce M1, 8Go RAM, SSD 256Go, écran Retina 13 pouces. Couleur gris sidéral, clavier AZERTY français. Acheté en 2021, excellent état cosmétique et fonctionnel. Batterie en parfait état avec environ 150 cycles seulement. Vendu avec chargeur MagSafe d''origine et boîte. Rapide et silencieux.', 680, 780, '2026-01-20 10:00:00', '2026-02-05 20:00:00', 'EC', 1, 2, 2, 3);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('MacBook Air M1', 'Apple MacBook Air 2020 avec puce M1, 8Go RAM, SSD 256Go, écran Retina 13 pouces. Couleur gris sidéral, clavier AZERTY français. Acheté en 2021, excellent état cosmétique et fonctionnel. Batterie en parfait état avec environ 150 cycles seulement. Vendu avec chargeur MagSafe d''origine et boîte. Rapide et silencieux.', 680, 780, '2026-01-20 10:00:00', '2026-02-05 20:00:00', 'EC', 1, 2, 2, 3, '/uploads/article/fabio-alves-eOU0PhQwBKA-unsplash.jpg');
 
 -- Article 12
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
-VALUES ('Bibliothèque IKEA Billy', 'Bibliothèque IKEA modèle Billy, coloris blanc, hauteur 202cm, largeur 80cm, profondeur 28cm. 5 étagères réglables en hauteur. Excellent état, très stable et solide. Montée avec soin, aucune vis apparente. Idéale pour livres, déco ou rangement bureau. Démontable facilement pour transport.', 45, 65, '2026-01-22 11:00:00', '2026-02-08 19:00:00', 'EC', 2, 1, 1, 4, '/uploads.article/charlotte-peacock-Fkj2V3fNczM-unsplash.jpg');
+VALUES ('Bibliothèque IKEA Billy', 'Bibliothèque IKEA modèle Billy, coloris blanc, hauteur 202cm, largeur 80cm, profondeur 28cm. 5 étagères réglables en hauteur. Excellent état, très stable et solide. Montée avec soin, aucune vis apparente. Idéale pour livres, déco ou rangement bureau. Démontable facilement pour transport.', 45, 65, '2026-01-22 11:00:00', '2026-02-08 19:00:00', 'EC', 2, 1, 1, 4, '/uploads/article/charlotte-peacock-Fkj2V3fNczM-unsplash.jpg');
 
 -- Article 13
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
-VALUES ('Basket Nike Air Max', 'Paire de baskets Nike Air Max 90, pointure 42, coloris blanc/gris/rouge. État quasi neuf, portées 3-4 fois seulement. Boîte d''origine incluse. Semelle intermédiaire en mousse et amorti Air visible au talon. Très confortables et iconiques. Aucune tâche ni défaut. Lacets de rechange fournis.', 110, 145, '2026-01-18 09:00:00', '2026-02-03 21:00:00', 'EC', 3, 5, 5, 2, '../uploads/article/brian-hall-OShzOkbodd-unplash.jpg');
+VALUES ('Basket Nike Air Max', 'Paire de baskets Nike Air Max 90, pointure 42, coloris blanc/gris/rouge. État quasi neuf, portées 3-4 fois seulement. Boîte d''origine incluse. Semelle intermédiaire en mousse et amorti Air visible au talon. Très confortables et iconiques. Aucune tâche ni défaut. Lacets de rechange fournis.', 110, 145, '2026-01-18 09:00:00', '2026-02-03 21:00:00', 'EC', 3, 5, 5, 2, '/uploads/article/brian-hall-OShzOkbodd-unplash.jpg');
 
 -- Article 14
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
@@ -133,8 +133,8 @@ INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_d
 VALUES ('Appareil photo Nikon D3500', 'Reflex numérique Nikon D3500, capteur APS-C 24MP, kit avec objectif 18-55mm VR. Excellent pour débuter en photographie. Boîtier en très bon état, quelques micro-rayures sans gravité. 8500 déclenchements environ. Batterie tient bien la charge. Vendu avec chargeur, courroie, bouchons objectif et carte SD 32Go.', 380, 445, '2026-01-27 13:00:00', '2026-02-12 21:00:00', 'EC', 5, 1, 1, 4, '/uploads/article/jan-kopriva-s2z-tNxo7Eo-unsplash.jpg');
 
 -- Article 21
-INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer)
-VALUES ('Clavier mécanique Logitech', 'Clavier mécanique gaming Logitech G Pro X, switches GX Blue tactiles et clicky. Rétroéclairage RGB personnalisable, format TKL compact sans pavé numérique. Câble détachable. Utilisé 1 an, fonctionne parfaitement. Toutes les touches répondent bien. Nettoyé récemment. Idéal pour gaming et frappe intensive.', 95, 128, '2026-01-28 10:00:00', '2026-02-13 18:00:00', 'EC', 1, 2, 2, 5);
+INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
+VALUES ('Clavier mécanique Logitech', 'Clavier mécanique gaming Logitech G Pro X, switches GX Blue tactiles et clicky. Rétroéclairage RGB personnalisable, format TKL compact sans pavé numérique. Câble détachable. Utilisé 1 an, fonctionne parfaitement. Toutes les touches répondent bien. Nettoyé récemment. Idéal pour gaming et frappe intensive.', 95, 128, '2026-01-28 10:00:00', '2026-02-13 18:00:00', 'EC', 1, 2, 2, 5, '/uploads/article/aditya-shukla-cd8fqHPlrM4-unsplash.jpg');
 
 -- Article 22
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)

@@ -18,7 +18,10 @@
                         <option th:each="item : ${listCategory}" th:value="${item.idCategory}"
                                 th:text="${item.name}"></option>
                     </select>
-                    <button class="button-filter-validate" type="submit">Valider</button>
+                    <label for="idSearch"> par label </label>
+                    <input type="text" th:field="*{label}">
+
+                    <button class="button-filter-validate" type="submit">Rechercher</button>
                 </form>
             </div>
         </div>
