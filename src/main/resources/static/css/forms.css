@@ -126,7 +126,7 @@
     padding: 0.3em 0.8em;
     border-radius: 50px;
     border: none;
-    font-size: 1.1em;
+    font-size: 1em;
     cursor: pointer;
 }
 
@@ -146,7 +146,7 @@
 .button-login-connexion:hover,
 .button-signin-inscription:hover,
 .button-modification-validation:hover{
-    background-color: #1fba95;
+    background-color: #3decbe;
     transition: transform 0.2s ease-in-out;
 }
 
@@ -162,18 +162,18 @@
     padding: 0.3em 0.8em;
     border-radius: 50px;
     border: none;
-    font-size: 1.1em;
+    font-size: 1em;
     cursor: pointer;
     margin-left: 10px;
 }
 
 .button-modification-annulation:hover{
-    background-color: #d11818;
+    background-color: #ff4646;
     transition: transform 0.2s ease-in-out;
 }
 
 .buttons {
-    margin-top: 2vh;
+    margin-top: 3vh;
     margin-left: auto;
     margin-right: auto;
 }

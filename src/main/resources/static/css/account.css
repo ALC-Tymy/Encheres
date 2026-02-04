@@ -1,0 +1,190 @@
+
+/*****************************************************/
+/** COMPTE UTILISATEUR **/
+/*****************************************************/
+
+.message-bonjour {
+    color: white;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 600;
+    margin-top: 1vh;
+    margin-bottom: 5vh;
+}
+
+.conteneur-compte-user {
+    background-color: #2B6068;
+    width: 90%;
+    max-width: 600px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 2%;
+    border-radius: 20px;
+}
+
+.wallet {
+    background-color: #083139;
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    border-radius: 20px;
+}
+
+.wallet-col {
+    width: 50%;
+}
+
+.wallet-col:first-of-type {
+    border-right: solid 1px #2ECEA4;
+}
+
+.titre-portefeuille {
+    color: #2ECEA4;
+    font-size: 0.95em;
+    margin-bottom: 1vh;
+}
+
+.montant-portefeuille {
+    color: white;
+    font-weight: 600;
+    font-size: 1.6em;
+}
+
+.conteneur-compte-user h3 {
+    font-size: 1.1em;
+    color: #2ECEA4;
+    font-weight: 500;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
+}
+
+/*.conteneur-infos-user {*/
+/*    display: flex;*/
+/*}*/
+
+.sous-titre-infos {
+    background-color: #05252C;
+    color: white;
+    padding: 0.2em 0.5em 0.2em 0.5em;
+    border-radius: 20px;
+    margin-right: 0.5em;
+}
+
+.info-connexion,
+.info-contact {
+    color: white;
+    width: 50%;
+}
+
+.space-info {
+    margin-bottom: 0.5em;
+}
+
+
+/** BOUTONS **/
+
+.buttons-compte {
+    display: flex;
+    justify-content: center;
+    margin-top: 4vh;
+    margin-bottom: 1vh;
+}
+
+.button-modification-compte{
+    text-decoration: none;
+    color: #2ECEA4 ;
+    background-color: transparent;
+    border: solid 1px #2ECEA4;
+    padding: 0.3em 0.8em;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-right: 0.5vw;
+}
+
+.button-suppression-compte {
+    text-decoration: none;
+    color: white;
+    background-color: #f12d2d;
+    border: solid 1px #f12d2d;
+    padding: 0.3em 0.8em;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-left: 0.5vw;
+}
+
+.button-suppression-compte:hover {
+    background-color: #ff4646;
+    border: solid 1px #ff4646;
+    transition: transform 0.2s ease-in-out;
+}
+
+.button-modification-compte:hover{
+    color: white ;
+    background-color: #2ECEA4;
+    transition: transform 0.2s ease-in-out;
+}
+
+
+/** MODALE - CONFIRMATION DE DESACTIVATION DE COMPTE **/
+
+.modal {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .4s;
+}
+
+.overlay {
+    cursor: default;
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal:target{
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal_content {
+    border-radius: 4px;
+    position: relative;
+    width: 500px;
+    max-width: 90%;
+    background: white;
+    padding: 1.5em 2em;
+    text-align: center;
+}
+
+.titre-attention {
+    font-size: 2em;
+    color: #ff4646;
+    margin-bottom: 0.5em;
+}
+
+.texte-attention {
+    margin-bottom: 1em;
+}
+
+.bouton-suppression-validation {
+    text-decoration: none;
+    color: #ff4646;
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.bouton-suppression-annulation {
+    text-decoration: none;
+    color: #011215;
+    margin-left: 0.5em;
+    margin-bottom: 0.5em;
+}
