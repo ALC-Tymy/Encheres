@@ -1,8 +1,10 @@
 package fr.eni.encheres.service;
 
 import fr.eni.encheres.entity.Proposal;
+import fr.eni.encheres.entity.dto.ProposalLog;
 import fr.eni.encheres.repository.ProposalRepository;
 import fr.eni.encheres.service.exceptions.ProposalException;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,13 +15,15 @@ import java.util.List;
 public class ProposalServiceImpl implements ProposalService {
 
     private final ArticleService articleService;
+    private final JdbcTemplate jdbcTemplate;
     ProposalRepository proposalRepository;
     UserService userService;
 
-    public ProposalServiceImpl(ProposalRepository proposalRepository, UserService userService, ArticleService articleService) {
+    public ProposalServiceImpl(ProposalRepository proposalRepository, UserService userService, ArticleService articleService, JdbcTemplate jdbcTemplate) {
         this.proposalRepository = proposalRepository;
         this.userService = userService;
         this.articleService = articleService;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
@@ -112,7 +116,11 @@ public class ProposalServiceImpl implements ProposalService {
         proposalRepository.createProposal(newProposal);
     }
 
+    @Override
+    public List<ProposalLog> updateWinnerEncheres() {
+        return this.proposalRepository.updateWinnerEncheres();
     }
+}
 
 
 

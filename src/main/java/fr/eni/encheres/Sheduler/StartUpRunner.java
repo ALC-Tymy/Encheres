@@ -11,8 +11,14 @@ public class StartUpRunner {
     public StartUpRunner(Scheduler scheduler) {
         this.scheduler = scheduler;
     }
+
     @PostConstruct
-    public  void run(){
+    public void runUpdateStatusEncheres() {
         scheduler.updateStatusEncheres();
+    }
+
+    @PostConstruct
+    public void runUpdateWinnerEncheres() {
+        scheduler.updateWinnerEncheres();
     }
 }

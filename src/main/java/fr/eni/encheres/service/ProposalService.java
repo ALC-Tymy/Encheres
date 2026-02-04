@@ -1,6 +1,7 @@
 package fr.eni.encheres.service;
 
 import fr.eni.encheres.entity.Proposal;
+import fr.eni.encheres.entity.dto.ProposalLog;
 import fr.eni.encheres.service.exceptions.ProposalException;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,5 +26,5 @@ public interface ProposalService {
     @Transactional
     void createProposal(long id_article, int pointProposal) throws ProposalException;
 
-
+    List<ProposalLog> updateWinnerEncheres();
 }

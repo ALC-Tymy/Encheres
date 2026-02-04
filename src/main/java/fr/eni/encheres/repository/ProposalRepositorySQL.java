@@ -1,6 +1,7 @@
 package fr.eni.encheres.repository;
 
 import fr.eni.encheres.entity.Proposal;
+import fr.eni.encheres.entity.dto.ProposalLog;
 import fr.eni.encheres.repository.rowMapper.ProposalByUserRowMapper;
 import fr.eni.encheres.repository.rowMapper.ProposalRowMapper;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -228,11 +229,11 @@ public class ProposalRepositorySQL implements ProposalRepository {
     @Override
     public Long getUserIdByRankOne(long id_article) {
         String sql = """
-        SELECT TOP 1 id_buyer
-        FROM PROPOSAL
-        WHERE id_article = :id_article
-        ORDER BY ranking DESC, date_proposal DESC
-    """;
+                    SELECT TOP 1 id_buyer
+                    FROM PROPOSAL
+                    WHERE id_article = :id_article
+                    ORDER BY ranking DESC, date_proposal DESC
+                """;
 
         MapSqlParameterSource map = new MapSqlParameterSource()
                 .addValue("id_article", id_article);
@@ -257,6 +258,83 @@ public class ProposalRepositorySQL implements ProposalRepository {
 
         namedParameterJdbcTemplate.update(sql, map);
 
+    }
+
+    @Override
+    public List<ProposalLog> updateWinnerEncheres() {
+
+        String selectWinners = """
+                    SELECT
+                        a.id_article,
+                        a.id_seller,
+                        p.id_buyer,
+                        p.point_proposal
+                    FROM ARTICLE a
+                    JOIN PROPOSAL p
+                      ON p.id_article = a.id_article
+                     AND p.ranking = 1
+                    WHERE a.status = 'VD'
+                """;
+
+        List<ProposalLog> winners = jdbcTemplate.query(selectWinners, (rs, i) ->
+                new ProposalLog(
+                        rs.getLong("id_article"),
+                        rs.getLong("id_seller"),
+                        rs.getLong("id_buyer"),
+                        rs.getInt("point_proposal")
+                )
+        );
+
+        String SQL_SETTLEMENT = """
+                IF OBJECT_ID('tempdb..#Winner') IS NOT NULL DROP TABLE #Winner;
+                
+                SELECT
+                    a.id_article,
+                    a.id_seller,
+                    p.id_buyer,
+                    p.point_proposal
+                INTO #Winner
+                FROM ARTICLE a
+                JOIN PROPOSAL p
+                  ON p.id_article = a.id_article
+                 AND p.ranking = 1
+                WHERE a.status = 'VD';
+                
+                -- Update article : buyer + final_point
+                UPDATE a
+                SET
+                    a.id_buyer = w.id_buyer,
+                    a.final_point = w.point_proposal
+                FROM ARTICLE a
+                JOIN #Winner w ON w.id_article = a.id_article;
+                
+                -- Crédit vendeur
+                UPDATE u
+                SET u.walletPoint = u.walletPoint + w.point_proposal
+                FROM [USER] u
+                JOIN #Winner w ON w.id_seller = u.id_user;
+                
+                -- Débit pending acheteur
+                UPDATE u
+                SET u.walletPending = u.walletPending - w.point_proposal
+                FROM [USER] u
+                JOIN #Winner w ON w.id_buyer = u.id_user;
+                
+                -- Passer article en LV (seulement ceux qui ont un winner)
+                UPDATE a
+                SET a.status = 'LV'
+                FROM ARTICLE a
+                JOIN #Winner w ON w.id_article = a.id_article
+                WHERE a.status = 'VD';
+                """;
+
+        if (winners.isEmpty()) {
+            return winners;
+        }
+
+        jdbcTemplate.execute(SQL_SETTLEMENT);
+
+        return winners;
     }
 
 

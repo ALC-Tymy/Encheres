@@ -1,6 +1,7 @@
 package fr.eni.encheres.repository;
 
 import fr.eni.encheres.entity.Proposal;
+import fr.eni.encheres.entity.dto.ProposalLog;
 
 import java.util.List;
 
@@ -40,4 +41,6 @@ public interface ProposalRepository {
     Long getUserIdByRankOne(long id_article);
 
     void updatePointProposalToFinalPoint(long id_article, int point_proposal);
+
+    List<ProposalLog> updateWinnerEncheres();
 }

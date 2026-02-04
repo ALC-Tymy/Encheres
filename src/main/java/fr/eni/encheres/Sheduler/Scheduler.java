@@ -1,7 +1,9 @@
 package fr.eni.encheres.Sheduler;
 
 import fr.eni.encheres.entity.dto.ArticleLog;
+import fr.eni.encheres.entity.dto.ProposalLog;
 import fr.eni.encheres.service.ArticleService;
+import fr.eni.encheres.service.ProposalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -14,21 +16,21 @@ import java.util.List;
 @Service
 public class Scheduler {
 
+    JdbcTemplate jdbcTemplate;
+    ArticleService articleService;
+    ProposalService proposalService;
+
+    public Scheduler(JdbcTemplate jdbcTemplate, ArticleService articleService, ProposalService proposalService) {
+        this.jdbcTemplate = jdbcTemplate;
+        this.articleService = articleService;
+        this.proposalService = proposalService;
+    }
+
     /**
      * Logger dédié au scheduler de mise à jour des statuts.
      */
     private static final Logger logger =
             LoggerFactory.getLogger(Scheduler.class);
-    private final JdbcTemplate jdbcTemplate;
-
-
-    ArticleService articleService;
-
-
-    public Scheduler(ArticleService articleService, JdbcTemplate jdbcTemplate) {
-        this.articleService = articleService;
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     /**
      * Journalise les changements de statut des articles.
@@ -76,9 +78,20 @@ public class Scheduler {
         logChanges("EC → VD", "EC->VD", ecToVd);
     }
 
-//    @Transactional
-//    @Scheduled (cron = "0 * * * * * ")
-//    public void UpdateWinnerEnchere(){
-//        jdbcTemplate.update(UpdateWinnerEnchere);
-//    }
+    @Transactional
+    @Scheduled(cron = "*/30 * * * * *")
+    public void updateWinnerEncheres() {
+        List<ProposalLog> winnerList = proposalService.updateWinnerEncheres();
+        if (winnerList.isEmpty()) return;
+        logger.info("VD → LV : {} article(s)", winnerList.size());
+
+        winnerList.forEach(w -> logger.info(
+                "Article id={} vendu : seller={} buyer={} | seller +{} points | buyer -{} points (pending)",
+                w.getIdArticle(),
+                w.getIdSeller(),
+                w.getIdBuyer(),
+                w.getPrice(),
+                w.getPrice()
+        ));
+    }
 }

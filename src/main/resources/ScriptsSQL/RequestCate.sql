@@ -101,14 +101,5 @@ Select final_point FROM ARTICLE where id_article = 11
 
 SELECT status,id_article,final_point,id_buyer,id_seller FROM ARTICLE WHERE status ='VD'
 
-UPDATE u SET
-             u.walletPending =
 
-FROM [USER] AS u
-
-WHERE a.status =  'VD'
-
-UPDATE a SET a.status = 'LV'
-FROM ARTICLE AS a
-WHERE status = 'VD';
 
