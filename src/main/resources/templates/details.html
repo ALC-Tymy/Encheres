@@ -91,12 +91,14 @@
                                th:field="*{pointProposal}"
                                type="number">
                         <button class="button-proposition-validate" type="submit">Valider</button>
-                        <div class="error-login" th:if="${errorMessage}">
-                            <p th:text="${errorMessage}"></p>
-                        </div>
-                        <div class="success-message" th:if="${successMessage != null}">
-                            <p th:text="${successMessage}"></p>
-                        </div>
+                        <div id="toast-error"
+                                class="toast toast-error"
+                                th:if="${errorMessage}"
+                                th:text="${errorMessage}"></div>
+                        <div id="toast-success"
+                             class="toast toast-success"
+                             th:if="${successMessage != null}"
+                             th:text="${successMessage}"></div>
                     </form>
                 </div>
                 <div class="box-enchere-article" th:classappend="${el.ranking == 1 ? 'ranking1' : ''}"
