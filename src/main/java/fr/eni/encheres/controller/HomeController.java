@@ -35,6 +35,7 @@ public class HomeController {
         List<Article> allArticlesCR = articleService.readFullCR();
         model.addAttribute("listArticleCR", allArticlesCR);
         List<Article> allArticles = articleService.readFullEC();
+        //
         //Liste des article envoyée à la page html, eventuellement filtrée dans la fonction articleFiltering
         model.addAttribute("listArticle", articleFiltering(allArticles));
         //Envoi la list des catégories pour le formulaire de recherche
@@ -50,16 +51,28 @@ public class HomeController {
     public ModelAndView searchArticle(@ModelAttribute Searching inputSearching) throws SQLException{
         //memorisation de la configuration de la recherche
         searching.setCategory(inputSearching.getCategory());
+        searching.setLabel(inputSearching.getLabel());
         return  new ModelAndView("redirect:/");
     }
 
     private List<Article> articleFiltering(List<Article> allArticle){
+        List<Article> listArticleFiltered = allArticle;
         //On regarde si une catégorie a été selctionnée, et si différente de NULL(NULL= pas de filtrage)
         if (searching.getCategory() != null && !searching.getCategory().equals("NULL")){
             //Une catégorie a été selectionnée : filtrage des article en fonction de leur catégorie
-            return allArticle.stream()
-                    .filter(a -> a.getCategory().getIdCategory() == Long.parseLong(searching.getCategory())).toList();
+            listArticleFiltered = listArticleFiltered
+                    .stream()
+                    .filter(a -> a.getCategory().getIdCategory() == Long.parseLong(searching.getCategory()))
+                    .toList();
         }
-        return allArticle;
+        //Si un label a été saisi
+        if(searching.getLabel() != null && !searching.getLabel().isEmpty()){
+            //Si oui, filtrage des articles en fonction du contenu de leur nom
+            listArticleFiltered = listArticleFiltered
+                    .stream()
+                    .filter(a -> a.getName().toLowerCase().contains(searching.getLabel().toLowerCase()))
+                    .toList();
+        }
+        return listArticleFiltered;
     }
 }
