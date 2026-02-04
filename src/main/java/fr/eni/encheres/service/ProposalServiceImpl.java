@@ -112,5 +112,7 @@ public class ProposalServiceImpl implements ProposalService {
         newProposal.setArticle(this.articleService.readById(id_article));
         proposalRepository.createProposal(newProposal);
     }
+
+
 }
 

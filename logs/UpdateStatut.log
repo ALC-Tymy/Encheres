@@ -2864,3 +2864,51 @@ org.springframework.dao.EmptyResultDataAccessException: Incorrect result size: e
 2026-02-04T12:17:42.663+01:00  INFO 15020 --- [Encheres] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
 2026-02-04T12:17:42.667+01:00  INFO 15020 --- [Encheres] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2026-02-04T12:17:42.670+01:00  INFO 15020 --- [Encheres] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-04T12:21:29.908+01:00  INFO 9612 --- [Encheres] [restartedMain] fr.eni.encheres.EncheresApplication      : Starting EncheresApplication using Java 25.0.2 with PID 9612 (D:\Encheres\build\classes\java\main started by aleclech2025 in D:\Encheres)
+2026-02-04T12:21:29.909+01:00  INFO 9612 --- [Encheres] [restartedMain] fr.eni.encheres.EncheresApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-02-04T12:21:29.935+01:00  INFO 9612 --- [Encheres] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-02-04T12:21:29.935+01:00  INFO 9612 --- [Encheres] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-02-04T12:21:30.339+01:00  INFO 9612 --- [Encheres] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2026-02-04T12:21:30.351+01:00  INFO 9612 --- [Encheres] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 0 JDBC repository interfaces.
+2026-02-04T12:21:30.651+01:00  INFO 9612 --- [Encheres] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-02-04T12:21:30.659+01:00  INFO 9612 --- [Encheres] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-04T12:21:30.659+01:00  INFO 9612 --- [Encheres] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-04T12:21:30.678+01:00  INFO 9612 --- [Encheres] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 743 ms
+2026-02-04T12:21:30.818+01:00  INFO 9612 --- [Encheres] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-04T12:21:30.990+01:00  INFO 9612 --- [Encheres] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: 1986ec9c-0697-4792-a4df-7667ee16d023
+2026-02-04T12:21:30.991+01:00  INFO 9612 --- [Encheres] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-04T12:21:31.055+01:00  INFO 9612 --- [Encheres] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-02-04T12:21:31.132+01:00  INFO 9612 --- [Encheres] [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-02-04T12:21:31.347+01:00  INFO 9612 --- [Encheres] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-02-04T12:21:31.352+01:00  INFO 9612 --- [Encheres] [restartedMain] fr.eni.encheres.EncheresApplication      : Started EncheresApplication in 1.661 seconds (process running for 1.988)
+2026-02-04T12:21:35.529+01:00  INFO 9612 --- [Encheres] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-04T12:21:35.529+01:00  INFO 9612 --- [Encheres] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-04T12:21:35.530+01:00  INFO 9612 --- [Encheres] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-02-04T12:26:21.059+01:00  INFO 9612 --- [Encheres] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2026-02-04T12:26:21.062+01:00  INFO 9612 --- [Encheres] [Thread-1] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-04T12:26:21.065+01:00  INFO 9612 --- [Encheres] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-02-04T12:26:21.069+01:00  INFO 9612 --- [Encheres] [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-04T12:26:21.071+01:00  INFO 9612 --- [Encheres] [Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-02-04T12:26:21.122+01:00  INFO 9612 --- [Encheres] [restartedMain] fr.eni.encheres.EncheresApplication      : Starting EncheresApplication using Java 25.0.2 with PID 9612 (D:\Encheres\build\classes\java\main started by aleclech2025 in D:\Encheres)
+2026-02-04T12:26:21.123+01:00  INFO 9612 --- [Encheres] [restartedMain] fr.eni.encheres.EncheresApplication      : No active profile set, falling back to 1 default profile: "default"
+2026-02-04T12:26:21.215+01:00  INFO 9612 --- [Encheres] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2026-02-04T12:26:21.218+01:00  INFO 9612 --- [Encheres] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2 ms. Found 0 JDBC repository interfaces.
+2026-02-04T12:26:21.258+01:00  INFO 9612 --- [Encheres] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+2026-02-04T12:26:21.259+01:00  INFO 9612 --- [Encheres] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-04T12:26:21.259+01:00  INFO 9612 --- [Encheres] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.15]
+2026-02-04T12:26:21.268+01:00  INFO 9612 --- [Encheres] [restartedMain] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 144 ms
+2026-02-04T12:26:21.329+01:00  INFO 9612 --- [Encheres] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-02-04T12:26:21.339+01:00  INFO 9612 --- [Encheres] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection ConnectionID:11 ClientConnectionId: 381c6b54-340b-4f42-8949-fcf95af1bbc5
+2026-02-04T12:26:21.339+01:00  INFO 9612 --- [Encheres] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-02-04T12:26:21.362+01:00  INFO 9612 --- [Encheres] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2026-02-04T12:26:21.385+01:00  INFO 9612 --- [Encheres] [restartedMain] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page template: index
+2026-02-04T12:26:21.433+01:00  INFO 9612 --- [Encheres] [restartedMain] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+2026-02-04T12:26:21.434+01:00  INFO 9612 --- [Encheres] [restartedMain] fr.eni.encheres.EncheresApplication      : Started EncheresApplication in 0.324 seconds (process running for 292.062)
+2026-02-04T12:26:21.435+01:00  INFO 9612 --- [Encheres] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2026-02-04T12:26:21.638+01:00  INFO 9612 --- [Encheres] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-04T12:26:21.639+01:00  INFO 9612 --- [Encheres] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-04T12:26:21.639+01:00  INFO 9612 --- [Encheres] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2026-02-04T12:29:41.502+01:00  INFO 9612 --- [Encheres] [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-04T12:29:41.505+01:00  INFO 9612 --- [Encheres] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-02-04T12:29:41.507+01:00  INFO 9612 --- [Encheres] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-02-04T12:29:41.508+01:00  INFO 9612 --- [Encheres] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
