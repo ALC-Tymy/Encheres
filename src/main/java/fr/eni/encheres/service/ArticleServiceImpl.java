@@ -101,11 +101,14 @@ public class ArticleServiceImpl implements ArticleService {
                 articleDTO.getName(),
                 articleDTO.getDescription(),
                 articleDTO.getOriginalPoint(),
+                articleDTO.getFinalPoint(),
                 articleDTO.getBeginningDate(),
                 articleDTO.getEndingDate(),
                 articleDTO.getCategory(),
                 articleDTO.getSeller()
         );
+
+
 
         // Associe l'adresse de livraison et le vendeur à l'article
         addArticle.setDeliveryAddress(addDeliAddr);

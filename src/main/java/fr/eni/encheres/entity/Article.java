@@ -55,10 +55,11 @@ public class Article {
         this.imagePath = imagePath;
     }
 
-    public Article(String name, String description, int originalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, Category category, User seller) {
+    public Article(String name, String description, int originalPoint, Integer finalPoint, LocalDateTime beginningDate, LocalDateTime endingDate, Category category, User seller) {
         this.name = name;
         this.description = description;
         this.originalPoint = originalPoint;
+        this.finalPoint = finalPoint;
         this.beginningDate = beginningDate;
         this.endingDate = endingDate;
         this.category = category;

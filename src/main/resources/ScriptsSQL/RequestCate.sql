@@ -96,3 +96,7 @@ SET final_point = :point_proposal
 WHERE id_article = 11;
 
 Select final_point FROM ARTICLE where id_article = 11
+
+
+
+SELECT status,id_article,final_point,id_buyer,id_seller FROM ARTICLE WHERE status ='VD'
