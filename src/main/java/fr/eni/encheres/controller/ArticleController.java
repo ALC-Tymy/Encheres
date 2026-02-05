@@ -55,10 +55,15 @@ public class ArticleController {
     }
 
     @PostMapping("/vendre/add")
-    public String createArticle(@Valid @ModelAttribute("articleDTO") CreateArticleDTO articleDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+    public String createArticle(@Valid @ModelAttribute("articleDTO") CreateArticleDTO articleDTO,
+                                BindingResult bindingResult, Model model,
+                                RedirectAttributes redirectAttributes) {
         // Validation manuelle : endingDate > beginningDate
-        if (articleDTO.getBeginningDate() != null && articleDTO.getEndingDate() != null && !articleDTO.getEndingDate().isAfter(articleDTO.getBeginningDate())) {
-            bindingResult.rejectValue("endingDate", "error.endingDate", "La date de fin doit être postérieure à la date de début");
+        if (articleDTO.getBeginningDate() != null &&
+                articleDTO.getEndingDate() != null &&
+                !articleDTO.getEndingDate().isAfter(articleDTO.getBeginningDate())) {
+            bindingResult.rejectValue("endingDate", "error.endingDate",
+                    "La date de fin doit être postérieure à la date de début");
         }
         if (bindingResult.hasErrors()) {
             model.addAttribute("categoryList", this.categoryService.getAll());
@@ -68,10 +73,12 @@ public class ArticleController {
         }
         try {
             articleService.createArticleDTO(articleDTO);
-            redirectAttributes.addFlashAttribute("successMessage", "Votre article a été mis en vente avec succès !");
+            redirectAttributes.addFlashAttribute("successMessage",
+                    "Votre article a été mis en vente avec succès !");
             return "redirect:/mes-ventes#ventes-crees";
         } catch (Exception e) {
-            model.addAttribute("errorMessage", "Une erreur est survenue : " + e.getMessage());
+            model.addAttribute("errorMessage",
+                    "Une erreur est survenue : " + e.getMessage());
             model.addAttribute("categoryList", this.categoryService.getAll());
             long idSeller = userService.getIdLoggedUser();
             model.addAttribute("addressByPseudo", this.userService.readById(idSeller));

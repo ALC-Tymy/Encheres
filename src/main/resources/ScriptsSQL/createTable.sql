@@ -31,7 +31,6 @@ CREATE TABLE [USER]
     walletPending INTEGER      NOT NULL CHECK (walletPending >= 0) DEFAULT 0,
     actif         BIT          NOT NULL                            DEFAULT 1
 )
-
 CREATE TABLE ARTICLE
 (
     id_article     BIGINT       NOT NULL PRIMARY KEY IDENTITY (1,1),
@@ -41,14 +40,11 @@ CREATE TABLE ARTICLE
     final_point    INTEGER,
     beginning_date DATETIME2    NOT NULL,
     ending_date    DATETIME2    NOT NULL,
-    ---------------------------------
     -- Les statuts pour les articles
-    ---------------------------------
     --'CR' = "créé", mis automatiquement à la création de l'article ( DEFAULT 'CR' dans la table )
     --'EC' = "en cours", ce statut se met automatiquement quand la beginning_date < date of today
     --'VD' = "vendu", ce statut se met automatiquement quand la ending_date < date of today
-    --'LV' = "livré", on s'en occupe pas pour l'appli
-    ---------------------------------
+    --'LV' = "livré", on s'en occupe pas pour l'appli.
     status         CHAR(2) DEFAULT 'CR' CHECK ((status IN ('CR', 'EC', 'VD', 'LV'))),
     id_category    BIGINT,
     id_del_address BIGINT,
@@ -66,13 +62,11 @@ CREATE TABLE PROPOSAL
     id_buyer       BIGINT,
     id_article     BIGINT
 )
-
 CREATE TABLE CATEGORY
 (
     id_category BIGINT PRIMARY KEY IDENTITY (1,1),
     name        VARCHAR(30) NOT NULL
 )
-
 CREATE TABLE DELIVERY_ADDRESS
 (
     id_delivery_address BIGINT PRIMARY KEY IDENTITY (1,1),
@@ -80,12 +74,9 @@ CREATE TABLE DELIVERY_ADDRESS
     zipcode             VARCHAR(10) NOT NULL,
     city                VARCHAR(30) NOT NULL
 )
-
-
 --------------------------------------------------------------------------
 --SECURITE--
 --------------------------------------------------------------------------
-
 CREATE TABLE [ROLES]
 (
     [pseudo] [VARCHAR](30),
@@ -93,8 +84,7 @@ CREATE TABLE [ROLES]
         PRIMARY KEY (pseudo, role)
 )
 
-
----------------------------------------------------------------------------
+--------------------------------------------------------------------------
 -- LIENS ENTRE LES TABLES
 ---------------------------------------------------------------------------
 
