@@ -89,14 +89,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Transactional
     @Override
     public void createArticleDTO(CreateArticleDTO articleDTO) {
-
         // Récupère ou crée l'adresse de livraison associée à l'article
         DeliveryAddress addDeliAddr = deliveryAddressService.existingCreate(
                 articleDTO.getAddress(),
                 articleDTO.getZipCode(),
                 articleDTO.getCity()
         );
-
         Article addArticle = new Article(
                 articleDTO.getName(),
                 articleDTO.getDescription(),
@@ -107,13 +105,9 @@ public class ArticleServiceImpl implements ArticleService {
                 articleDTO.getCategory(),
                 articleDTO.getSeller()
         );
-
-
-
         // Associe l'adresse de livraison et le vendeur à l'article
         addArticle.setDeliveryAddress(addDeliAddr);
         addArticle.setSeller(this.userService.readById(userService.getIdLoggedUser()));
-
         // Persiste l'article en base de données
         articleRepository.createArticle(addArticle);
     }

@@ -44,7 +44,7 @@ public class SecurityConfiguration {
                     .requestMatchers(HttpMethod.POST, "/mon-compte/update-post").hasRole("USER")
                     .requestMatchers(HttpMethod.GET, "/mon-compte/desactivate").hasRole("USER")
                     .requestMatchers(HttpMethod.GET, "/vendre").hasRole("USER")
-                    .requestMatchers(HttpMethod.GET, "/vendre/add").hasRole("USER")
+                    .requestMatchers(HttpMethod.POST, "/vendre/add").hasRole("USER")
                     .requestMatchers(HttpMethod.GET, "/details").hasRole("USER")
                     .requestMatchers(HttpMethod.GET, "/article/{id}").hasRole("USER")
                     .requestMatchers(HttpMethod.POST, "/article/{id}/addProposal").hasRole("USER")

@@ -30,26 +30,22 @@ public class ArticleRepositorySQL implements ArticleRepository {
     @Override
     public void createArticle(Article article) {
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
-
         String sql = """
-                INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date,status, id_category, id_del_address, id_seller )
-                                VALUES(:name, :description, :original_point, :final_point, :beginning_date, :ending_date,:status, :id_category , :id_del_address,  :id_seller)
+                INSERT INTO ARTICLE (name,description,original_point,final_point,beginning_date,ending_date,status,id_category,id_del_address,id_seller )
+                                VALUES(:name,:description,:original_point,:final_point,:beginning_date,:ending_date,:status,:id_category ,:id_del_address,:id_seller)
                 """;
         Long sellerId = null;
         if (article.getSeller() != null) {
             sellerId = article.getSeller().getIdUser();
         }
-
         Long categoryId = null;
         if (article.getCategory() != null) {
             categoryId = article.getCategory().getIdCategory();
         }
-
         Long deliveryAddressId = null;
         if (article.getDeliveryAddress() != null) {
             deliveryAddressId = article.getDeliveryAddress().getIdDeladdress();
         }
-
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("name", article.getName());
         map.addValue("description", article.getDescription());
@@ -61,7 +57,6 @@ public class ArticleRepositorySQL implements ArticleRepository {
         map.addValue("id_category", categoryId);
         map.addValue("id_del_address", deliveryAddressId);
         map.addValue("id_seller", sellerId);
-
         namedParameterJdbcTemplate.update(sql, map, keyHolder);
         long id = keyHolder.getKey().longValue();
         article.setIdArticle(id);
@@ -199,14 +194,7 @@ public class ArticleRepositorySQL implements ArticleRepository {
     @Override
     public List<Article> readArticleECByIdSeller(long id) {
 
-        String sql = " SELECT article.name, article.original_point, article.final_point, " +
-                "       article.id_buyer, article.id_article, article.id_category, " +
-                "       article.beginning_date, article.ending_date, " +
-                "       [USER].id_user, [USER].pseudo " +
-                "    FROM ARTICLE " +
-                "    LEFT JOIN [USER] ON article.id_buyer = [USER].id_user " +
-                " WHERE article.id_seller=:id AND status='EC' " +
-                " ORDER BY article.ending_date ";
+        String sql = " SELECT article.name, article.original_point, article.final_point, " + "       article.id_buyer, article.id_article, article.id_category, " + "       article.beginning_date, article.ending_date, " + "       [USER].id_user, [USER].pseudo " + "    FROM ARTICLE " + "    LEFT JOIN [USER] ON article.id_buyer = [USER].id_user " + " WHERE article.id_seller=:id AND status='EC' " + " ORDER BY article.ending_date ";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
@@ -218,14 +206,7 @@ public class ArticleRepositorySQL implements ArticleRepository {
     @Override
     public List<Article> readArticleVDLVByIdSeller(long id) {
 
-        String sql = " SELECT article.name, article.original_point, article.final_point, " +
-                "       article.id_buyer, article.id_article, article.id_category, " +
-                "       article.beginning_date, article.ending_date, " +
-                "       [USER].id_user, [USER].pseudo " +
-                "    FROM ARTICLE " +
-                "    LEFT JOIN [USER] ON article.id_buyer = [USER].id_user " +
-                " WHERE article.id_seller=:id AND (status='VD' OR status='LV') " +
-                " ORDER BY article.ending_date DESC ";
+        String sql = " SELECT article.name, article.original_point, article.final_point, " + "       article.id_buyer, article.id_article, article.id_category, " + "       article.beginning_date, article.ending_date, " + "       [USER].id_user, [USER].pseudo " + "    FROM ARTICLE " + "    LEFT JOIN [USER] ON article.id_buyer = [USER].id_user " + " WHERE article.id_seller=:id AND (status='VD' OR status='LV') " + " ORDER BY article.ending_date DESC ";
 
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id", id);
@@ -241,13 +222,7 @@ public class ArticleRepositorySQL implements ArticleRepository {
                 WHERE status = 'CR'
                   AND beginning_date <= SYSDATETIME()
                 """;
-        return jdbcTemplate.query(sql, (rs, rowNum) -> new ArticleLog(
-                rs.getLong("id_article"),
-                rs.getString("name"),
-                rs.getString("status"),
-                rs.getTimestamp("beginning_date").toLocalDateTime(),
-                rs.getTimestamp("ending_date").toLocalDateTime()
-        ));
+        return jdbcTemplate.query(sql, (rs, rowNum) -> new ArticleLog(rs.getLong("id_article"), rs.getString("name"), rs.getString("status"), rs.getTimestamp("beginning_date").toLocalDateTime(), rs.getTimestamp("ending_date").toLocalDateTime()));
     }
 
     @Override
@@ -258,13 +233,7 @@ public class ArticleRepositorySQL implements ArticleRepository {
                 WHERE status = 'EC'
                   AND ending_date <= SYSDATETIME()
                 """;
-        return jdbcTemplate.query(sql, (rs, rowNum) -> new ArticleLog(
-                rs.getLong("id_article"),
-                rs.getString("name"),
-                rs.getString("status"),
-                rs.getTimestamp("beginning_date").toLocalDateTime(),
-                rs.getTimestamp("ending_date").toLocalDateTime()
-        ));
+        return jdbcTemplate.query(sql, (rs, rowNum) -> new ArticleLog(rs.getLong("id_article"), rs.getString("name"), rs.getString("status"), rs.getTimestamp("beginning_date").toLocalDateTime(), rs.getTimestamp("ending_date").toLocalDateTime()));
     }
 
     @Override
@@ -284,7 +253,7 @@ public class ArticleRepositorySQL implements ArticleRepository {
     }
 
     @Override
-    public Integer finalPointInProgress(int id_article){
+    public Integer finalPointInProgress(int id_article) {
         String sql = """
                 SELECT final_point FROM ARTICLE where id_article = :id_article
                 """;
@@ -295,9 +264,9 @@ public class ArticleRepositorySQL implements ArticleRepository {
     }
 
     @Override
-    public int getOriginalPoint(int id_article){
+    public int getOriginalPoint(int id_article) {
         String sql = """
-            SELECT original_point FROM ARTICLE where id_article = :id_article
+                SELECT original_point FROM ARTICLE where id_article = :id_article
                 """;
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("id_article", id_article);
