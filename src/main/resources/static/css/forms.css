@@ -21,7 +21,6 @@
 .form-signin {
     flex-wrap: wrap;
     max-width: 900px;
-    margin-bottom: 4vh;
 }
 
 .form-login {
@@ -229,4 +228,27 @@ option::checkmark {
     padding: 2px 5px 2px 5px;
     border-radius: 2px;
     margin-bottom: 2vh;
+}
+
+
+/********************************************************/
+/** RESPONSIVE **/
+/********************************************************/
+
+@media screen and (max-width: 768px) {
+
+    .form-col2 {
+        width: 100%;
+    }
+
+    .form-col2:first-of-type {
+        border-right: none;
+        padding-right: 0;
+        padding-bottom: 2em;
+    }
+
+    .form-col2:last-of-type {
+        padding-left: 0;
+    }
+
 }

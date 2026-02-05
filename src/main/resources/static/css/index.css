@@ -86,7 +86,9 @@ COULEURS DIFFÉRENTES SELON CATÉGORIE
 .box-article {
     width: 90%;
     max-width: 1110px;
-    height: 130px;
+    height: fit-content;
+    padding-bottom: 1.3em;
+    padding-top: 1.3em;
     border-radius: 16px;
     margin: auto auto 20px auto;
     display: flex;
@@ -106,7 +108,6 @@ COULEURS DIFFÉRENTES SELON CATÉGORIE
 .article-endingDate {
     margin-bottom: auto;
     margin-left: auto;
-    margin-top: 1.2em;
     margin-right: 1.2em;
     padding: 0.2em 1em 0.2em 1em;
     border-radius: 50px;
@@ -202,7 +203,9 @@ LISTE DES ARTICLES CRÉÉS MAIS PAS ENCORE EN VENTE
 .box-article-CR {
     width: 90%;
     max-width: 1110px;
-    height: 130px;
+    height: fit-content;
+    padding-bottom: 1.3em;
+    padding-top: 1.3em;
     border-radius: 16px;
     margin: auto auto 20px auto;
     display: flex;
@@ -219,7 +222,6 @@ LISTE DES ARTICLES CRÉÉS MAIS PAS ENCORE EN VENTE
 .article-beginningdate {
     margin-bottom: auto;
     margin-left: auto;
-    margin-top: 1.2em;
     margin-right: 1.2em;
     padding: 0.2em 1em 0.2em 1em;
     border-radius: 50px;
@@ -239,6 +241,14 @@ LISTE DES ARTICLES CRÉÉS MAIS PAS ENCORE EN VENTE
         background-position-y: 85px ;
     }
 
+    /* LISTE DES ARTICLES */
+
+    .box-article h3,
+    .box-article-CR h3 {
+        font-size: 1.7em;
+    }
+
+
 }
 
 
@@ -248,6 +258,51 @@ LISTE DES ARTICLES CRÉÉS MAIS PAS ENCORE EN VENTE
         background-position-y: 68px ;
     }
 
+    /* Filtre de recherche */
+
+    .filter-cate {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .filter-cate input {
+        margin-bottom: 0.5em;
+    }
+
+
+    .filter-cate select,
+    .filter-cate select::picker(select){
+        margin-bottom: 0.5em;
+    }
+
+
+    /* LISTE DES ARTICLES */
+
+    .box-article,
+    .box-article-CR {
+        width: 95%;
+        flex-wrap: wrap;
+    }
+
+    .box-article h3,
+    .box-article-CR h3{
+        font-size: 1.7em;
+    }
+
+    .article-endingDate,
+    .article-beginningdate {
+        margin-top: auto;
+        margin-bottom: 0;
+    }
+
+    .icon-cate {
+        width: 50px;
+        margin-right: 1.5em;
+        margin-left: 1.5em;
+    }
+
+
+
 }
 
 
@@ -256,6 +311,36 @@ LISTE DES ARTICLES CRÉÉS MAIS PAS ENCORE EN VENTE
     .baseline-index{
         background-image: none;
         padding-bottom: 1em;
+    }
+
+    .box-article,
+    .box-article-CR{
+        flex-direction: column;
+        align-content: center;
+        text-align: center;
+    }
+
+    .icon-cate {
+        width: 23px;
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .box-article h3,
+    .box-article-CR h3{
+        font-size: 1.5em;
+    }
+
+    .article-endingDate,
+    .article-beginningdate{
+        margin-top: 1.2em;
+        margin-right: auto;
+    }
+
+    .soon-title {
+        font-size: 1.5em;
+        margin-top: 2em;
+        margin-bottom: 1.5em;
     }
 
 }
