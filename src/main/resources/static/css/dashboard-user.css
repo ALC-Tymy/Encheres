@@ -184,6 +184,7 @@ div.ventes-user #ventes-terminees:target {
 
 .icon-cate-vente {
     margin-right: 20px;
+    height: 80px;
 }
 
 .box-vente-user.cat-1 {
@@ -226,3 +227,38 @@ div.ventes-user #ventes-terminees:target {
 .box-vente-user.cat-5 h4 {
     color: #1A605E;
 }
+/********************************************************/
+/** RESPONSIVE **/
+/********************************************************/
+
+
+@media screen and (max-width: 970px) {
+
+    .conteneur-encheres-user-col2,
+    .conteneur-ventes-user-col2{
+        width: 100%;
+    }
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .conteneur-encheres-user,
+    .conteneur-ventes-user {
+        width: 95%;
+    }
+
+
+}
+
+
+@media screen and (max-width: 576px) {
+
+    .icon-cate-vente {
+        height: 50px;
+    }
+
+}
+
+

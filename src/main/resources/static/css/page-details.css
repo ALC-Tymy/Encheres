@@ -251,3 +251,63 @@
         transform: translateY(-20px);
     }
 }
+
+
+/********************************************************/
+/** RESPONSIVE **/
+/********************************************************/
+
+
+@media screen and (max-width: 970px) {
+
+    .countdown {
+        font-size: 4em;
+    }
+
+    .box-create-proposition {
+        height: fit-content;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .input-proposition {
+        margin-top: 1em;
+    }
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .countdown {
+        font-size: 3em;
+    }
+
+    .conteneur-details-article {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .details-article,
+    .details-article-propositions {
+        width: 100%;
+        margin: 0;
+    }
+
+    .details-article-propositions {
+        margin-top: 2em;
+    }
+
+
+}
+
+
+@media screen and (max-width: 576px) {
+
+    .conteneur-details-article {
+        width: 95%;
+    }
+
+}
+
+

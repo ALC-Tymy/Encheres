@@ -31,13 +31,13 @@ public class UserServiceImpl implements UserService {
         //**********************************************************************
 
 
-        if (userRepository.readByPseudo(user.getPseudo()) != null){
-            throw new SignUpException("Ce pseudo est déjà pris");
-        }
-
-        if (userRepository.readByEmail(user.getEmail()) != null){
-            throw new SignUpException("Cet email est déjà enregistré");
-        }
+//        if (userRepository.readByPseudo(user.getPseudo()) != null){
+//            throw new SignUpException("Ce pseudo est déjà pris");
+//        }
+//
+//        if (userRepository.readByEmail(user.getEmail()) != null){
+//            throw new SignUpException("Cet email est déjà enregistré");
+//        }
 
         // Hash du password
         User newUser = new User(user.getPseudo(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword(),
