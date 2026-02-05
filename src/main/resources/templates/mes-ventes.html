@@ -16,6 +16,11 @@
 
             <div class="conteneur-ventes-user" id="ventes-crees">
 
+                <div class="toast toast-success"
+                     id="toast-success"
+                     th:if="${successMessage != null}"
+                     th:text="${successMessage}"></div>
+
                 <div th:each="el : ${articleCRList}" class="conteneur-ventes-user-col2">
 
                     <a th:href="@{/article/{id}(id=${el.idArticle})}">
@@ -27,10 +32,12 @@
                                     <img class="icon-cate-vente" th:src="@{/img/icon-info.svg}" alt="Icône de tablette">
                                 </div>
                                 <div th:case="2">
-                                    <img class="icon-cate-vente" th:src="@{/img/icon-furniture.svg}" alt="Icône de chaise">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-furniture.svg}"
+                                         alt="Icône de chaise">
                                 </div>
                                 <div th:case="3">
-                                    <img class="icon-cate-vente" th:src="@{/img/icon-clothes.svg}" alt="Icône de chaussettes">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-clothes.svg}"
+                                         alt="Icône de chaussettes">
                                 </div>
                                 <div th:case="4">
                                     <img class="icon-cate-vente" th:src="@{/img/icon-sport.svg}" alt="Icône de ballon">
@@ -43,9 +50,10 @@
                             <div>
                                 <h4 th:text="${el.getName()}"></h4>
                                 <p><span class="gras">Début de la vente</span> le
-                                <span th:text="${#temporals.format(el.beginningDate, 'dd/MM/yyyy')}"></span>
-                                à <span th:text="${#temporals.format(el.beginningDate, 'HH:mm') }"></span>
-                                <p><span class="gras">Mise à prix :</span> <span th:text="${el.originalPoint}"></span> points</p>
+                                    <span th:text="${#temporals.format(el.beginningDate, 'dd/MM/yyyy')}"></span>
+                                    à <span th:text="${#temporals.format(el.beginningDate, 'HH:mm') }"></span>
+                                <p><span class="gras">Mise à prix :</span> <span th:text="${el.originalPoint}"></span>
+                                    points</p>
                             </div>
                         </div>
                     </a>
@@ -67,10 +75,12 @@
                                     <img class="icon-cate-vente" th:src="@{/img/icon-info.svg}" alt="Icône de tablette">
                                 </div>
                                 <div th:case="2">
-                                    <img class="icon-cate-vente" th:src="@{/img/icon-furniture.svg}" alt="Icône de chaise">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-furniture.svg}"
+                                         alt="Icône de chaise">
                                 </div>
                                 <div th:case="3">
-                                    <img class="icon-cate-vente" th:src="@{/img/icon-clothes.svg}" alt="Icône de chaussettes">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-clothes.svg}"
+                                         alt="Icône de chaussettes">
                                 </div>
                                 <div th:case="4">
                                     <img class="icon-cate-vente" th:src="@{/img/icon-sport.svg}" alt="Icône de ballon">
@@ -90,11 +100,14 @@
                                     <span th:text="${#temporals.format(el.endingDate, 'dd/MM/yyyy')}"></span>
                                     à <span th:text="${#temporals.format(el.endingDate, 'HH:mm') }"></span>
                                 </p>
-                                <p><span class="gras">Mise à prix :</span> <span th:text="${el.getOriginalPoint()}"></span> points</p>
+                                <p><span class="gras">Mise à prix :</span> <span
+                                        th:text="${el.getOriginalPoint()}"></span> points</p>
                                 <p th:if="${el.finalPoint > 0}">
-                                    <span class="gras">Plus haute enchère actuelle :</span> <span th:text="${el.finalPoint}"></span> points
+                                    <span class="gras">Plus haute enchère actuelle :</span> <span
+                                        th:text="${el.finalPoint}"></span> points
                                 </p>
-                                <p th:if="${el.finalPoint == 0}">Désolé, il n'y a aucune enchère sur votre article pour le moment</p>
+                                <p th:if="${el.finalPoint == 0}">Désolé, il n'y a aucune enchère sur votre article pour
+                                    le moment</p>
                             </div>
                         </div>
                     </a>
@@ -116,10 +129,12 @@
                                     <img class="icon-cate-vente" th:src="@{/img/icon-info.svg}" alt="Icône de tablette">
                                 </div>
                                 <div th:case="2">
-                                    <img class="icon-cate-vente" th:src="@{/img/icon-furniture.svg}" alt="Icône de chaise">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-furniture.svg}"
+                                         alt="Icône de chaise">
                                 </div>
                                 <div th:case="3">
-                                    <img class="icon-cate-vente" th:src="@{/img/icon-clothes.svg}" alt="Icône de chaussettes">
+                                    <img class="icon-cate-vente" th:src="@{/img/icon-clothes.svg}"
+                                         alt="Icône de chaussettes">
                                 </div>
                                 <div th:case="4">
                                     <img class="icon-cate-vente" th:src="@{/img/icon-sport.svg}" alt="Icône de ballon">
@@ -134,9 +149,12 @@
                                 <p><span class="gras">Vente terminée</span> le
                                     <span th:text="${#temporals.format(el.endingDate, 'dd/MM/yyyy')}"></span>
                                     à <span th:text="${#temporals.format(el.endingDate, 'HH:mm') }"></span>
-                                <p><span class="gras">Mise à prix : </span><span th:text="${el.originalPoint}"></span> points</p>
-                                <p><span class="gras">Prix final : </span><span th:text="${el.finalPoint}"></span> points</p>
-                                <p th:if="${el.buyer != null}"><span class="gras">Acheté par :</span> <span th:text="${el.buyer.pseudo}"></span></p>
+                                <p><span class="gras">Mise à prix : </span><span th:text="${el.originalPoint}"></span>
+                                    points</p>
+                                <p><span class="gras">Prix final : </span><span th:text="${el.finalPoint}"></span>
+                                    points</p>
+                                <p th:if="${el.buyer != null}"><span class="gras">Acheté par :</span> <span
+                                        th:text="${el.buyer.pseudo}"></span></p>
                                 <p th:if="${el.buyer == null}">Désolé, votre article ne s'est pas vendu.</p>
                             </div>
                         </div>

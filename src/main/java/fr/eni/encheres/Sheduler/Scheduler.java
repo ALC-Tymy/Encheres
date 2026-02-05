@@ -68,7 +68,7 @@ public class Scheduler {
      * </p>
      */
     // Cron Spring : seconde minute heure jour mois jourSemaine
-    @Scheduled(cron = "*/30 * * * * *")
+    @Scheduled(cron = "0 * * * * *")
     public void updateStatusEncheres() {
 
         List<ArticleLog> crToEc = articleService.updateCRtoECWithLogs();
@@ -79,7 +79,7 @@ public class Scheduler {
     }
 
     @Transactional
-    @Scheduled(cron = "*/30 * * * * *")
+    @Scheduled(cron = "0 * * * * *")
     public void updateWinnerEncheres() {
         List<ProposalLog> winnerList = proposalService.updateWinnerEncheres();
         if (winnerList.isEmpty()) return;

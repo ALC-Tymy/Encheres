@@ -41,52 +41,35 @@ public class ArticleController {
     @GetMapping("/vendre")
     public String displaySell(Model model) {
         CreateArticleDTO articleDTO = new CreateArticleDTO();
-
         // Donne les valeurs de l'adresse de l'user
         long idSeller = userService.getIdLoggedUser();
         User userLogged = this.userService.readById(idSeller);
-
         articleDTO.setSeller(userLogged);
         articleDTO.setAddress(userLogged.getAddress());
         articleDTO.setZipCode(userLogged.getZipCode());
         articleDTO.setCity(userLogged.getCity());
-
         model.addAttribute("articleDTO", articleDTO);
         model.addAttribute("categoryList", this.categoryService.getAll());
         model.addAttribute("addressByPseudo", userLogged);
-
         return "vendre";
     }
 
     @PostMapping("/vendre/add")
-    public String createArticle(@Valid @ModelAttribute("articleDTO") CreateArticleDTO articleDTO,
-                                BindingResult bindingResult,
-                                Model model,
-                                RedirectAttributes redirectAttributes) {
-
+    public String createArticle(@Valid @ModelAttribute("articleDTO") CreateArticleDTO articleDTO, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
         // Validation manuelle : endingDate > beginningDate
-        if (articleDTO.getBeginningDate() != null &&
-                articleDTO.getEndingDate() != null &&
-                !articleDTO.getEndingDate().isAfter(articleDTO.getBeginningDate())) {
-
-            bindingResult.rejectValue("endingDate",
-                    "error.endingDate",
-                    "La date de fin doit être postérieure à la date de début");
+        if (articleDTO.getBeginningDate() != null && articleDTO.getEndingDate() != null && !articleDTO.getEndingDate().isAfter(articleDTO.getBeginningDate())) {
+            bindingResult.rejectValue("endingDate", "error.endingDate", "La date de fin doit être postérieure à la date de début");
         }
-
         if (bindingResult.hasErrors()) {
             model.addAttribute("categoryList", this.categoryService.getAll());
             long idSeller = userService.getIdLoggedUser();
             model.addAttribute("addressByPseudo", this.userService.readById(idSeller));
             return "vendre";
         }
-
         try {
             articleService.createArticleDTO(articleDTO);
-            redirectAttributes.addFlashAttribute("successMessage",
-                    "Votre article a été mis en vente avec succès !");
+            redirectAttributes.addFlashAttribute("successMessage", "Votre article a été mis en vente avec succès !");
             return "redirect:/mes-ventes#ventes-crees";
-
         } catch (Exception e) {
             model.addAttribute("errorMessage", "Une erreur est survenue : " + e.getMessage());
             model.addAttribute("categoryList", this.categoryService.getAll());
@@ -114,12 +97,7 @@ public class ArticleController {
     }
 
     @PostMapping("/article/{id}/addProposal")
-    public String addProposal(@PathVariable("id") long id,
-                              @ModelAttribute("newProposal") Proposal newProposal,
-                              BindingResult bindingResult,
-                              Model model,
-                              RedirectAttributes redirectAttributes) {
-
+    public String addProposal(@PathVariable("id") long id, @ModelAttribute("newProposal") Proposal newProposal, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
         Article article = articleService.readById(id);
         List<Proposal> listProposal = proposalService.readProposalByIdArticle(id);
         //Recup de la date du jour pour afficher ou non la box d'enchères
@@ -129,11 +107,9 @@ public class ArticleController {
         model.addAttribute("listProposal", listProposal);
         model.addAttribute("userConnected", userService.readById(userService.getIdLoggedUser()));
         model.addAttribute("idUserConnected", userService.getIdLoggedUser());
-
         if (bindingResult.hasErrors()) {
             return "details";
         }
-
         try {
             proposalService.createProposal(id, newProposal.getPointProposal());
             redirectAttributes.addFlashAttribute("successMessage", "Votre proposition a été enregistrée avec succès !");

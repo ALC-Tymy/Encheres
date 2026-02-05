@@ -15,8 +15,8 @@
 
                 <!-- Image -->
                 <div class="image-article">
-                    <img th:if="${article.imagePath != null}"
-                         th:src="${article.imagePath}" alt="Image de l'article">
+                    <img alt="Image de l'article"
+                         th:if="${article.imagePath != null}" th:src="${article.imagePath}">
                 </div>
 
                 <div class="details-article-infos"> <!-- 1ère colonne : infos de l'article -->
@@ -32,7 +32,8 @@
                                 <img alt="Icône de chaise" class="icon-cate-detail" th:src="@{/img/icon-furniture.svg}">
                             </div>
                             <div th:case="3">
-                                <img alt="Icône de chaussettes" class="icon-cate-detail" th:src="@{/img/icon-clothes.svg}">
+                                <img alt="Icône de chaussettes" class="icon-cate-detail"
+                                     th:src="@{/img/icon-clothes.svg}">
                             </div>
                             <div th:case="4">
                                 <img alt="Icône de ballon" class="icon-cate-detail" th:src="@{/img/icon-sport.svg}">
@@ -80,7 +81,8 @@
                     </div>
                 </div>
 
-                <div class="box-create-proposition" th:if="( ${article.beginningDate}  < ${localDateTime} ) and ( ${article.endingDate} > ${localDateTime} ) and ${idUserConnected != article.seller.idUser}">
+                <div class="box-create-proposition"
+                     th:if="( ${article.beginningDate}  < ${localDateTime} ) and ( ${article.endingDate} > ${localDateTime} ) and ${idUserConnected != article.seller.idUser}">
                     <div>
                         <p class="box-proposition-title">Faire une offre</p>
                         <p>Montant disponible : <span th:text="${userConnected?.walletPoint}"></span> points</p>
@@ -91,12 +93,12 @@
                                th:field="*{pointProposal}"
                                type="number">
                         <button class="button-proposition-validate" type="submit">Valider</button>
-                        <div id="toast-error"
-                                class="toast toast-error"
-                                th:if="${errorMessage}"
-                                th:text="${errorMessage}"></div>
-                        <div id="toast-success"
-                             class="toast toast-success"
+                        <div class="toast toast-error"
+                             id="toast-error"
+                             th:if="${errorMessage}"
+                             th:text="${errorMessage}"></div>
+                        <div class="toast toast-success"
+                             id="toast-success"
                              th:if="${successMessage != null}"
                              th:text="${successMessage}"></div>
                     </form>

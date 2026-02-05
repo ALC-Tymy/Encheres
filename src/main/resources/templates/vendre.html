@@ -1,47 +1,31 @@
 <!DOCTYPE html>
-
 <div data-th-replace="~{fragments/layout :: layout(content= ~{::main}) }">
-
     <main>
-
         <h2>Vendre un objet</h2>
-
-        <!-- Message d'erreur général -->
         <div class="error-login" th:if="${errorMessage}">
             <p th:text="${errorMessage}"></p>
         </div>
-
-        <!-- Message de succès -->
-        <div class="success-message" th:if="${successMessage}">
-            <p th:text="${successMessage}"></p>
-        </div>
-
         <form method="post" th:action="@{/vendre/add}" th:object="${articleDTO}" class="form-signin">
-
             <div class="form-col2">
                 <div>
                     <label for="idName">Titre*</label>
                     <input id="idName" th:field="*{name}" type="text">
                 </div>
                 <div class="error-login" th:errors="*{name}"></div>
-
                 <div>
                     <label for="idDescription">Description*</label>
                     <textarea cols="30" id="idDescription" name="address" rows="2" th:field="*{description}"></textarea>
                 </div>
                 <div class="error-login" th:errors="*{description}"></div>
-
                 <div>
                     <label for="idOriginalPoint">Prix de départ*</label>
                     <input id="idOriginalPoint" th:field="*{originalPoint}" type="number">
                 </div>
-
                 <div class="vendre-cate">
                     <label for="idCategory">Catégorie*</label>
-                        <select id="idCategory" name="" th:field="*{category}" >
-<!--                            <option selected disabled value=""> &#45;&#45; Choisir une catégorie</option>-->
-                            <option th:each="c : ${categoryList}" th:text="${c.name}" th:value="${c.idCategory}"></option>
-                        </select>
+                    <select id="idCategory" name="" th:field="*{category}">
+                        <option th:each="c : ${categoryList}" th:text="${c.name}" th:value="${c.idCategory}"></option>
+                    </select>
                 </div>
             </div>
             <div class="form-col2">
@@ -50,24 +34,19 @@
                     <input id="idBeginningDate" th:field="*{beginningDate}" type="datetime-local">
                 </div>
                 <div class="error-login" th:errors="*{beginningDate}"></div>
-
                 <div>
                     <label for="idEndingDate">Date de fin des enchères*</label>
                     <input id="idEndingDate" th:field="*{endingDate}" type="datetime-local">
                     <div class="error-login" th:if="${#fields.hasErrors('endingDate')}" th:errors="*{endingDate}"></div>
-
                 </div>
-
                 <div>
                     <label for="idAddress">Adresse de livraison*</label>
                     <input id="idAddress" th:field="*{address}">
                 </div>
                 <div class="error-login" th:errors="*{address}"></div>
-
                 <div>
                     <label for="idZipCode">Code postal*</label>
                     <input id="idZipCode" th:field="*{zipCode}" type="text">
-
                 </div>
                 <div class="error-login" th:errors="*{zipCode}"></div>
                 <div>
@@ -76,11 +55,10 @@
                 </div>
                 <div class="error-login" th:errors="*{city}"></div>
             </div>
-
             <button class="button-signin-inscription" type="submit"> Ajouter un article a la vente</button>
-
         </form>
-
     </main>
-
 </div>
+
+
+
