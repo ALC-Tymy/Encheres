@@ -4,7 +4,7 @@
 
         <h2>Oups ! il y un problème</h2>
 
-        <ul>
+        <ul class="page-error">
             <li th:switch="${status}">
                 <label th:case="401">Vous n'avez pas le droit d'aller ici</label>
                 <label th:case="403">Accès refusé</label>

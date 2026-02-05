@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>AMA</title>
+    <title>ama | Enchères entre particuliers</title>
     <link href="/css/dashboard-user.css" rel="stylesheet">
     <link href="/css/forms.css" rel="stylesheet">
     <link href="/css/general.css" rel="stylesheet">
@@ -21,34 +21,45 @@
     <a href="/" class="div-logo">
         <img th:src="@{/img/logo-ama2.svg}" alt="logo AMA" class="logo">
     </a>
+
     <nav>
-            <div>
+
+        <input type="checkbox" id="menu-toggle">
+        <label for="menu-toggle" class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </label>
+
+        <ul class="nav-links">
+            <li>
                 <a href="/">Accueil</a>
-            </div>
-            <div th:if="${#authorization.expression('hasRole(''USER'')')}">
+            </li>
+            <li th:if="${#authorization.expression('hasRole(''USER'')')}">
                 <a href="/vendre">Vendre</a>
-            </div>
-            <div th:if="${#authorization.expression('hasRole(''USER'')')}">
+            </li>
+            <li th:if="${#authorization.expression('hasRole(''USER'')')}">
                 <a href="/mes-ventes#ventes-encours">Mes ventes</a>
-            </div>
-            <div th:if="${#authorization.expression('hasRole(''USER'')')}">
+            </li>
+            <li th:if="${#authorization.expression('hasRole(''USER'')')}">
                 <a href="/mes-encheres#encheres-encours">Mes enchères</a>
-            </div>
-            <div th:if="${#authorization.expression('hasRole(''USER'')')}">
+            </li>
+            <li th:if="${#authorization.expression('hasRole(''USER'')')}">
                 <a href="/mon-compte">Mon compte</a>
-            </div>
-            <div th:if="${!#authorization.expression('isAuthenticated()')}">
+            </li>
+            <li th:if="${!#authorization.expression('isAuthenticated()')}">
                 <a href="/inscription">Inscription</a>
-            </div>
-            <div th:if="${!#authorization.expression('isAuthenticated()')}">
+            </li>
+            <li th:if="${!#authorization.expression('isAuthenticated()')}">
                 <a class="button-connexion" href="/connexion">Connexion</a>
-            </div>
-            <div th:if="${#authorization.expression('isAuthenticated()')}">
+            </li>
+            <li th:if="${#authorization.expression('isAuthenticated()')}">
                 <form class="formBoutonLogout" data-th-action="@{/logout}" method="post">
                     <input name="_csrf" type="hidden" value="${_csrf.token}">
                     <button class="boutonLogout" type="submit">Déconnexion</button>
                 </form>
-            </div>
+            </li>
+        </ul>
     </nav>
 </header>
 
