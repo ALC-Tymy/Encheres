@@ -98,7 +98,7 @@ VALUES ('MacBook Air M1', 'Apple MacBook Air 2020 avec puce M1, 8Go RAM, SSD 256
 
 -- Article 12
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
-VALUES ('Bibliothèque IKEA Billy', 'Bibliothèque IKEA modèle Billy, coloris blanc, hauteur 202cm, largeur 80cm, profondeur 28cm. 5 étagères réglables en hauteur. Excellent état, très stable et solide. Montée avec soin, aucune vis apparente. Idéale pour livres, déco ou rangement bureau. Démontable facilement pour transport.', 45, 65, '2026-01-22 11:00:00', '2026-02-08 19:00:00', 'EC', 2, 1, 1, 4, '/uploads/article/charlotte-peacock-Fkj2V3fNczM-unsplash.jpg');
+VALUES ('Bibliothèque IKEA Billy', 'Bibliothèque IKEA modèle Billy, coloris blanc, hauteur 202cm, largeur 80cm, profondeur 28cm. 5 étagères réglables en hauteur. Excellent état, très stable et solide. Montée avec soin, aucune vis apparente. Idéale pour livres, déco ou rangement bureau. Démontable facilement pour transport.', 45, 65, '2026-01-22 11:00:00', '2026-02-10 19:00:00', 'EC', 2, 1, 1, 4, '/uploads/article/charlotte-peacock-Fkj2V3fNczM-unsplash.jpg');
 
 -- Article 13
 INSERT INTO ARTICLE (name, description, original_point, final_point, beginning_date, ending_date, status, id_category, id_del_address, id_seller, id_buyer, image_path)
